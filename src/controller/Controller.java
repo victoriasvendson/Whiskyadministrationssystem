@@ -7,7 +7,7 @@ import java.util.List;
 public class Controller {
     private static Storage storage;
 
-    public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<String>
+    public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold>
                                        tidligereIndhold, String land, boolean erBrugbart,
                                Leverandør leverandør) {
         Fad fad = new Fad(fadId, alder, størrelse, tidligereIndhold, land, erBrugbart, leverandør);
@@ -40,6 +40,12 @@ public class Controller {
         return reol;
     }
 
+    public static TidligereIndhold opretTidligereIndhold (String væske) {
+        TidligereIndhold tidligereIndhold = new TidligereIndhold(væske);
+        storage.storeTidligereIndhold(tidligereIndhold);
+        return tidligereIndhold;
+    }
+
     public static List<Fad> getFade() {
         return storage.getFade();
     }
@@ -59,6 +65,8 @@ public class Controller {
     public static List<Reol> getReoler() {
         return storage.getReoler();
     }
+
+    public static List<TidligereIndhold> getTidligereIndhold() { return storage.getTidligereIndhold();}
 
     public static void setStorage(Storage storage) {
         Controller.storage = storage;
