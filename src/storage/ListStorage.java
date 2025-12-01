@@ -14,6 +14,7 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Malt> alleMalt = new ArrayList<>();
     private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
     private final ArrayList<Reol> reoler = new ArrayList<>();
+    private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
 
     @Override
     public List<Fad> getFade() {
@@ -51,6 +52,11 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
+    public List<TidligereIndhold> getTidligereIndhold() {
+        return new ArrayList<>(tidligereIndholds);
+    }
+
+    @Override
     public void storeFad(Fad fad) {
         fade.add(fad);
     }
@@ -84,6 +90,9 @@ public class ListStorage implements Storage, Serializable {
     public void storeReol(Reol reol) {
         reoler.add(reol);
     }
+
+    @Override
+    public void storeTidligereIndhold(TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
 
     public static ListStorage loadStorage(String fileName) {
         try (FileInputStream fileIn = new FileInputStream(fileName);
