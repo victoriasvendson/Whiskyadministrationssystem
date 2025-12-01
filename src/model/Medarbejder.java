@@ -1,6 +1,8 @@
 package model;
 
-public class Medarbejder {
+import java.io.Serializable;
+
+public class Medarbejder implements Serializable {
     private String navn;
     private String stillingsbetegnelse;
 
