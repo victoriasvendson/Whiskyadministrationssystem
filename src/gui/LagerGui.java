@@ -142,7 +142,7 @@ public class LagerGui extends GridPane {
 
             if (!reol.isEmpty()) {
                 Controller.opretReol(reol, lager);
-                lagerListView.getItems().setAll(Controller.getLagre());
+                reolListView.getItems().setAll(Controller.getReoler());
                 popup.close();
             }
         });

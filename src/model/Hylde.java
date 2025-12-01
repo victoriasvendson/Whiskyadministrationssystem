@@ -8,8 +8,9 @@ public class Hylde implements Serializable {
     private Reol reol;
     private ArrayList<Fad> fade = new ArrayList<>();
 
-    public Hylde(String hyldeNummer) {
+    public Hylde(String hyldeNummer, Reol reol) {
         this.hyldeNummer = hyldeNummer;
+        this.reol = reol;
     }
 
     public String getHyldeNummer() {

@@ -34,12 +34,6 @@ public class App {
 
     public static void initStorage() {
         // Objekter af vores lagerstyring
-        Hylde hyldeA11 = Controller.opretHylde("1");
-        Hylde hyldeA12 = Controller.opretHylde("2");
-        Hylde hyldeA13 = Controller.opretHylde("3");
-        Hylde hyldeA21 = Controller.opretHylde("1");
-        Hylde hyldeA22 = Controller.opretHylde("2");
-        Hylde hyldeA23 = Controller.opretHylde("3");
 
         Lager hammelLager = Controller.opretLager("Vestagervej 1, 8450 Hammel", 135);
         Lager randersLager = Controller.opretLager("Metervej 6, 8940 Randers SV", 300);
@@ -47,12 +41,12 @@ public class App {
         Reol reolA1 = Controller.opretReol("A1", hammelLager);
         Reol reolA2 = Controller.opretReol("A2", hammelLager);
 
-        reolA1.addHylde(hyldeA11);
-        reolA1.addHylde(hyldeA12);
-        reolA1.addHylde(hyldeA13);
-        reolA2.addHylde(hyldeA21);
-        reolA2.addHylde(hyldeA22);
-        reolA2.addHylde(hyldeA23);
+        Hylde hyldeA11 = Controller.opretHylde("1", reolA1);
+        Hylde hyldeA12 = Controller.opretHylde("2", reolA1);
+        Hylde hyldeA13 = Controller.opretHylde("3", reolA1);
+        Hylde hyldeA21 = Controller.opretHylde("1", reolA2);
+        Hylde hyldeA22 = Controller.opretHylde("2", reolA2);
+        Hylde hyldeA23 = Controller.opretHylde("3", reolA2);
 
 
         // Objekter af leverandører og fade

@@ -15,8 +15,8 @@ public class Controller {
         return fad;
     }
 
-    public static Hylde opretHylde(String hyldeNummer) {
-        Hylde hylde = new Hylde(hyldeNummer);
+    public static Hylde opretHylde(String hyldeNummer, Reol reol) {
+        Hylde hylde = new Hylde(hyldeNummer, reol);
         storage.storeHylde(hylde);
         return hylde;
     }
