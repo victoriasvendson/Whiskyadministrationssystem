@@ -6,6 +6,8 @@ import java.util.List;
 public interface Storage {
     List<Destillering> getDestilleringer();
 
+    List<DestillatComposite> getKomponenter();
+
     List<Fad> getFade();
 
     List<Hylde> getHylder();
@@ -23,6 +25,8 @@ public interface Storage {
     List<TidligereIndhold> getTidligereIndhold();
 
     void storeDestillering(Destillering destillering);
+
+    void storeDestillatComposite(DestillatComposite destillatComposite);
 
     void storeFad(Fad fad);
 

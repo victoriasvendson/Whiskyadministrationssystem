@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
     private final ArrayList<Destillering> destilleringer = new ArrayList<>();
+    private final ArrayList<DestillatComposite> komponenter = new ArrayList<>();
     private final ArrayList<Fad> fade = new ArrayList<>();
     private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
@@ -19,7 +20,12 @@ public class ListStorage implements Storage, Serializable {
 
     @Override
     public List<Destillering> getDestilleringer() {
-        return new ArrayList<>(destillering);
+        return new ArrayList<>(destilleringer);
+    }
+
+    @Override
+    public List<DestillatComposite> getKomponenter() {
+        return new ArrayList<>(komponenter);
     }
 
     @Override
@@ -65,6 +71,11 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public void storeDestillering(Destillering destillering) {
         destilleringer.add(destillering);
+    }
+
+    @Override
+    public void storeDestillatComposite(DestillatComposite destillatComposite) {
+        komponenter.add(destillatComposite);
     }
 
     @Override
