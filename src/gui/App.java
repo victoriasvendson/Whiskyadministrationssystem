@@ -29,6 +29,7 @@ public class App {
         }
 
         Application.launch(Gui.class);
+        ListStorage.saveStorage(fileName, storage);
     }
 
     public static void initStorage() {
