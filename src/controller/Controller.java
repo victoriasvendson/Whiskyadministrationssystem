@@ -7,7 +7,7 @@ import java.util.List;
 public class Controller {
     private static Storage storage;
 
-    public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<String>
+    public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold>
                                        tidligereIndhold, String land, boolean erBrugbart,
                                Leverandør leverandør) {
         Fad fad = new Fad(fadId, alder, størrelse, tidligereIndhold, land, erBrugbart, leverandør);
