@@ -52,7 +52,9 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public List<TidligereIndhold> getTidligereIndhold() { return new ArrayList<>(tidligereIndholds);}
+    public List<TidligereIndhold> getTidligereIndhold() {
+        return new ArrayList<>(tidligereIndholds);
+    }
 
     @Override
     public void storeFad(Fad fad) {
@@ -90,7 +92,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public void storeTidligereIndhold (TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
+    public void storeTidligereIndhold(TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
 
     public static ListStorage loadStorage(String fileName) {
         try (FileInputStream fileIn = new FileInputStream(fileName);

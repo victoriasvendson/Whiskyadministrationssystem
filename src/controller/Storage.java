@@ -34,5 +34,5 @@ public interface Storage {
 
     void storeReol(Reol reol);
 
-    void storeTidligereIndhold (TidligereIndhold tidligereIndhold);
+    void storeTidligereIndhold(TidligereIndhold tidligereIndhold);
 }
