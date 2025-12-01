@@ -69,7 +69,6 @@ public class LagerGui extends GridPane {
     }
 
 
-
     //METODER
     private void updateReoler() {
         Lager selected = lagerListView.getSelectionModel().getSelectedItem();
@@ -86,6 +85,8 @@ public class LagerGui extends GridPane {
         }
     }
 
+
+    //Oprettelse af nyt lager
     private void opretLager() {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
@@ -116,6 +117,41 @@ public class LagerGui extends GridPane {
         VBox layout = new VBox(10,
                 nameLabel, nameInput,
                 addressLabel, addressInput,
+                btnOk, btnCancel
+        );
+        layout.setPadding(new Insets(10));
+
+        popup.setScene(new Scene(layout));
+        popup.showAndWait();
+    }
+
+    private void opretReol() {
+        Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.setTitle("Opret Reol");
+        popup.setMinWidth(300);
+
+        Label nameLabel = new Label("Reol navn:");
+        TextField reolInput = new TextField();
+
+        Button btnOk = new Button("Opret");
+        btnOk.setOnAction(e -> {
+            String reol = reolInput.getText().trim();
+            Lager lager = lagerListView.getSelectionModel().getSelectedItem();
+
+
+            if (!reol.isEmpty()) {
+                Controller.opretReol(reol, lager);
+                lagerListView.getItems().setAll(Controller.getLagre());
+                popup.close();
+            }
+        });
+
+        Button btnCancel = new Button("Annullér");
+        btnCancel.setOnAction(e -> popup.close());
+
+        VBox layout = new VBox(10,
+                nameLabel, reolInput,
                 btnOk, btnCancel
         );
         layout.setPadding(new Insets(10));

@@ -44,8 +44,8 @@ public class App {
         Lager hammelLager = Controller.opretLager("Vestagervej 1, 8450 Hammel", 135);
         Lager randersLager = Controller.opretLager("Metervej 6, 8940 Randers SV", 300);
 
-        Reol reolA1 = Controller.opretReol("A1");
-        Reol reolA2 = Controller.opretReol("A2");
+        Reol reolA1 = Controller.opretReol("A1", hammelLager);
+        Reol reolA2 = Controller.opretReol("A2", hammelLager);
 
         reolA1.addHylde(hyldeA11);
         reolA1.addHylde(hyldeA12);
@@ -54,8 +54,6 @@ public class App {
         reolA2.addHylde(hyldeA22);
         reolA2.addHylde(hyldeA23);
 
-        hammelLager.addReol(reolA1);
-        hammelLager.addReol(reolA2);
 
         // Objekter af leverandører og fade
         Leverandør glenfiddich = Controller.opretLeverandør("Glenfiddich", "glenfiddich@gmail.com",
