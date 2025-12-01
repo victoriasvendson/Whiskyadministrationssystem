@@ -81,5 +81,6 @@ public class App {
         Fad portBarrel = Controller.opretFad(6, 14, 200, tidligereIndhold1, "Irland", true, glenfiddich);
         Fad mezcal = Controller.opretFad(7, 8, 100, tidligereIndhold1, "Mexico", true, glenfiddich);
         //hh
+        //hh
     }
 }
