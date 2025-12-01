@@ -1,6 +1,8 @@
 package model;
 
-public class Malt {
+import java.io.Serializable;
+
+public class Malt implements Serializable {
     private String mark;
     private String kornsort;
 
