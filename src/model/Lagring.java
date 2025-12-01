@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Lagring {
+public class Lagring implements Serializable {
     private LocalDate startDato;
     private LocalDate slutDato;
     private double startMængde;
