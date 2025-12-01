@@ -8,8 +8,9 @@ public class Reol implements Serializable {
     private ArrayList<Hylde> hylder = new ArrayList<>();
     private Lager lager;
 
-    public Reol(String rækkeNummer) {
+    public Reol(String rækkeNummer, Lager lager) {
         this.rækkeNummer = rækkeNummer;
+        this.lager = lager;
     }
 
     public String getRækkeNummer() {
