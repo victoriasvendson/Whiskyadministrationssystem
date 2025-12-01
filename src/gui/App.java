@@ -74,7 +74,7 @@ public class App {
         ArrayList<String> tidligereIndhold1 = new ArrayList<>(List.of("Bourbon", "Sherry"));
 
         Fad bourbon = Controller.opretFad(1, 13, 200, tidligereIndhold1, "United States", true, glenfiddich);
-        Fad sherry1 = Controller.opretFad(2, 4, 40, tidligereIndhold1, "Italien", true, macallan);
+        Fad sherry1 = Controller.opretFad(2, 4, 40, tidligereIndhold1, "Italien1", true, macallan);
         Fad sherry2 = Controller.opretFad(3, 4, 150, tidligereIndhold1, "Italien", true, macallan);
         Fad sherry3 = Controller.opretFad(4, 4, 150, tidligereIndhold1, "Italien", false, faryLochan);
         Fad sherry4 = Controller.opretFad(5, 4, 200, tidligereIndhold1, "Italien", false, faryLochan);
