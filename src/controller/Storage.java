@@ -4,6 +4,8 @@ import model.*;
 import java.util.List;
 
 public interface Storage {
+    List<Destillering> getDestilleringer();
+
     List<Fad> getFade();
 
     List<Hylde> getHylder();
@@ -19,6 +21,8 @@ public interface Storage {
     List<Reol> getReoler();
 
     List<TidligereIndhold> getTidligereIndhold();
+
+    void storeDestillering(Destillering destillering);
 
     void storeFad(Fad fad);
 
