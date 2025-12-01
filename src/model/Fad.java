@@ -7,18 +7,18 @@ public class Fad implements Serializable {
     private int fadId;
     private double alder;
     private int størrelse;
-    private ArrayList<String> tidligereIndhold;
+    private ArrayList<TidligereIndhold> tidligereIndholdIFad;
     private String land;
     private boolean erBrugbart;
     private Hylde hylde;
     private Leverandør leverandør;
 
-    public Fad(int fadId, double alder, int størrelse, ArrayList<String> tidligereIndhold,
+    public Fad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold> tidligereIndholdIFad,
                String land, boolean erBrugbart, Leverandør leverandør) {
         this.fadId = fadId;
         this.alder = alder;
         this.størrelse = størrelse;
-        this.tidligereIndhold = tidligereIndhold;
+        this.tidligereIndholdIFad = tidligereIndholdIFad;
         this.land = land;
         this.erBrugbart = erBrugbart;
         this.leverandør = leverandør;
@@ -36,8 +36,8 @@ public class Fad implements Serializable {
         return størrelse;
     }
 
-    public ArrayList<String> getTidligereIndhold() {
-        return tidligereIndhold;
+    public ArrayList<TidligereIndhold> getTidligereIndhold() {
+        return tidligereIndholdIFad;
     }
 
     public String getLand() {
@@ -46,5 +46,10 @@ public class Fad implements Serializable {
 
     public boolean erBrugbart() {
         return erBrugbart;
+    }
+
+    public void addTidligereIndhold (TidligereIndhold tidligereIndhold) {
+        tidligereIndholdIFad.add(tidligereIndhold);
+
     }
 }
