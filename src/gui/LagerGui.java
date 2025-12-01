@@ -59,6 +59,7 @@ public class LagerGui extends GridPane {
         );
 
         pane.add(btnOpretReol, 1, 2);
+        btnOpretReol.setOnAction(event -> opretReol());
 
         //HYLDE DEL
         Label hyldeLabel = new Label("Hylder:");
@@ -66,6 +67,7 @@ public class LagerGui extends GridPane {
         pane.add(hyldeListView, 2, 1);
 
         pane.add(btnOpretHylde, 2, 2);
+        btnOpretHylde.setOnAction(event -> opretHylde());
     }
 
 
@@ -159,4 +161,39 @@ public class LagerGui extends GridPane {
         popup.setScene(new Scene(layout));
         popup.showAndWait();
     }
+
+    private void opretHylde() {
+        Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.setTitle("Opret Hylde");
+        popup.setMinWidth(300);
+
+        Label nameLabel = new Label("Hylde navn:");
+        TextField hyldeInput = new TextField();
+
+        Button btnOk = new Button("Opret");
+        btnOk.setOnAction(e -> {
+            String hylde = hyldeInput.getText().trim();
+            Reol reol = reolListView.getSelectionModel().getSelectedItem();
+
+
+            if (!hylde.isEmpty()) {
+                Controller.opretHylde(hylde, reol);
+                hyldeListView.getItems().setAll(Controller.getHylder());
+                popup.close();
+            }
+        });
+
+        Button btnCancel = new Button("Annullér");
+        btnCancel.setOnAction(e -> popup.close());
+
+        VBox layout = new VBox(10,
+                nameLabel, hyldeInput,
+                btnOk, btnCancel
+        );
+        layout.setPadding(new Insets(10));
+
+        popup.setScene(new Scene(layout));
+        popup.showAndWait();
     }
+}
