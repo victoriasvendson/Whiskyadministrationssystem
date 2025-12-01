@@ -1,9 +1,8 @@
 package model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Whisky implements Serializable {
+public class Whisky {
     private String navn;
     private double whiskyMængde;
     private double vandMængde;

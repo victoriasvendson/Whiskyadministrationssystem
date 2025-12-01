@@ -65,14 +65,41 @@ public class App {
         Leverandør faryLochan = Controller.opretLeverandør("Fary Lochan", "farylochan@hotmail.com",
                 "27290295", "Ågade 41, 7323 Give, Denmark");
 
-        ArrayList<String> tidligereIndhold1 = new ArrayList<>(List.of("Bourbon", "Sherry"));
+        TidligereIndhold Whisky = new TidligereIndhold("Whisky");
+        TidligereIndhold Sherry = new TidligereIndhold("Sherry");
+        TidligereIndhold Bourbon = new TidligereIndhold("Bourbon");
+        TidligereIndhold Portvin = new TidligereIndhold("Portvin");
+        TidligereIndhold Rødvin = new TidligereIndhold("Rødvin");
+        TidligereIndhold Hvidvin = new TidligereIndhold("Hvidvin");
+        TidligereIndhold Rom = new TidligereIndhold("Rom");
+        TidligereIndhold Cognac = new TidligereIndhold("Cognac");
+        TidligereIndhold Mezcal = new TidligereIndhold("Mescal");
 
-        Fad bourbon = Controller.opretFad(1, 13, 200, tidligereIndhold1, "United States", true, glenfiddich);
-        Fad sherry1 = Controller.opretFad(2, 4, 40, tidligereIndhold1, "Italien", true, macallan);
-        Fad sherry2 = Controller.opretFad(3, 4, 150, tidligereIndhold1, "Italien", true, macallan);
-        Fad sherry3 = Controller.opretFad(4, 4, 150, tidligereIndhold1, "Italien", false, faryLochan);
-        Fad sherry4 = Controller.opretFad(5, 4, 200, tidligereIndhold1, "Italien", false, faryLochan);
-        Fad portBarrel = Controller.opretFad(6, 14, 200, tidligereIndhold1, "Irland", true, glenfiddich);
-        Fad mezcal = Controller.opretFad(7, 8, 100, tidligereIndhold1, "Mexico", true, glenfiddich);
+        ArrayList<TidligereIndhold> TidligereIndholdBourbon = new ArrayList<>();
+        TidligereIndholdBourbon.add(Bourbon);
+        ArrayList<TidligereIndhold> TidligereIndholdSherry = new ArrayList<>();
+        TidligereIndholdBourbon.add(Sherry);
+        ArrayList<TidligereIndhold> TidligereIndholdPortvin = new ArrayList<>();
+        TidligereIndholdBourbon.add(Portvin);
+        ArrayList<TidligereIndhold> TidligereIndholdMezcal = new ArrayList<>();
+        TidligereIndholdBourbon.add(Mezcal);
+
+
+
+        Fad bourbon = Controller.opretFad(1, 13, 200, TidligereIndholdBourbon, "United States", true, glenfiddich);
+        Fad sherry1 = Controller.opretFad(2, 4, 40, TidligereIndholdSherry, "Italien", true, macallan);
+        Fad sherry2 = Controller.opretFad(3, 4, 150, TidligereIndholdSherry, "Italien", true, macallan);
+        Fad sherry3 = Controller.opretFad(4, 4, 150, TidligereIndholdSherry, "Italien", false, faryLochan);
+        Fad sherry4 = Controller.opretFad(5, 4, 200, TidligereIndholdSherry, "Italien", false, faryLochan);
+        Fad portBarrel = Controller.opretFad(6, 14, 200, TidligereIndholdPortvin, "Irland", true, glenfiddich);
+        Fad mezcal = Controller.opretFad(7, 8, 100, TidligereIndholdMezcal, "Mexico", true, glenfiddich);
+        
+        bourbon.addTidligereIndhold(Bourbon);
+        sherry1.addTidligereIndhold(Sherry);
+        sherry2.addTidligereIndhold(Sherry);
+        sherry3.addTidligereIndhold(Sherry);
+        sherry4.addTidligereIndhold(Sherry);
+        portBarrel.addTidligereIndhold(Portvin);
+        mezcal.addTidligereIndhold(Mezcal);
     }
 }

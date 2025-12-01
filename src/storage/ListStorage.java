@@ -10,12 +10,9 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Fad> fade = new ArrayList<>();
     private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
-    private final ArrayList<Lagring> lagringer = new ArrayList<>();
     private final ArrayList<Leverandør> leverandører = new ArrayList<>();
-    private final ArrayList<Malt> alleMalt = new ArrayList<>();
-    private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
     private final ArrayList<Reol> reoler = new ArrayList<>();
-    private final ArrayList<Whisky> alleWhisky = new ArrayList<>();
+    private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
 
     @Override
     public List<Fad> getFade() {
@@ -33,23 +30,8 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public List<Lagring> getLagringer() {
-        return new ArrayList<>(lagringer);
-    }
-
-    @Override
     public List<Leverandør> getLeverandører() {
         return new ArrayList<>(leverandører);
-    }
-
-    @Override
-    public List<Malt> getAlleMalt() {
-        return new ArrayList<>(alleMalt);
-    }
-
-    @Override
-    public List<Medarbejder> getMedarbejdere() {
-        return new ArrayList<>(medarbejdere);
     }
 
     @Override
@@ -58,9 +40,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public List<Whisky> getAlleWhisky() {
-        return new ArrayList<>(alleWhisky);
-    }
+    public List<TidligereIndhold> getTidligereIndhold() { return new ArrayList<>(tidligereIndholds);}
 
     @Override
     public void storeFad(Fad fad) {
@@ -78,23 +58,8 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public void storeLagring(Lagring lagring) {
-        lagringer.add(lagring);
-    }
-
-    @Override
     public void storeLeverandør(Leverandør leverandør) {
         leverandører.add(leverandør);
-    }
-
-    @Override
-    public void storeMalt(Malt malt) {
-        alleMalt.add(malt);
-    }
-
-    @Override
-    public void storeMedarbejder(Medarbejder medarbejder) {
-        medarbejdere.add(medarbejder);
     }
 
     @Override
@@ -103,9 +68,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public void storeWhisky(Whisky whisky) {
-        alleWhisky.add(whisky);
-    }
+    public void storeTidligereIndhold (TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
 
     public static ListStorage loadStorage(String fileName) {
         try (FileInputStream fileIn = new FileInputStream(fileName);
