@@ -46,8 +46,8 @@ public class Controller {
         return medarbejder;
     }
 
-    public static Reol opretReol(String rækkeNummer) {
-        Reol reol = new Reol(rækkeNummer);
+    public static Reol opretReol(String rækkeNummer, Lager lager) {
+        Reol reol = new Reol(rækkeNummer, lager);
         storage.storeReol(reol);
         return reol;
     }

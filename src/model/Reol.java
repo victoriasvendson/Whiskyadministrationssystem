@@ -10,6 +10,7 @@ public class Reol implements Serializable {
 
     public Reol(String rækkeNummer, Lager lager) {
         this.rækkeNummer = rækkeNummer;
+        this.lager = lager;
     }
 
     public String getRækkeNummer() {
