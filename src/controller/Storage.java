@@ -12,6 +12,10 @@ public interface Storage {
 
     List<Leverandør> getLeverandører();
 
+    List<Malt> getAlleMalt();
+
+    List<Medarbejder> getMedarbejdere();
+
     List<Reol> getReoler();
 
     List<TidligereIndhold> getTidligereIndhold();
@@ -23,6 +27,10 @@ public interface Storage {
     void storeLager(Lager lager);
 
     void storeLeverandør(Leverandør leverandør);
+
+    void storeMalt(Malt malt);
+
+    void storeMedarbejder(Medarbejder medarbejder);
 
     void storeReol(Reol reol);
 

@@ -11,6 +11,8 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
     private final ArrayList<Leverandør> leverandører = new ArrayList<>();
+    private final ArrayList<Malt> alleMalt = new ArrayList<>();
+    private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
     private final ArrayList<Reol> reoler = new ArrayList<>();
     private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
 
@@ -32,6 +34,16 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public List<Leverandør> getLeverandører() {
         return new ArrayList<>(leverandører);
+    }
+
+    @Override
+    public List<Malt> getAlleMalt() {
+        return new ArrayList<>(alleMalt);
+    }
+
+    @Override
+    public List<Medarbejder> getMedarbejdere() {
+        return new ArrayList<>(medarbejdere);
     }
 
     @Override
@@ -60,6 +72,16 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public void storeLeverandør(Leverandør leverandør) {
         leverandører.add(leverandør);
+    }
+
+    @Override
+    public void storeMalt(Malt malt) {
+        alleMalt.add(malt);
+    }
+
+    @Override
+    public void storeMedarbejder(Medarbejder medarbejder) {
+        medarbejdere.add(medarbejder);
     }
 
     @Override

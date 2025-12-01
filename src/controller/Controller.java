@@ -34,6 +34,18 @@ public class Controller {
         return leverandør;
     }
 
+    public static Malt opretMalt(String mark, String kornsort) {
+        Malt malt = new Malt(mark, kornsort);
+        storage.storeMalt(malt);
+        return malt;
+    }
+
+    public static Medarbejder opretMedarbejder(String navn, String stillingsbetegnelse) {
+        Medarbejder medarbejder = new Medarbejder(navn, stillingsbetegnelse);
+        storage.storeMedarbejder(medarbejder);
+        return medarbejder;
+    }
+
     public static Reol opretReol(String rækkeNummer) {
         Reol reol = new Reol(rækkeNummer);
         storage.storeReol(reol);
@@ -60,6 +72,14 @@ public class Controller {
 
     public static List<Leverandør> getLeverandører() {
         return storage.getLeverandører();
+    }
+
+    public static List<Malt> getAlleMalt() {
+        return storage.getAlleMalt();
+    }
+
+    public static List<Medarbejder> getMedarbejdere() {
+        return storage.getMedarbejdere();
     }
 
     public static List<Reol> getReoler() {
