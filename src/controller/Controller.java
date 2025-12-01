@@ -40,6 +40,12 @@ public class Controller {
         return reol;
     }
 
+    public static TidligereIndhold opretTidligereIndhold (String væske) {
+        TidligereIndhold tidligereIndhold = new TidligereIndhold(væske);
+        storage.storeTidligereIndhold(tidligereIndhold);
+        return tidligereIndhold;
+    }
+
     public static List<Fad> getFade() {
         return storage.getFade();
     }

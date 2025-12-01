@@ -14,6 +14,8 @@ public interface Storage {
 
     List<Reol> getReoler();
 
+    List<TidligereIndhold> getTidligereIndhold();
+
     void storeFad(Fad fad);
 
     void storeHylde(Hylde hylde);
@@ -23,4 +25,6 @@ public interface Storage {
     void storeLeverandør(Leverandør leverandør);
 
     void storeReol(Reol reol);
+
+    void storeTidligereIndhold (TidligereIndhold tidligereIndhold);
 }
