@@ -1,18 +1,19 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Whisky {
+public class Whisky implements Væske {
     private String navn;
     private double whiskyMængde;
     private double vandMængde;
-    private ArrayList<Lagring> lagringer = new ArrayList<>();
+    private List<Væske> lagringer = new ArrayList<>();
 
-    public Whisky(String navn, double whiskyMængde, double vandMængde, ArrayList<Lagring> lagringer) {
+    public Whisky(String navn, double whiskyMængde, double vandMængde) {
         this.navn = navn;
         this.whiskyMængde = whiskyMængde;
         this.vandMængde = vandMængde;
-        this.lagringer = lagringer;
+
     }
 
     public String getNavn() {
@@ -27,11 +28,22 @@ public class Whisky {
         return vandMængde;
     }
 
-    public ArrayList<Lagring> getLagringer() {
-        return lagringer;
+    @Override
+    public double getVolumen() {
+        return lagringer.stream()
+                .mapToDouble(Væske::getVolumen)
+                .sum();
     }
 
-    public void addLagring(Lagring lagring) {
-        lagringer.add(lagring);
+    @Override
+    public double getAlkoholProcent() {
+        double totalVolumen = getVolumen();
+        if (totalVolumen == 0) return 0;
+
+        double totalAlkohol = lagringer.stream()
+                .mapToDouble(s -> s.getVolumen() * s.getAlkoholProcent())
+                .sum();
+
+        return totalAlkohol / totalVolumen;
     }
 }
