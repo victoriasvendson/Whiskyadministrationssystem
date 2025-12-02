@@ -6,7 +6,6 @@ import javafx.application.Application;
 import model.*;
 import storage.ListStorage;
 import java.util.ArrayList;
-import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -34,7 +33,6 @@ public class App {
 
     public static void initStorage() {
         // Objekter af vores lagerstyring
-
         Lager hammelLager = Controller.opretLager("Vestagervej 1, 8450 Hammel", 135);
         Lager randersLager = Controller.opretLager("Metervej 6, 8940 Randers SV", 300);
 
@@ -47,7 +45,6 @@ public class App {
         Hylde hyldeA21 = Controller.opretHylde("1", reolA2);
         Hylde hyldeA22 = Controller.opretHylde("2", reolA2);
         Hylde hyldeA23 = Controller.opretHylde("3", reolA2);
-
 
         // Objekter af leverandører og fade
         Leverandør glenfiddich = Controller.opretLeverandør("Glenfiddich", "glenfiddich@gmail.com",
@@ -67,6 +64,7 @@ public class App {
         TidligereIndhold Cognac = new TidligereIndhold("Cognac");
         TidligereIndhold Mezcal = new TidligereIndhold("Mescal");
 
+        // Objekter af tidligere indhold
         ArrayList<TidligereIndhold> TidligereIndholdBourbon = new ArrayList<>();
         TidligereIndholdBourbon.add(Bourbon);
         ArrayList<TidligereIndhold> TidligereIndholdSherry = new ArrayList<>();
@@ -76,8 +74,7 @@ public class App {
         ArrayList<TidligereIndhold> TidligereIndholdMezcal = new ArrayList<>();
         TidligereIndholdBourbon.add(Mezcal);
 
-
-
+        // Objekter af fade
         Fad bourbon = Controller.opretFad(1, 13, 200, TidligereIndholdBourbon, "United States", true, glenfiddich);
         Fad sherry1 = Controller.opretFad(2, 4, 40, TidligereIndholdSherry, "Italien", true, macallan);
         Fad sherry2 = Controller.opretFad(3, 4, 150, TidligereIndholdSherry, "Italien", true, macallan);
@@ -93,5 +90,11 @@ public class App {
         sherry4.addTidligereIndhold(Sherry);
         portBarrel.addTidligereIndhold(Portvin);
         mezcal.addTidligereIndhold(Mezcal);
+
+        // Objekter af malt
+        Malt laureate = Controller.opretMalt("Kvolbæk", "Laureate");
+        Malt planet = Controller.opretMalt("Kvolbæk", "Planet");
+        Malt evergreen = Controller.opretMalt("Stadsgård", "Evergreen");
+        Malt kwsIrina = Controller.opretMalt("Stadsgård", "KWS Irina");
     }
 }
