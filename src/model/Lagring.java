@@ -8,14 +8,12 @@ import java.util.List;
 public class Lagring implements Serializable, Væske {
     private LocalDate startDato;
     private LocalDate slutDato;
-    private double startMængde;
     private double aftappetMængde;
     private final List<Væske> indhold = new ArrayList<>();
 
-    public Lagring(LocalDate startDato, LocalDate slutDato, double startMængde, double aftappetMængde) {
+    public Lagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde) {
         this.startDato = startDato;
         this.slutDato = slutDato;
-        this.startMængde = startMængde;
         this.aftappetMængde = aftappetMængde;
     }
 
@@ -27,16 +25,12 @@ public class Lagring implements Serializable, Væske {
         return slutDato;
     }
 
-    public double getStartMængde() {
-        return startMængde;
-    }
-
     public double getAftappetMængde() {
         return aftappetMængde;
     }
 
     public double udregnAngelShare() {
-        return startMængde - aftappetMængde;
+        return getVolumen() - aftappetMængde;
     }
 
     @Override
