@@ -1,25 +1,22 @@
 package model;
 
-import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Destillering implements Serializable, DestilleringsComponent {
+public class Destillering {
     private int destilleringsId;
     private double mængde;
-    private double alkoholprocent;
+    private LocalDate startDato;
+    private LocalDate slutDato;
+    private String rygemateriale;
+    private Malt malt;
 
-    public Destillering(int destilleringsId, double mængde, double alkoholprocent) {
+    public Destillering(int destilleringsId, double mængde, LocalDate startDato,
+                        LocalDate slutDato, String rygemateriale, Malt malt) {
         this.destilleringsId = destilleringsId;
         this.mængde = mængde;
-        this.alkoholprocent = alkoholprocent;
-    }
-
-    @Override
-    public double getMængde() {
-        return mængde;
-    }
-
-    @Override
-    public double getAlkoholprocent() {
-        return alkoholprocent;
+        this.startDato = startDato;
+        this.slutDato = slutDato;
+        this.rygemateriale = rygemateriale;
+        this.malt = malt;
     }
 }

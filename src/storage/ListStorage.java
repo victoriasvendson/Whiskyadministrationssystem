@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
-    private final ArrayList<Destillering> destilleringer = new ArrayList<>();
-    private final ArrayList<DestillatComposite> komponenter = new ArrayList<>();
     private final ArrayList<Fad> fade = new ArrayList<>();
     private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
@@ -17,16 +15,6 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
     private final ArrayList<Reol> reoler = new ArrayList<>();
     private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
-
-    @Override
-    public List<Destillering> getDestilleringer() {
-        return new ArrayList<>(destilleringer);
-    }
-
-    @Override
-    public List<DestillatComposite> getKomponenter() {
-        return new ArrayList<>(komponenter);
-    }
 
     @Override
     public List<Fad> getFade() {
@@ -66,16 +54,6 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public List<TidligereIndhold> getTidligereIndhold() {
         return new ArrayList<>(tidligereIndholds);
-    }
-
-    @Override
-    public void storeDestillering(Destillering destillering) {
-        destilleringer.add(destillering);
-    }
-
-    @Override
-    public void storeDestillatComposite(DestillatComposite destillatComposite) {
-        komponenter.add(destillatComposite);
     }
 
     @Override

@@ -7,18 +7,6 @@ import java.util.List;
 public class Controller {
     private static Storage storage;
 
-    public static Destillering opretDestillering(int destilleringsId, double mængde, double alkoholprocent) {
-        Destillering destillering = new Destillering(destilleringsId, mængde, alkoholprocent);
-        storage.storeDestillering(destillering);
-        return destillering;
-    }
-
-    public static DestillatComposite opretDestillatComposite() {
-        DestillatComposite destillatComposite = new DestillatComposite();
-        storage.storeDestillatComposite(destillatComposite);
-        return destillatComposite;
-    }
-
     public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold>
                                        tidligereIndhold, String land, boolean erBrugbart,
                                Leverandør leverandør) {

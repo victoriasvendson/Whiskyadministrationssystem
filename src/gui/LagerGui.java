@@ -98,7 +98,7 @@ public class LagerGui extends GridPane {
         Label nameLabel = new Label("Lager navn:");
         TextField nameInput = new TextField();
 
-        Label addressLabel = new Label("Adresse:");
+        Label addressLabel = new Label("Størrelse:");
         TextField addressInput = new TextField();
 
         Button btnOk = new Button("Opret");
