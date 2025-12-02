@@ -6,7 +6,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
-public class Gui extends Application {
+public class TabGui extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -24,7 +24,12 @@ public class Gui extends Application {
         maltTab.setClosable(false);
         maltTab.setContent(new MaltGui());
 
-        tabPane.getTabs().addAll(lagerstyring, maltTab);
+        // Fad tab
+        Tab fadTab = new Tab("Opret fad");
+        fadTab.setClosable(false);
+        fadTab.setContent(new FadGui());
+
+        tabPane.getTabs().addAll(lagerstyring, maltTab, fadTab);
 
         Scene scene = new Scene(tabPane, 800, 400);
         primaryStage.setScene(scene);

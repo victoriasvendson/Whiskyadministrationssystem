@@ -27,7 +27,7 @@ public class App {
             System.out.println("Storage loaded from file");
         }
 
-        Application.launch(Gui.class);
+        Application.launch(TabGui.class);
         ListStorage.saveStorage(fileName, storage);
     }
 
