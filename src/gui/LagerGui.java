@@ -144,7 +144,7 @@ public class LagerGui extends GridPane {
 
             if (!reol.isEmpty()) {
                 Controller.opretReol(reol, lager);
-                reolListView.getItems().setAll(Controller.getReoler());
+                updateReoler();
                 popup.close();
             }
         });
@@ -179,7 +179,7 @@ public class LagerGui extends GridPane {
 
             if (!hylde.isEmpty()) {
                 Controller.opretHylde(hylde, reol);
-                hyldeListView.getItems().setAll(Controller.getHylder());
+                updateHylder();
                 popup.close();
             }
         });
