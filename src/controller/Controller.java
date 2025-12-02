@@ -28,7 +28,8 @@ public class Controller {
     }
 
     public static Hylde opretHylde(String hyldeNummer, Reol reol) {
-        Hylde hylde = new Hylde(hyldeNummer, reol);
+        Hylde hylde = new Hylde(hyldeNummer);
+        reol.addHylde(hylde);
         storage.storeHylde(hylde);
         return hylde;
     }
@@ -59,7 +60,8 @@ public class Controller {
     }
 
     public static Reol opretReol(String rækkeNummer, Lager lager) {
-        Reol reol = new Reol(rækkeNummer, lager);
+        Reol reol = new Reol(rækkeNummer);
+        lager.addReol(reol);
         storage.storeReol(reol);
         return reol;
     }
