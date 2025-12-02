@@ -15,7 +15,7 @@ public class Controller {
 
     public static DestillatComposite opretDestillatComposite() {
         DestillatComposite destillatComposite = new DestillatComposite();
-        storage.getKomponenter();
+        storage.storeDestillatComposite(destillatComposite);
         return destillatComposite;
     }
 
