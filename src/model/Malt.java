@@ -18,4 +18,9 @@ public class Malt implements Serializable {
     public String getKornsort() {
         return kornsort;
     }
+
+    @Override
+    public String toString() {
+        return "Kornsort: " + kornsort + "\nMark: " + mark;
+    }
 }
