@@ -59,6 +59,9 @@ public class LagerGui extends GridPane {
         );
 
         pane.add(btnOpretReol, 1, 2);
+        btnOpretReol.disableProperty().bind(
+                lagerListView.getSelectionModel().selectedItemProperty().isNull()
+        );
         btnOpretReol.setOnAction(event -> opretReol());
 
         //HYLDE DEL
@@ -67,7 +70,11 @@ public class LagerGui extends GridPane {
         pane.add(hyldeListView, 2, 1);
 
         pane.add(btnOpretHylde, 2, 2);
-        btnOpretHylde.setOnAction(event -> opretHylde());
+        btnOpretHylde.disableProperty().bind(
+                reolListView.getSelectionModel().selectedItemProperty().isNull()
+        );
+            btnOpretHylde.setOnAction(event -> opretHylde());
+
     }
 
 

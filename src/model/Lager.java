@@ -31,6 +31,6 @@ public class Lager implements Serializable {
 
     @Override
     public String toString() {
-        return adresse + " " + størrelse + " m²";
+        return "Adresse: " + adresse + "\nStørrelse: " + størrelse + " m²";
     }
 }
