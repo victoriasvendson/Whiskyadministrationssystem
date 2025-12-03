@@ -1,21 +1,23 @@
 package model;
 
-public class Deldestillat extends Destillat implements Væske {
+public class Deldestillat implements Væske {
     private double delMængde;
     private Lagring lagring;
     private Destillat destillat;
+    private int destillatId;
+    private double alkoholProcent;
 
     public Deldestillat(
             int destillatId,
-            double destillatMængde,
-            Destillering destillering,
             double delMængde,
             double alkoholProcent,
             Destillat destillat
     ) {
-        super(destillatId, destillatMængde, destillering, alkoholProcent);
+        this.destillatId = destillatId;
         this.delMængde = delMængde;
         this.destillat = destillat;
+        this.alkoholProcent = alkoholProcent;
+
     }
 
     @Override
@@ -25,8 +27,9 @@ public class Deldestillat extends Destillat implements Væske {
 
 
     public double getAlkoholProcent() {
-        return super.getAlkoholProcent();
+        return alkoholProcent;
     }
+
 
 
 }

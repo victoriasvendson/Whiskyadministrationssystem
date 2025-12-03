@@ -21,6 +21,13 @@ public class Controller {
 
     public static Destillat opretDestillat(int destillatId, double mængde, Destillering destillering, double alkoholProcent) {
 
+
+        if (storage.getDestillater().isEmpty()) {
+            Destillat destillat = new Destillat(destillatId, mængde, destillering, alkoholProcent);
+            storage.storeDestillat(destillat);
+            destillering.setSlutDato(LocalDate.now());
+            return destillat;
+        }
         for (int i = 0; i < storage.getDestillater().size(); i++) {
             if (destillatId != storage.getDestillater().get(i).getDestillatId()) {
                 Destillat destillat = new Destillat(destillatId, mængde, destillering, alkoholProcent);
@@ -37,15 +44,11 @@ public class Controller {
 
     }
 
-    public static Deldestillat opretDelDestillat (int destillatId,
-                                                  double destillatMængde,
-                                                  Destillering destillering,
-                                                  double delMængde,
-                                                  double alkoholProcent,
-                                                    Destillat destillat) {
+    public static Deldestillat opretDelDestillat (Destillat destillat, double delMængde) {
+
 
         if (destillat.getVolumen() - delMængde >= 0) {
-            Deldestillat deldestillat = new Deldestillat(destillatId, destillatMængde, destillering, delMængde, alkoholProcent, destillat);
+            Deldestillat deldestillat = new Deldestillat(destillat.getDestillatId(),delMængde, destillat.getAlkoholProcent(), destillat);
             storage.storeDelDestillat(deldestillat);
             destillat.setMængde(destillat.getVolumen() - delMængde);
 

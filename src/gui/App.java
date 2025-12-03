@@ -5,6 +5,9 @@ import controller.Storage;
 import javafx.application.Application;
 import model.*;
 import storage.ListStorage;
+
+import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class App {
@@ -29,6 +32,8 @@ public class App {
 
         Application.launch(TabGui.class);
         ListStorage.saveStorage(fileName, storage);
+
+
     }
 
     public static void initStorage() {
@@ -84,9 +89,21 @@ public class App {
 
 
         // Objekter af malt
+
         Malt laureate = Controller.opretMalt("Kvolbæk", "Laureate");
         Malt planet = Controller.opretMalt("Kvolbæk", "Planet");
         Malt evergreen = Controller.opretMalt("Stadsgård", "Evergreen");
         Malt kwsIrina = Controller.opretMalt("Stadsgård", "KWS Irina");
+
+
+
+
+        Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate);
+        Destillat destillat1 = Controller.opretDestillat(1, 100, destillering1, 60);
+        Deldestillat deldestillat1 = Controller.opretDelDestillat(destillat1, 50);
+
     }
+
+
+
 }
