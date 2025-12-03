@@ -151,6 +151,10 @@ public class Controller {
         return storage.getReoler();
     }
 
+    public static List<Destillat> getDestillater() {
+        return storage.getDestillater();
+    }
+
     public static void setStorage(Storage storage) {
         Controller.storage = storage;
     }

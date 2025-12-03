@@ -26,7 +26,7 @@ public class MaltGui extends GridPane {
         pane.setHgap(10);
         pane.setVgap(10);
 
-        Label maltLabel = new Label("Vælg malt:");
+        Label maltLabel = new Label("Oversigt over malt");
         pane.add(maltLabel, 0, 0);
 
         maltListView.getItems().setAll(Controller.getAlleMalt());

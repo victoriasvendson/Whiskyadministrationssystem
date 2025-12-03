@@ -19,22 +19,22 @@ public class TabGui extends Application {
 
         tabPane.getSelectionModel().select(lagerstyringTab);
 
-        // Malt tab
-        Tab maltTab = new Tab("Opret malt");
-        maltTab.setClosable(false);
-        maltTab.setContent(new MaltGui());
-
         // Fad tab
         Tab fadTab = new Tab("Opret fad");
         fadTab.setClosable(false);
         fadTab.setContent(new FadGui());
+
+        // Malt tab
+        Tab maltTab = new Tab("Opret malt");
+        maltTab.setClosable(false);
+        maltTab.setContent(new MaltGui());
 
         // Destillering tab
         Tab destilleringTab = new Tab("Opret destillering");
         destilleringTab.setClosable(false);
         destilleringTab.setContent(new DestilleringGui());
 
-        tabPane.getTabs().addAll(lagerstyringTab, maltTab, fadTab, destilleringTab);
+        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab);
 
         Scene scene = new Scene(tabPane, 800, 400);
         primaryStage.setScene(scene);
