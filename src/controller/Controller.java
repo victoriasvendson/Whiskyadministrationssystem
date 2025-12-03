@@ -60,10 +60,9 @@ public class Controller {
     }
 
 
-    public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold>
-                                       tidligereIndhold, String land, boolean erBrugbart,
+    public static Fad opretFad(int fadId, double alder, int størrelse, String land, boolean erBrugbart,
                                Leverandør leverandør) {
-        Fad fad = new Fad(fadId, alder, størrelse, tidligereIndhold, land, erBrugbart, leverandør);
+        Fad fad = new Fad(fadId, alder, størrelse, land, erBrugbart, leverandør);
         storage.storeFad(fad);
         return fad;
     }

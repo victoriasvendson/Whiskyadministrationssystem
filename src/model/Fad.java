@@ -7,18 +7,17 @@ public class Fad implements Serializable {
     private int fadId;
     private double alder;
     private int størrelse;
-    private ArrayList<TidligereIndhold> tidligereIndholdIFad;
     private String land;
     private boolean erBrugbart;
     private Hylde hylde;
     private Leverandør leverandør;
+    private ArrayList<TidligereIndhold> tidligereIndholdIFad = new ArrayList<>();
 
-    public Fad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold> tidligereIndholdIFad,
+    public Fad(int fadId, double alder, int størrelse,
                String land, boolean erBrugbart, Leverandør leverandør) {
         this.fadId = fadId;
         this.alder = alder;
         this.størrelse = størrelse;
-        this.tidligereIndholdIFad = tidligereIndholdIFad;
         this.land = land;
         this.erBrugbart = erBrugbart;
         this.leverandør = leverandør;

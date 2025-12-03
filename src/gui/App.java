@@ -64,24 +64,15 @@ public class App {
         TidligereIndhold Cognac = Controller.opretTidligereIndhold("Cognac");
         TidligereIndhold Mezcal = Controller.opretTidligereIndhold("Mezcal");
 
-        // Objekter af tidligere indhold
-        ArrayList<TidligereIndhold> TidligereIndholdBourbon = new ArrayList<>();
-        TidligereIndholdBourbon.add(Bourbon);
-        ArrayList<TidligereIndhold> TidligereIndholdSherry = new ArrayList<>();
-        TidligereIndholdSherry.add(Sherry);
-        ArrayList<TidligereIndhold> TidligereIndholdPortvin = new ArrayList<>();
-        TidligereIndholdPortvin.add(Portvin);
-        ArrayList<TidligereIndhold> TidligereIndholdMezcal = new ArrayList<>();
-        TidligereIndholdMezcal.add(Mezcal);
 
         // Objekter af fade
-        Fad bourbon = Controller.opretFad(1, 13, 200, TidligereIndholdBourbon, "United States", true, glenfiddich);
-        Fad sherry1 = Controller.opretFad(2, 4, 40, TidligereIndholdSherry, "Italien", true, macallan);
-        Fad sherry2 = Controller.opretFad(3, 4, 150, TidligereIndholdSherry, "Italien", true, macallan);
-        Fad sherry3 = Controller.opretFad(4, 4, 150, TidligereIndholdSherry, "Italien", false, faryLochan);
-        Fad sherry4 = Controller.opretFad(5, 4, 200, TidligereIndholdSherry, "Italien", false, faryLochan);
-        Fad portBarrel = Controller.opretFad(6, 14, 200, TidligereIndholdPortvin, "Irland", true, glenfiddich);
-        Fad mezcal = Controller.opretFad(7, 8, 100, TidligereIndholdMezcal, "Mexico", true, glenfiddich);
+        Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, glenfiddich);
+        Fad sherry1 = Controller.opretFad(2, 4, 40, "Italien", true, macallan);
+        Fad sherry2 = Controller.opretFad(3, 4, 150, "Italien", true, macallan);
+        Fad sherry3 = Controller.opretFad(4, 4, 150, "Italien", false, faryLochan);
+        Fad sherry4 = Controller.opretFad(5, 4, 200, "Italien", false, faryLochan);
+        Fad portBarrel = Controller.opretFad(6, 14, 200, "Irland", true, glenfiddich);
+        Fad mezcal = Controller.opretFad(7, 8, 100, "Mexico", true, glenfiddich);
         
         bourbon.addTidligereIndhold(Bourbon);
         sherry1.addTidligereIndhold(Sherry);
