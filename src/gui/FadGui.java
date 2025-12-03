@@ -27,7 +27,6 @@ public class FadGui extends GridPane {
         pane.add(fadLabel, 0, 0);
 
         fadListView.getItems().setAll(Controller.getFade());
-        pane.add(fadLabel, 0, 1);
         pane.add(btnOpretFad, 0, 2);
 
         btnOpretFad.setOnAction(event -> opretFad());
