@@ -36,6 +36,6 @@ public class Hylde implements Serializable {
         for (Fad fad : fade) {
            sb.append(fad);
         }
-        return "Hylde: " + hyldeNummer + " \n" + "Fad: " + sb;
+        return "Hylde: " + hyldeNummer + " \n" + sb;
     }
 }
