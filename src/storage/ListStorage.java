@@ -16,6 +16,8 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
     private final ArrayList<Reol> reoler = new ArrayList<>();
     private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
+    private final ArrayList<Destillat> destillater = new ArrayList<>();
+    private final ArrayList<Deldestillat> deldestillater = new ArrayList<>();
 
     @Override
     public List<Destillering> getDestilleringer() {
@@ -63,6 +65,12 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
+    public  List<Destillat> getDestillater() { return new ArrayList<>(destillater); }
+
+    @Override
+    public List<Deldestillat> getDelDestillater() { return new ArrayList<>(deldestillater); }
+
+    @Override
     public void storeDestillering(Destillering destillering) {
         destilleringer.add(destillering);
     }
@@ -104,6 +112,13 @@ public class ListStorage implements Storage, Serializable {
 
     @Override
     public void storeTidligereIndhold(TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
+
+    @Override
+    public void storeDestillat (Destillat destillat) { destillater.add(destillat);
+    }
+
+    @Override
+    public void storeDelDestillat (Deldestillat deldestillat) { deldestillater.add(deldestillat);}
 
     public static ListStorage loadStorage(String fileName) {
         try (FileInputStream fileIn = new FileInputStream(fileName);

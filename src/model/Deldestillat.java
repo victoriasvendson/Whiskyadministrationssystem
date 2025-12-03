@@ -3,17 +3,19 @@ package model;
 public class Deldestillat extends Destillat implements Væske {
     private double delMængde;
     private Lagring lagring;
+    private Destillat destillat;
 
     public Deldestillat(
             int destillatId,
-            double mængde,
-            String rygemateriale,
+            double destillatMængde,
             Destillering destillering,
             double delMængde,
-            double alkoholProcent
+            double alkoholProcent,
+            Destillat destillat
     ) {
-        super(destillatId, mængde, rygemateriale, destillering, alkoholProcent);
+        super(destillatId, destillatMængde, destillering, alkoholProcent);
         this.delMængde = delMængde;
+        this.destillat = destillat;
     }
 
     @Override

@@ -11,12 +11,54 @@ public class Controller {
 
     public static Destillering opretDestillering(int destilleringsId, double mængde, LocalDate startDato,
                                                  LocalDate slutDato, String rygemateriale,
-                                                 Malt malt, boolean erFærdig) {
+                                                 Malt malt) {
         Destillering destillering = new Destillering(destilleringsId, mængde, startDato,
-                slutDato, rygemateriale, malt, erFærdig);
+                slutDato, rygemateriale, malt);
         storage.storeDestillering(destillering);
+
         return destillering;
     }
+
+    public static Destillat opretDestillat(int destillatId, double mængde, Destillering destillering, double alkoholProcent) {
+
+        for (int i = 0; i < storage.getDestillater().size(); i++) {
+            if (destillatId != storage.getDestillater().get(i).getDestillatId()) {
+                Destillat destillat = new Destillat(destillatId, mængde, destillering, alkoholProcent);
+                storage.storeDestillat(destillat);
+                destillering.setSlutDato(LocalDate.now());
+                return destillat;
+
+
+            } else {
+                throw new RuntimeException(" destillatID findes allerede");
+            }
+        }
+        return null;
+
+    }
+
+    public static Deldestillat opretDelDestillat (int destillatId,
+                                                  double destillatMængde,
+                                                  Destillering destillering,
+                                                  double delMængde,
+                                                  double alkoholProcent,
+                                                    Destillat destillat) {
+
+        if (destillat.getVolumen() - delMængde >= 0) {
+            Deldestillat deldestillat = new Deldestillat(destillatId, destillatMængde, destillering, delMængde, alkoholProcent, destillat);
+            storage.storeDelDestillat(deldestillat);
+            destillat.setMængde(destillat.getVolumen() - delMængde);
+
+            return deldestillat;
+
+
+        }
+
+        else {
+            throw new RuntimeException("Der er ikke nok destillat");
+        }
+    }
+
 
     public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold>
                                        tidligereIndhold, String land, boolean erBrugbart,

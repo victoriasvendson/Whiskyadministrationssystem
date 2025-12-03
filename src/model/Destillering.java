@@ -10,16 +10,21 @@ public class Destillering implements Serializable {
     private LocalDate slutDato;
     private String rygemateriale;
     private Malt malt;
-    private boolean erFærdig;
+
 
     public Destillering(int destilleringsId, double mængde, LocalDate startDato,
-                        LocalDate slutDato, String rygemateriale, Malt malt, boolean erFærdig) {
+                        LocalDate slutDato, String rygemateriale, Malt malt) {
         this.destilleringsId = destilleringsId;
         this.mængde = mængde;
         this.startDato = startDato;
         this.slutDato = slutDato;
         this.rygemateriale = rygemateriale;
         this.malt = malt;
-        this.erFærdig = erFærdig;
+
     }
+
+    public void setSlutDato (LocalDate date) {
+        slutDato = date;
+    }
+
 }

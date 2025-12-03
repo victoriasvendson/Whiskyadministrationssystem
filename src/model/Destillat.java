@@ -3,14 +3,12 @@ package model;
 public class Destillat implements Væske {
     private int destillatId;
     private double mængde;
-    private String rygemateriale;
     private Destillering destillering;
     private double alkoholProcent;
 
-    public Destillat(int destillatId, double mængde, String rygemateriale, Destillering destillering, double alkoholProcent) {
+    public Destillat(int destillatId, double mængde, Destillering destillering, double alkoholProcent) {
         this.destillatId = destillatId;
         this.mængde = mængde;
-        this.rygemateriale = rygemateriale;
         this.destillering = destillering;
         this.alkoholProcent = alkoholProcent;
     }
@@ -23,4 +21,13 @@ public class Destillat implements Væske {
     public double getAlkoholProcent() {
         return alkoholProcent;
     }
+
+    public void setMængde (double delMængde) {
+        mængde = delMængde;
+    }
+
+    public int getDestillatId() {
+        return destillatId;
+    }
+
 }

@@ -22,6 +22,10 @@ public interface Storage {
 
     List<TidligereIndhold> getTidligereIndhold();
 
+    List<Destillat> getDestillater();
+
+    List<Deldestillat> getDelDestillater();
+
     void storeDestillering(Destillering destillering);
 
     void storeFad(Fad fad);
@@ -39,4 +43,8 @@ public interface Storage {
     void storeReol(Reol reol);
 
     void storeTidligereIndhold(TidligereIndhold tidligereIndhold);
+
+    void storeDestillat (Destillat destillat);
+
+    void storeDelDestillat (Deldestillat deldestillat);
 }
