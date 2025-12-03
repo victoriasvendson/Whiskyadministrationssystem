@@ -1,11 +1,21 @@
 package controller;
 
 import model.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
     private static Storage storage;
+
+    public static Destillering opretDestillering(int destilleringsId, double mængde, LocalDate startDato,
+                                                 LocalDate slutDato, String rygemateriale, Malt malt) {
+        Destillering destillering = new Destillering(destilleringsId, mængde, startDato,
+                slutDato, rygemateriale, malt);
+        storage.storeDestillering(destillering);
+        return destillering;
+    }
 
     public static Fad opretFad(int fadId, double alder, int størrelse, ArrayList<TidligereIndhold>
                                        tidligereIndhold, String land, boolean erBrugbart,
@@ -58,6 +68,10 @@ public class Controller {
         TidligereIndhold tidligereIndhold = new TidligereIndhold(væske);
         storage.storeTidligereIndhold(tidligereIndhold);
         return tidligereIndhold;
+    }
+
+    public static List<Destillering> getDestilleringer() {
+        return storage.getDestilleringer();
     }
 
     public static List<Fad> getFade() {
