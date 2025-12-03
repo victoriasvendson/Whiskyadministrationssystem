@@ -54,25 +54,25 @@ public class App {
         Leverandør faryLochan = Controller.opretLeverandør("Fary Lochan", "farylochan@hotmail.com",
                 "27290295", "Ågade 41, 7323 Give, Denmark");
 
-        TidligereIndhold Whisky = new TidligereIndhold("Whisky");
-        TidligereIndhold Sherry = new TidligereIndhold("Sherry");
-        TidligereIndhold Bourbon = new TidligereIndhold("Bourbon");
-        TidligereIndhold Portvin = new TidligereIndhold("Portvin");
-        TidligereIndhold Rødvin = new TidligereIndhold("Rødvin");
-        TidligereIndhold Hvidvin = new TidligereIndhold("Hvidvin");
-        TidligereIndhold Rom = new TidligereIndhold("Rom");
-        TidligereIndhold Cognac = new TidligereIndhold("Cognac");
-        TidligereIndhold Mezcal = new TidligereIndhold("Mescal");
+        TidligereIndhold Whisky = Controller.opretTidligereIndhold("Whisky");
+        TidligereIndhold Sherry = Controller.opretTidligereIndhold("Sherry");
+        TidligereIndhold Bourbon = Controller.opretTidligereIndhold("Bourbon");
+        TidligereIndhold Portvin = Controller.opretTidligereIndhold("Portvin");
+        TidligereIndhold Rødvin = Controller.opretTidligereIndhold("Rødvin");
+        TidligereIndhold Hvidvin = Controller.opretTidligereIndhold("Hvidvin");
+        TidligereIndhold Rom = Controller.opretTidligereIndhold("Rom");
+        TidligereIndhold Cognac = Controller.opretTidligereIndhold("Cognac");
+        TidligereIndhold Mezcal = Controller.opretTidligereIndhold("Mezcal");
 
         // Objekter af tidligere indhold
         ArrayList<TidligereIndhold> TidligereIndholdBourbon = new ArrayList<>();
         TidligereIndholdBourbon.add(Bourbon);
         ArrayList<TidligereIndhold> TidligereIndholdSherry = new ArrayList<>();
-        TidligereIndholdBourbon.add(Sherry);
+        TidligereIndholdSherry.add(Sherry);
         ArrayList<TidligereIndhold> TidligereIndholdPortvin = new ArrayList<>();
-        TidligereIndholdBourbon.add(Portvin);
+        TidligereIndholdPortvin.add(Portvin);
         ArrayList<TidligereIndhold> TidligereIndholdMezcal = new ArrayList<>();
-        TidligereIndholdBourbon.add(Mezcal);
+        TidligereIndholdMezcal.add(Mezcal);
 
         // Objekter af fade
         Fad bourbon = Controller.opretFad(1, 13, 200, TidligereIndholdBourbon, "United States", true, glenfiddich);
