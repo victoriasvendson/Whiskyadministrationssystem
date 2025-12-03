@@ -97,6 +97,8 @@ public class App {
 
 
 
+        //Tilføjelse af fad til hylder
+        Controller.addFadTilHylde(hyldeA11, bourbon);
 
         Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate);
         Destillat destillat1 = Controller.opretDestillat(1, 100, destillering1, 60);

@@ -1,6 +1,8 @@
 package model;
 
-public class Destillat implements Væske {
+import java.io.Serializable;
+
+public class Destillat implements Væske, Serializable {
     private int destillatId;
     private double mængde;
     private Destillering destillering;

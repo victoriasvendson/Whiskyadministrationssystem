@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Whisky implements Væske {
+public class Whisky implements Væske, Serializable {
     private String navn;
     private double whiskyMængde;
     private double vandMængde;

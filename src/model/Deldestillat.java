@@ -1,6 +1,8 @@
 package model;
 
-public class Deldestillat implements Væske {
+import java.io.Serializable;
+
+public class Deldestillat implements Væske, Serializable {
     private double delMængde;
     private Lagring lagring;
     private Destillat destillat;

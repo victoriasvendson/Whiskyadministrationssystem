@@ -120,6 +120,8 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public void storeDelDestillat (Deldestillat deldestillat) { deldestillater.add(deldestillat);}
 
+
+
     public static ListStorage loadStorage(String fileName) {
         try (FileInputStream fileIn = new FileInputStream(fileName);
              ObjectInputStream objIn = new ObjectInputStream(fileIn)

@@ -71,10 +71,14 @@ public class Controller {
     }
 
     public static Hylde opretHylde(String hyldeNummer, Reol reol) {
-        Hylde hylde = new Hylde(hyldeNummer);
+        Hylde hylde = new Hylde(hyldeNummer, reol);
         reol.addHylde(hylde);
         storage.storeHylde(hylde);
         return hylde;
+    }
+
+    public static void addFadTilHylde(Hylde hylde, Fad fad) {
+        hylde.addFad(fad);
     }
 
     public static Lager opretLager(String adresse, int størrelse) {

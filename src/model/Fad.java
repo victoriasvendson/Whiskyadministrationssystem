@@ -51,4 +51,15 @@ public class Fad implements Serializable {
         tidligereIndholdIFad.add(tidligereIndhold);
 
     }
+
+    @Override
+    public String toString() {
+        String stand;
+        if (erBrugbart) {
+            stand = "God stand";
+        } else {
+            stand = "Ikke brugbar";
+        }
+        return "Id: " + fadId + ", " + stand;
+    }
 }

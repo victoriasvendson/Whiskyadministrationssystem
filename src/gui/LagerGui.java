@@ -99,13 +99,13 @@ public class LagerGui extends GridPane {
     private void opretLager() {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
-        popup.setTitle("Opret Lager");
+        popup.setTitle("Oprettelse af lager");
         popup.setMinWidth(300);
 
-        Label nameLabel = new Label("Lager navn:");
+        Label nameLabel = new Label("Indtast adresse:");
         TextField nameInput = new TextField();
 
-        Label addressLabel = new Label("Størrelse:");
+        Label addressLabel = new Label("Indtast størrelse:");
         TextField addressInput = new TextField();
 
         Button btnOk = new Button("Opret");
@@ -137,10 +137,10 @@ public class LagerGui extends GridPane {
     private void opretReol() {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
-        popup.setTitle("Opret Reol");
+        popup.setTitle("Oprettelse af reol");
         popup.setMinWidth(300);
 
-        Label nameLabel = new Label("Reol navn:");
+        Label nameLabel = new Label("Indtast reol navn:");
         TextField reolInput = new TextField();
 
         Button btnOk = new Button("Opret");
@@ -172,10 +172,10 @@ public class LagerGui extends GridPane {
     private void opretHylde() {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
-        popup.setTitle("Opret Hylde");
+        popup.setTitle("Oprettelse af hylde");
         popup.setMinWidth(300);
 
-        Label nameLabel = new Label("Hylde navn:");
+        Label nameLabel = new Label("Indtast hylde navn:");
         TextField hyldeInput = new TextField();
 
         Button btnOk = new Button("Opret");

@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class DelLagring extends Lagring implements Væske{
+public class DelLagring extends Lagring implements Væske, Serializable {
     private double delMængde;
     public DelLagring(
             LocalDate startDato,
