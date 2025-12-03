@@ -91,6 +91,7 @@ public class App {
         portBarrel.addTidligereIndhold(Portvin);
         mezcal.addTidligereIndhold(Mezcal);
 
+
         // Objekter af malt
         Malt laureate = Controller.opretMalt("Kvolbæk", "Laureate");
         Malt planet = Controller.opretMalt("Kvolbæk", "Planet");
