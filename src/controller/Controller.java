@@ -10,9 +10,10 @@ public class Controller {
     private static Storage storage;
 
     public static Destillering opretDestillering(int destilleringsId, double mængde, LocalDate startDato,
-                                                 LocalDate slutDato, String rygemateriale, Malt malt) {
+                                                 LocalDate slutDato, String rygemateriale,
+                                                 Malt malt, boolean erFærdig) {
         Destillering destillering = new Destillering(destilleringsId, mængde, startDato,
-                slutDato, rygemateriale, malt);
+                slutDato, rygemateriale, malt, erFærdig);
         storage.storeDestillering(destillering);
         return destillering;
     }
