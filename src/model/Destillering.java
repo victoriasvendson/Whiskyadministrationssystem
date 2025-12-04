@@ -27,4 +27,8 @@ public class Destillering implements Serializable {
         slutDato = date;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + destilleringsId + " Start dato: " + startDato + " malt: " + malt;
+    }
 }
