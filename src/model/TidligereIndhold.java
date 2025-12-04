@@ -10,4 +10,8 @@ public class TidligereIndhold implements Serializable {
         this.væske = væske;
     }
 
+    @Override
+    public String toString() {
+        return væske;
+    }
 }

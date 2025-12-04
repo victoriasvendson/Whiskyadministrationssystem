@@ -124,6 +124,10 @@ public class Controller {
         return tidligereIndhold;
     }
 
+    public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
+        fad.addTidligereIndhold(tidligereIndhold);
+    }
+
     public static List<Destillering> getDestilleringer() {
         return storage.getDestilleringer();
     }
@@ -134,6 +138,10 @@ public class Controller {
 
     public static List<Hylde> getHylder() {
         return storage.getHylder();
+    }
+
+    public static List<TidligereIndhold> getTidligereIndhold() {
+        return storage.getTidligereIndhold();
     }
 
     public static List<Lager> getLagre() {

@@ -11,6 +11,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Fad;
 import model.Leverandør;
+import model.TidligereIndhold;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FadGui extends GridPane {
     private final ListView<Fad> fadListView = new ListView<>();
@@ -52,6 +56,8 @@ public class FadGui extends GridPane {
 
         ListView<Leverandør> popupListView = new ListView<>();
         popupListView.getItems().addAll(Controller.getLeverandører());
+        Label tilføjTidligereIndhold = new Label("Vælg evt. tidligere indhold");
+        ListView<TidligereIndhold> tidligereIndholdListView = new ListView<>();
         Label fadIdLabel = new Label("Indtast FadId:");
         TextField FadIdInput = new TextField();
         Label alderLabel = new Label("Indtast alder:");
@@ -84,9 +90,17 @@ public class FadGui extends GridPane {
         grid.add(landInput, 1, 3);
 
         grid.add(brugbartLabel, 0, 5);
+
+        grid.add(tilføjTidligereIndhold, 0, 6);
+
+        grid.add(tidligereIndholdListView, 0, 7, 2, 1);
+        tidligereIndholdListView.setPrefHeight(150);
+        tidligereIndholdListView.getItems().setAll(Controller.getTidligereIndhold());
         HBox box = new HBox(10);
         box.getChildren().addAll(brugbarTrueInput, brugbartFalseInput);
         grid.add(box, 1, 5);
+
+        tidligereIndholdListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         brugbarTrueInput.setOnAction(e -> {
             brugbartFalseInput.setDisable(brugbarTrueInput.isSelected());
@@ -97,7 +111,7 @@ public class FadGui extends GridPane {
         });
 
         HBox buttonBox = new HBox(10, btnOk, btnCancel);
-        grid.add(buttonBox, 1, 6);
+        grid.add(buttonBox, 1, 8);
         btnOk.disableProperty().bind(popupListView.getSelectionModel().selectedItemProperty().isNull());
 
         btnOk.setOnAction(e -> {
@@ -109,17 +123,31 @@ public class FadGui extends GridPane {
             if (fadId > 0 && alder >= 0 && størrelse > 0) {
 
                 if (brugbarTrueInput.isSelected()) {
-                    Controller.opretFad(
+                    Fad fad = Controller.opretFad(
                             fadId, alder, størrelse, land, true,
                             popupListView.getSelectionModel().getSelectedItem()
                     );
+                    if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {
+                        List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.
+                                getSelectionModel().getSelectedItems()));
+                        for (TidligereIndhold tidligereIndhold : tidligereIndholdList) {
+                            Controller.addTidligereIndholdTilFad(fad, tidligereIndhold);
+                        }
+                    }
                 }
 
                 if (brugbartFalseInput.isSelected()) {
-                    Controller.opretFad(
+                   Fad fad = Controller.opretFad(
                             fadId, alder, størrelse, land, false,
                             popupListView.getSelectionModel().getSelectedItem()
                     );
+                    if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {
+                        List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.
+                                getSelectionModel().getSelectedItems()));
+                        for (TidligereIndhold tidligereIndhold : tidligereIndholdList) {
+                            Controller.addTidligereIndholdTilFad(fad, tidligereIndhold);
+                        }
+                    }
                 }
 
                 fadListView.getItems().setAll(Controller.getFade());
@@ -161,7 +189,7 @@ public class FadGui extends GridPane {
             String adresse = adresseInput.getText().trim();
 
 
-            if (!navn.isEmpty() || !email.isEmpty() || !tlfNr.isEmpty() || !adresse.isEmpty() ) {
+            if (!navn.isEmpty() || !email.isEmpty() || !tlfNr.isEmpty() || !adresse.isEmpty()) {
                 Controller.opretLeverandør(navn, email, tlfNr, adresse);
                 leverandørListView.getItems().setAll(Controller.getLeverandører());
                 popup.close();
@@ -183,4 +211,8 @@ public class FadGui extends GridPane {
         popup.setScene(new Scene(layout));
         popup.showAndWait();
     }
+
+    private void opretTidligereIndhold() {
+        Button btnTilføjTidligereIndhold = new Button("Tilføj tidligere indhold til fad");
     }
+}
