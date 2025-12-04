@@ -1,18 +1,17 @@
 package model;
 
+import javax.imageio.metadata.IIOMetadataFormatImpl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Whisky implements Væske, Serializable {
     private String navn;
-    private double whiskyMængde;
     private double vandMængde;
-    private List<Væske> lagringer = new ArrayList<>();
+    private List<Væske> delLagringer = new ArrayList<>();
 
-    public Whisky(String navn, double whiskyMængde, double vandMængde) {
+    public Whisky(String navn,double vandMængde) {
         this.navn = navn;
-        this.whiskyMængde = whiskyMængde;
         this.vandMængde = vandMængde;
 
     }
@@ -21,8 +20,8 @@ public class Whisky implements Væske, Serializable {
         return navn;
     }
 
-    public double getWhiskyMængde() {
-        return whiskyMængde;
+    public double getTotalMængde() {
+        return getVolumen() + getVandMængde();
     }
 
     public double getVandMængde() {
@@ -31,20 +30,30 @@ public class Whisky implements Væske, Serializable {
 
     @Override
     public double getVolumen() {
-        return lagringer.stream()
-                .mapToDouble(Væske::getVolumen)
-                .sum();
+
+        double totalVolumen = 0;
+        for (int i = 0; i < delLagringer.size(); i++) {
+            totalVolumen+=delLagringer.get(i).getVolumen();
+
+        }
+        return totalVolumen;
     }
 
     @Override
     public double getAlkoholProcent() {
-        double totalVolumen = getVolumen();
+        double totalAlkohol = 0;
+        double totalVolumen = 0;
+
+        for (int i = 0; i < delLagringer.size(); i++) {
+            double alkoholProcent = delLagringer.get(i).getAlkoholProcent();
+            double vol = delLagringer.get(i).getVolumen();
+
+            totalAlkohol += (alkoholProcent / 100.0) * vol;
+            totalVolumen += vol;
+        }
+
         if (totalVolumen == 0) return 0;
 
-        double totalAlkohol = lagringer.stream()
-                .mapToDouble(s -> s.getVolumen() * s.getAlkoholProcent())
-                .sum();
-
-        return totalAlkohol / totalVolumen;
+        return (totalAlkohol / totalVolumen) * 100.0;
     }
 }

@@ -35,20 +35,30 @@ public class Lagring implements Serializable, Væske {
 
     @Override
     public double getVolumen() {
-        return indhold.stream()
-                .mapToDouble(Væske::getVolumen)
-                .sum();
+
+       double totalVolumen = 0;
+        for (int i = 0; i < indhold.size(); i++) {
+            totalVolumen+=indhold.get(i).getVolumen();
+
+        }
+        return totalVolumen;
     }
 
     @Override
     public double getAlkoholProcent() {
-        double totalVolumen = getVolumen();
+        double totalAlkohol = 0;
+        double totalVolumen = 0;
+
+        for (int i = 0; i < indhold.size(); i++) {
+            double alkoholProcent = indhold.get(i).getAlkoholProcent();
+            double vol = indhold.get(i).getVolumen();
+
+            totalAlkohol += (alkoholProcent / 100.0) * vol;
+            totalVolumen += vol;
+        }
+
         if (totalVolumen == 0) return 0;
 
-        double totalAlkohol = indhold.stream()
-                .mapToDouble(s -> s.getVolumen() * s.getAlkoholProcent())
-                .sum();
-
-        return totalAlkohol / totalVolumen;
+        return (totalAlkohol / totalVolumen) * 100.0;
     }
 }
