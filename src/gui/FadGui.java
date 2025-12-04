@@ -48,17 +48,9 @@ public class FadGui extends GridPane {
         pane.add(fadListView, 1, 1);
         pane.add(btnOpretFad, 1, 2);
 
-        // Destillater
-        Label destillatLabel = new Label("Fad indhold");
-        pane.add(destillatLabel, 2, 0);
-        destillatListView.getItems().setAll(Controller.getDestillater());
-        pane.add(destillatListView, 2, 1);
-        pane.add(btnPaafyldDestillat, 2, 2);
-
         // Knapper
         btnOpretLeverandør.setOnAction(event -> opretLeverandør());
         btnOpretFad.setOnAction(event -> opretFad());
-        btnPaafyldDestillat.setOnAction(event -> paafyldDestillat());
     }
 
     private void opretFad() {
@@ -122,10 +114,6 @@ public class FadGui extends GridPane {
 
         popup.setScene(new Scene(layout));
         popup.showAndWait();
-    }
-
-    private void paafyldDestillat() {
-
     }
 
     private void opretLeverandør() {
