@@ -11,9 +11,9 @@ public class Controller {
 
     public static Destillering opretDestillering(int destilleringsId, double mængde, LocalDate startDato,
                                                  LocalDate slutDato, String rygemateriale,
-                                                 Malt malt) {
+                                                 Malt malt, Medarbejder medarbejder) {
         Destillering destillering = new Destillering(destilleringsId, mængde, startDato,
-                slutDato, rygemateriale, malt);
+                slutDato, rygemateriale, malt, medarbejder);
         storage.storeDestillering(destillering);
 
         return destillering;
