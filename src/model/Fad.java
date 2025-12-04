@@ -60,6 +60,6 @@ public class Fad implements Serializable {
         } else {
             stand = "Ikke brugbar";
         }
-        return "Fad " + fadId + ", " + stand;
+        return leverandør +  "\nFad: " + fadId + ", " + stand;
     }
 }

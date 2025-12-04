@@ -3,27 +3,20 @@ package gui;
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Destillat;
 import model.Fad;
 import model.Leverandør;
-import model.Reol;
 
 public class FadGui extends GridPane {
     private final ListView<Fad> fadListView = new ListView<>();
     private final ListView<Leverandør> leverandørListView = new ListView<>();
-    private final ListView<Destillat> destillatListView = new ListView<>();
     private final Button btnOpretFad = new Button("Opret fad");
     private final Button btnOpretLeverandør = new Button("Opret leverandør");
-    private final Button btnPaafyldDestillat = new Button("Påfyld destillat");
 
     public FadGui() {
         initContent(this);
@@ -35,18 +28,16 @@ public class FadGui extends GridPane {
         pane.setVgap(10);
 
         // Leverandør
-        Label leverandørLabel = new Label("Leverandører");
-        pane.add(leverandørLabel, 0, 0);
-        leverandørListView.getItems().setAll(Controller.getLeverandører());
-        pane.add(leverandørListView, 0, 1);
-        pane.add(btnOpretLeverandør, 0, 2);
+
+        pane.add(btnOpretLeverandør, 1, 2);
 
         // Fade
         Label fadLabel = new Label("Oversigt over fade");
         pane.add(fadLabel, 1, 0);
         fadListView.getItems().setAll(Controller.getFade());
-        pane.add(fadListView, 1, 1);
-        pane.add(btnOpretFad, 1, 2);
+        fadListView.setPrefWidth(400);
+        pane.add(fadListView, 1, 1, 2, 1);
+        pane.add(btnOpretFad, 2, 2);
 
         // Knapper
         btnOpretLeverandør.setOnAction(event -> opretLeverandør());
@@ -56,20 +47,22 @@ public class FadGui extends GridPane {
     private void opretFad() {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
-        popup.setTitle("Oprettelse af leverandør");
-        popup.setMinWidth(600); // wider, because 2 columns
+        popup.setTitle("Oprettelse af fad");
+        popup.setMinWidth(600);
 
         ListView<Leverandør> popupListView = new ListView<>();
         popupListView.getItems().addAll(Controller.getLeverandører());
-
-        Label navnLabel = new Label("Indtast navn:");
-        TextField navnInput = new TextField();
-        Label emailLabel = new Label("Indtast email:");
-        TextField emailInput = new TextField();
-        Label tlfNrLabel = new Label("Indtast tlf nr:");
-        TextField tlfNrInput = new TextField();
-        Label adresseLabel = new Label("Indtast adresse:");
-        TextField adresseInput = new TextField();
+        Label fadIdLabel = new Label("Indtast FadId:");
+        TextField FadIdInput = new TextField();
+        Label alderLabel = new Label("Indtast alder:");
+        TextField alderInput = new TextField();
+        Label størrelseLabel = new Label("Indtast størrelse:");
+        TextField størrelseInput = new TextField();
+        Label landLabel = new Label("Indtast land:");
+        TextField landInput = new TextField();
+        Label brugbartLabel = new Label("Indtast stand");
+        CheckBox brugbarTrueInput = new CheckBox("Brugbart");
+        CheckBox brugbartFalseInput = new CheckBox("Ikke brugbart");
 
         Button btnOk = new Button("Opret");
         Button btnCancel = new Button("Annullér");
@@ -78,37 +71,65 @@ public class FadGui extends GridPane {
         grid.setVgap(10);
         grid.setHgap(10);
 
-        grid.add(navnLabel, 0, 0);
-        grid.add(navnInput, 1, 0);
+        grid.add(fadIdLabel, 0, 0);
+        grid.add(FadIdInput, 1, 0);
 
-        grid.add(emailLabel, 0, 1);
-        grid.add(emailInput, 1, 1);
+        grid.add(alderLabel, 0, 1);
+        grid.add(alderInput, 1, 1);
 
-        grid.add(tlfNrLabel, 0, 2);
-        grid.add(tlfNrInput, 1, 2);
+        grid.add(størrelseLabel, 0, 2);
+        grid.add(størrelseInput, 1, 2);
 
-        grid.add(adresseLabel, 0, 3);
-        grid.add(adresseInput, 1, 3);
+        grid.add(landLabel, 0, 3);
+        grid.add(landInput, 1, 3);
+
+        grid.add(brugbartLabel, 0, 5);
+        HBox box = new HBox(10);
+        box.getChildren().addAll(brugbarTrueInput, brugbartFalseInput);
+        grid.add(box, 1, 5);
+
+        brugbarTrueInput.setOnAction(e -> {
+            brugbartFalseInput.setDisable(brugbarTrueInput.isSelected());
+        });
+
+        brugbartFalseInput.setOnAction(e -> {
+            brugbarTrueInput.setDisable(brugbartFalseInput.isSelected());
+        });
 
         HBox buttonBox = new HBox(10, btnOk, btnCancel);
-        grid.add(buttonBox, 1, 4);
+        grid.add(buttonBox, 1, 6);
+        btnOk.disableProperty().bind(popupListView.getSelectionModel().selectedItemProperty().isNull());
 
         btnOk.setOnAction(e -> {
-            String navn = navnInput.getText().trim();
-            String email = emailInput.getText().trim();
-            String tlfNr = tlfNrInput.getText().trim();
-            String adresse = adresseInput.getText().trim();
+            int fadId = Integer.parseInt(FadIdInput.getText().trim());
+            int alder = Integer.parseInt(alderInput.getText().trim());
+            int størrelse = Integer.parseInt(størrelseInput.getText().trim());
+            String land = landInput.getText().trim();
 
-            if (!navn.isEmpty() || !email.isEmpty() || !tlfNr.isEmpty() || !adresse.isEmpty()) {
-                Controller.opretLeverandør(navn, email, tlfNr, adresse);
-                popupListView.getItems().setAll(Controller.getLeverandører());
-                leverandørListView.getItems().setAll(Controller.getLeverandører());
+            if (fadId > 0 && alder >= 0 && størrelse > 0) {
+
+                if (brugbarTrueInput.isSelected()) {
+                    Controller.opretFad(
+                            fadId, alder, størrelse, land, true,
+                            popupListView.getSelectionModel().getSelectedItem()
+                    );
+                }
+
+                if (brugbartFalseInput.isSelected()) {
+                    Controller.opretFad(
+                            fadId, alder, størrelse, land, false,
+                            popupListView.getSelectionModel().getSelectedItem()
+                    );
+                }
+
+                fadListView.getItems().setAll(Controller.getFade());
                 popup.close();
             }
         });
 
         btnCancel.setOnAction(e -> popup.close());
 
+        popupListView.setPrefWidth(300);
         HBox layout = new HBox(20, popupListView, grid);
         layout.setPadding(new Insets(10));
 
