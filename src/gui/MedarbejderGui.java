@@ -50,11 +50,11 @@ public class MedarbejderGui extends GridPane {
 
         Button btnOk = new Button("Opret");
         btnOk.setOnAction(e -> {
-            String byg = navnInput.getText().trim();
-            String mark = stillingInput.getText().trim();
+            String navn = navnInput.getText().trim();
+            String stilling = stillingInput.getText().trim();
 
-            if (!byg.isEmpty()) {
-                Controller.opretMalt(byg, mark);
+            if (!navn.isEmpty()) {
+                Controller.opretMedarbejder(navn, stilling);
                 medarbejderListView.getItems().setAll(Controller.getMedarbejdere());
                 popup.close();
             }

@@ -18,4 +18,9 @@ public class Medarbejder implements Serializable {
     public String getStillingsbetegnelse() {
         return stillingsbetegnelse;
     }
+
+    @Override
+    public String toString() {
+        return "Navn: " + navn + "\nStillingsbetegnelse: " + stillingsbetegnelse;
+    }
 }
