@@ -211,8 +211,4 @@ public class FadGui extends GridPane {
         popup.setScene(new Scene(layout));
         popup.showAndWait();
     }
-
-    private void opretTidligereIndhold() {
-        Button btnTilføjTidligereIndhold = new Button("Tilføj tidligere indhold til fad");
-    }
 }
