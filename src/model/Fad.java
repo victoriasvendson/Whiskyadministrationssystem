@@ -47,9 +47,8 @@ public class Fad implements Serializable {
         return erBrugbart;
     }
 
-    public void addTidligereIndhold (TidligereIndhold tidligereIndhold) {
+    public void addTidligereIndhold(TidligereIndhold tidligereIndhold) {
         tidligereIndholdIFad.add(tidligereIndhold);
-
     }
 
     @Override
@@ -60,6 +59,6 @@ public class Fad implements Serializable {
         } else {
             stand = "Ikke brugbar";
         }
-        return leverandør +  "\nFad: " + fadId + ", " + stand;
+        return leverandør + "\nFad: " + fadId + ", " + stand;
     }
 }

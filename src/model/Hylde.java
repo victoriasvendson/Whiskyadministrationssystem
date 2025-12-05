@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Hylde implements Serializable {
     private String hyldeNummer;
@@ -34,7 +33,7 @@ public class Hylde implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Fad fad : fade) {
-           sb.append(fad);
+            sb.append(fad);
         }
         return "Hylde: " + hyldeNummer + " \n" + sb;
     }
