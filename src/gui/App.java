@@ -103,8 +103,7 @@ public class App {
         Controller.addFadTilHylde(hyldeA11, bourbon);
 
         Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, drotner);
-        Destillat destillat1 = Controller.opretDestillat(1, 100, destillering1, 60);
-        Deldestillat deldestillat1 = Controller.opretDelDestillat(destillat1, 50);
+
 
     }
 

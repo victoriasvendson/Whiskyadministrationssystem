@@ -22,7 +22,10 @@ public class Destillering implements Serializable {
         this.rygemateriale = rygemateriale;
         this.malt = malt;
         this.medarbejder = medarbejder;
+    }
 
+    public int getDestilleringsId() {
+        return destilleringsId;
     }
 
     public void setSlutDato (LocalDate date) {
