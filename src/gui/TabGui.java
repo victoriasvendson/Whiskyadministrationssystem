@@ -12,6 +12,11 @@ public class TabGui extends Application {
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
 
+        // Medarbejder tab
+        Tab medarbejdertab = new Tab("Opret medarbejder");
+        medarbejdertab.setClosable(false);
+        medarbejdertab.setContent(new MedarbejderGui());
+
         // Lager tab
         Tab lagerstyringTab = new Tab("Lagerstyring");
         lagerstyringTab.setClosable(false);
@@ -34,7 +39,7 @@ public class TabGui extends Application {
         destilleringTab.setClosable(false);
         destilleringTab.setContent(new DestilleringGui());
 
-        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab);
+        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, medarbejdertab);
 
         Scene scene = new Scene(tabPane, 800, 400);
         primaryStage.setScene(scene);
