@@ -40,6 +40,10 @@ public class Lagring implements Serializable, Væske {
         deldestillater.add(deldestillat);
     }
 
+    public List<Deldestillat> getDeldestillater() {
+        return deldestillater;
+    }
+
     public void setSlutDato(LocalDate slutDato) {
         this.slutDato = slutDato;
     }

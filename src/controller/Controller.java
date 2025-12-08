@@ -61,6 +61,7 @@ public class Controller {
     }
 
 
+
     public static Fad opretFad(int fadId, double alder, int størrelse, String land, boolean erBrugbart,
                                boolean iBrug, Leverandør leverandør) {
         for (Fad fad : storage.getFade()) {
