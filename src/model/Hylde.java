@@ -7,6 +7,7 @@ public class Hylde implements Serializable {
     private String hyldeNummer;
     private Reol reol;
     private ArrayList<Fad> fade = new ArrayList<>();
+    private boolean erLedig;
 
     public Hylde(String hyldeNummer, Reol reol) {
         this.hyldeNummer = hyldeNummer;
@@ -25,16 +26,24 @@ public class Hylde implements Serializable {
         fade.remove(fad);
     }
 
+    public void setErLedig(boolean erLedig) {
+        this.erLedig = erLedig;
+    }
+
+    public boolean isErLedig() {
+        return erLedig;
+    }
+
+    public Reol getReol() {
+        return reol;
+    }
+
     public ArrayList<Fad> getFade() {
         return fade;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Fad fad : fade) {
-            sb.append(fad);
-        }
-        return "Hylde: " + hyldeNummer + " \n" + sb;
+        return reol + "-" + hyldeNummer;
     }
 }

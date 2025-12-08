@@ -9,9 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Fad;
-import model.Leverandør;
-import model.TidligereIndhold;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,6 @@ public class FadGui extends GridPane {
     private final ListView<Leverandør> leverandørListView = new ListView<>();
     private final Button btnOpretFad = new Button("Opret fad");
     private final Button btnOpretLeverandør = new Button("Opret leverandør");
-    private final Button btnFlytFadTilHylde = new Button("Flyt fad til ny hylde");
     private final TextArea txaInformationOmFad = new TextArea();
 
     public FadGui() {
@@ -43,7 +40,6 @@ public class FadGui extends GridPane {
         fadListView.setPrefWidth(400);
         pane.add(fadListView, 1, 1, 2, 1);
         pane.add(btnOpretFad, 2, 2);
-        pane.add(btnFlytFadTilHylde, 3, 2);
 
         fadListView.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldVal, newVal) -> updateTxtArea()
@@ -58,7 +54,6 @@ public class FadGui extends GridPane {
         // Knapper
         btnOpretLeverandør.setOnAction(event -> opretLeverandør());
         btnOpretFad.setOnAction(event -> opretFad());
-        btnFlytFadTilHylde.setOnAction(event -> flytFad());
     }
 
     public void updateTxtArea() {
@@ -73,16 +68,16 @@ public class FadGui extends GridPane {
             sb.append("Tidligere indhold: ").append(selected.getTidligereIndhold()).append("\n");
 
             if (selected.isiBrug()) {
-                sb.append("Fadet er i brug på hylde : " + selected.getHylde());
+                sb.append("Fadet er i brug på lokation: ").append(selected.getHylde());
+            } else if (selected.getHylde() == null){
+                sb.append("Fadet er ikke på nogen hylde");
+            } else if (selected.getHylde() != null) {
+                sb.append("Fadet er på lokation: ").append(selected.getHylde());
             }
 
             txaInformationOmFad.setText(sb.toString());
 
         }
-    }
-
-    private void flytFad() {
-        //TODO
     }
 
     private void opretFad() {
@@ -95,6 +90,8 @@ public class FadGui extends GridPane {
         popupListView.getItems().addAll(Controller.getLeverandører());
         Label tilføjTidligereIndhold = new Label("Vælg evt. tidligere indhold");
         ListView<TidligereIndhold> tidligereIndholdListView = new ListView<>();
+        ListView<Hylde> alleLedigeHylder = new ListView<>();
+        Label hyldeLabel = new Label("Vælg hylde til fad: ");
         Label fadIdLabel = new Label("Indtast FadId:");
         TextField FadIdInput = new TextField();
         Label alderLabel = new Label("Indtast alder:");
@@ -128,16 +125,27 @@ public class FadGui extends GridPane {
 
         grid.add(brugbartLabel, 0, 5);
 
+
+        grid.add(hyldeLabel, 2, 4);
         grid.add(tilføjTidligereIndhold, 0, 6);
 
-        grid.add(tidligereIndholdListView, 0, 7, 2, 1);
+        alleLedigeHylder.setPrefSize(150, 150);
+        alleLedigeHylder.getItems().setAll(Controller.findLedigeHylder());
+        tidligereIndholdListView.setPrefSize(150, 150);
+
+
+        HBox tidligereOgHylderlvw = new HBox(10, tidligereIndholdListView, alleLedigeHylder);
+        HBox tidligereOgHylderLbl = new HBox(10, tilføjTidligereIndhold, hyldeLabel);
+        VBox tidligereOgHylderSamlet = new VBox (10, tidligereOgHylderLbl, tidligereOgHylderlvw);
         tidligereIndholdListView.setPrefHeight(150);
         tidligereIndholdListView.getItems().setAll(Controller.getTidligereIndhold());
         HBox box = new HBox(10);
         box.getChildren().addAll(brugbarTrueInput, brugbartFalseInput);
         grid.add(box, 1, 5);
+        VBox altOvenfraSamlet = new VBox(10, grid, tidligereOgHylderSamlet);
 
         tidligereIndholdListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 
         brugbarTrueInput.setOnAction(e -> {
             brugbartFalseInput.setDisable(brugbarTrueInput.isSelected());
@@ -152,6 +160,7 @@ public class FadGui extends GridPane {
         btnOk.disableProperty().bind(popupListView.getSelectionModel().selectedItemProperty().isNull());
 
         btnOk.setOnAction(e -> {
+            Fad fad = null;
             int fadId = Integer.parseInt(FadIdInput.getText().trim());
             int alder = Integer.parseInt(alderInput.getText().trim());
             int størrelse = Integer.parseInt(størrelseInput.getText().trim());
@@ -160,7 +169,7 @@ public class FadGui extends GridPane {
             if (fadId > 0 && alder >= 0 && størrelse > 0) {
 
                 if (brugbarTrueInput.isSelected()) {
-                    Fad fad = Controller.opretFad(
+                    fad = Controller.opretFad(
                             fadId, alder, størrelse, land, true, false,
                             popupListView.getSelectionModel().getSelectedItem()
                     );
@@ -174,7 +183,7 @@ public class FadGui extends GridPane {
                 }
 
                 if (brugbartFalseInput.isSelected()) {
-                   Fad fad = Controller.opretFad(
+                   fad = Controller.opretFad(
                             fadId, alder, størrelse, land, false, false,
                             popupListView.getSelectionModel().getSelectedItem()
                     );
@@ -187,6 +196,10 @@ public class FadGui extends GridPane {
                     }
                 }
 
+                if (alleLedigeHylder.getSelectionModel().getSelectedItem() != null) {
+                    Controller.addFadTilHylde(alleLedigeHylder.getSelectionModel().getSelectedItem(), fad);
+                }
+
                 fadListView.getItems().setAll(Controller.getFade());
                 popup.close();
             }
@@ -195,7 +208,7 @@ public class FadGui extends GridPane {
         btnCancel.setOnAction(e -> popup.close());
 
         popupListView.setPrefWidth(300);
-        HBox layout = new HBox(20, popupListView, grid);
+        HBox layout = new HBox(20, popupListView, altOvenfraSamlet);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));

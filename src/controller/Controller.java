@@ -44,27 +44,25 @@ public class Controller {
 
     }
 
-    public static Deldestillat opretDelDestillat (Destillat destillat, double delMængde) {
+    public static Deldestillat opretDelDestillat(Destillat destillat, double delMængde) {
 
 
         if (destillat.getVolumen() - delMængde >= 0) {
-            Deldestillat deldestillat = new Deldestillat(destillat.getDestillatId(),delMængde, destillat.getAlkoholProcent(), destillat);
+            Deldestillat deldestillat = new Deldestillat(destillat.getDestillatId(), delMængde, destillat.getAlkoholProcent(), destillat);
             storage.storeDelDestillat(deldestillat);
             destillat.setMængde(destillat.getVolumen() - delMængde);
 
             return deldestillat;
 
 
-        }
-
-        else {
+        } else {
             throw new RuntimeException("Der er ikke nok destillat");
         }
     }
 
 
     public static Fad opretFad(int fadId, double alder, int størrelse, String land, boolean erBrugbart,
-                                boolean iBrug ,Leverandør leverandør) {
+                               boolean iBrug, Leverandør leverandør) {
         for (Fad fad : storage.getFade()) {
             if (fad.getFadId() == fadId) {
                 throw new RuntimeException("FadId eksisterer allerede");
@@ -78,12 +76,16 @@ public class Controller {
     public static Hylde opretHylde(String hyldeNummer, Reol reol) {
         Hylde hylde = new Hylde(hyldeNummer, reol);
         reol.addHylde(hylde);
+        hylde.setErLedig(true);
         storage.storeHylde(hylde);
         return hylde;
     }
 
+
     public static void addFadTilHylde(Hylde hylde, Fad fad) {
         hylde.addFad(fad);
+        fad.setHylde(hylde);
+        hylde.setErLedig(false);
     }
 
     public static Lager opretLager(String adresse, int størrelse) {
@@ -125,7 +127,7 @@ public class Controller {
         return reol;
     }
 
-    public static TidligereIndhold opretTidligereIndhold (String væske) {
+    public static TidligereIndhold opretTidligereIndhold(String væske) {
         TidligereIndhold tidligereIndhold = new TidligereIndhold(væske);
         storage.storeTidligereIndhold(tidligereIndhold);
         return tidligereIndhold;
@@ -137,6 +139,16 @@ public class Controller {
 
     public static void addDeldestillatTilLagring(Lagring lagring, Deldestillat deldestillat) {
         lagring.addDeldestillat(deldestillat);
+    }
+
+    public static ArrayList<Hylde> findLedigeHylder() {
+        ArrayList<Hylde> ledigeHylder = new ArrayList<>();
+        for (Hylde h : storage.getHylder()) {
+            if (h.isErLedig()) {
+                ledigeHylder.add(h);
+            }
+        }
+        return ledigeHylder;
     }
 
     public static List<Destillering> getDestilleringer() {

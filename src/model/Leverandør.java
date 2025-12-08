@@ -33,6 +33,6 @@ public class Leverandør implements Serializable {
 
     @Override
     public String toString() {
-        return "Leverandør: " +  navn + ", " + email;
+        return navn + ", " + email;
     }
 }

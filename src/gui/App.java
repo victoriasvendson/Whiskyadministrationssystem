@@ -9,6 +9,7 @@ import storage.ListStorage;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -70,13 +71,15 @@ public class App {
 
 
         // Objekter af fade
-        Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, false, glenfiddich);
+        Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, true, glenfiddich);
         Fad sherry1 = Controller.opretFad(2, 4, 40, "Italien", true, false, macallan);
         Fad sherry2 = Controller.opretFad(3, 4, 150, "Italien", true, false, macallan);
         Fad sherry3 = Controller.opretFad(4, 4, 150, "Italien", false, false, faryLochan);
         Fad sherry4 = Controller.opretFad(5, 4, 200, "Italien", false, false, faryLochan);
         Fad portBarrel = Controller.opretFad(6, 14, 200, "Irland", true, false, glenfiddich);
         Fad mezcal = Controller.opretFad(7, 8, 100, "Mexico", true, false, glenfiddich);
+
+        Controller.addFadTilHylde(hyldeA11, bourbon);
         
         bourbon.addTidligereIndhold(Bourbon);
         sherry1.addTidligereIndhold(Sherry);
@@ -102,6 +105,13 @@ public class App {
         Controller.addFadTilHylde(hyldeA11, bourbon);
 
         Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, drotner);
+        Destillat destillat1 = new Destillat(1, 200, destillering1, 60);
+        Deldestillat deldestillat1 = new Deldestillat(1, 20, 60, destillat1);
+        List<Deldestillat> deldestillater = new ArrayList<>();
+        deldestillater.add(deldestillat1);
+        //Lagring
+        Controller.opretLagring(LocalDate.of(2025, 12, 8), null, 50, deldestillater, bourbon);
+
 
 
     }
