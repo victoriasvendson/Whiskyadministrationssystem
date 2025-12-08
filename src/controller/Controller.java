@@ -94,9 +94,9 @@ public class Controller {
         return lager;
     }
 
-    public static Lagring opretLagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde,
+    public static Lagring opretLagring(LocalDate startDato, double aftappetMængde,
                                        List<Deldestillat> deldestillater, Fad fad) {
-        Lagring lagring = new Lagring(startDato, slutDato, aftappetMængde, deldestillater, fad);
+        Lagring lagring = new Lagring(startDato, aftappetMængde, deldestillater, fad);
         storage.storeLagring(lagring);
         return lagring;
     }
@@ -149,6 +149,20 @@ public class Controller {
             }
         }
         return ledigeHylder;
+    }
+
+    public static ArrayList<Fad> findLedigeFade() {
+        ArrayList<Fad> ledigeFade = new ArrayList<>();
+        for (Fad f : storage.getFade()) {
+            if (f.isiBrug()) {
+                ledigeFade.add(f);
+            }
+        }
+        return ledigeFade;
+    }
+
+    public static void afslutLagring(Lagring lagring) {
+        lagring.setSlutDato(LocalDate.now());
     }
 
     public static List<Destillering> getDestilleringer() {

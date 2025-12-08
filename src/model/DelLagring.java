@@ -8,7 +8,7 @@ public class DelLagring extends Lagring implements Væske, Serializable {
     private double delMængde;
 
     public DelLagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde, List<Deldestillat> deldestillater, Fad fad, double delMængde) {
-        super(startDato, slutDato, aftappetMængde, deldestillater, fad);
+        super(startDato, aftappetMængde, deldestillater, fad);
         this.delMængde = delMængde;
     }
 

@@ -10,9 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
-
 import java.time.LocalDate;
-
 
 public class LagringGui extends GridPane {
     private final ListView<Lagring> lagringListView = new ListView<>();
@@ -48,13 +46,10 @@ public class LagringGui extends GridPane {
         deldestillatListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         deldestillatListView.getItems().setAll(Controller.getDeldestillater());
         ListView<Fad> fadListView = new ListView<>();
-        fadListView.getItems().setAll(Controller.getFade());
+        fadListView.getItems().setAll(Controller.findLedigeFade());
 
         Label startDatoLabel = new Label("Indtast startdato:");
         TextField startDatoInput = new TextField();
-
-        Label slutDatoLabel = new Label("Indtast slutdato:");
-        TextField slutDatoInput = new TextField();
 
         Label aftappetMængdeLabel = new Label("Indtast aftappet mængde:");
         TextField aftappetMængdeInput = new TextField();
@@ -64,11 +59,10 @@ public class LagringGui extends GridPane {
         btnOk.disableProperty().bind(fadListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.setOnAction(e -> {
             LocalDate startDato = LocalDate.parse(startDatoInput.getText().trim());
-            LocalDate slutDato = LocalDate.parse(slutDatoInput.getText().trim());
             double aftappetMængde = Double.parseDouble(aftappetMængdeInput.getText().trim());
 
             if (aftappetMængde > 0) {
-                Controller.opretLagring(startDato, slutDato, aftappetMængde,
+                Controller.opretLagring(startDato, aftappetMængde,
                         deldestillatListView.getSelectionModel().getSelectedItems(),
                         fadListView.getSelectionModel().getSelectedItem());
                         lagringListView.getItems().setAll(Controller.getLagringer());
@@ -86,7 +80,6 @@ public class LagringGui extends GridPane {
         HBox okAnnuler = new HBox(10, btnOk, btnCancel);
         VBox right = new VBox(10,
                 startDatoLabel, startDatoInput,
-                slutDatoLabel, slutDatoInput,
                 aftappetMængdeLabel, aftappetMængdeInput,
                 okAnnuler
         );

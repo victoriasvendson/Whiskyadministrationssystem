@@ -5,8 +5,6 @@ import controller.Storage;
 import javafx.application.Application;
 import model.*;
 import storage.ListStorage;
-
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +27,12 @@ public class App {
             Controller.setStorage(storage);
             System.out.println("Storage loaded from file");
         }
-
         Application.launch(TabGui.class);
         ListStorage.saveStorage(fileName, storage);
-
-
     }
 
     public static void initStorage() {
-        // Objekter af vores lagerstyring
+        // Lagerstyring
         Lager hammelLager = Controller.opretLager("Vestagervej 1, 8450 Hammel", 135);
         Lager randersLager = Controller.opretLager("Metervej 6, 8940 Randers SV", 300);
 
@@ -51,7 +46,7 @@ public class App {
         Hylde hyldeA22 = Controller.opretHylde("2", reolA2);
         Hylde hyldeA23 = Controller.opretHylde("3", reolA2);
 
-        // Objekter af leverandører og fade
+        // Leverandører, tidligere indhold og fade
         Leverandør glenfiddich = Controller.opretLeverandør("Glenfiddich", "glenfiddich@gmail.com",
                 "23435654", "Castle Road, Dufttown, Moray, AB55 4DH, United Kingdom");
         Leverandør macallan = Controller.opretLeverandør("Macallan", "macallan@gmail.com",
@@ -69,8 +64,6 @@ public class App {
         TidligereIndhold Cognac = Controller.opretTidligereIndhold("Cognac");
         TidligereIndhold Mezcal = Controller.opretTidligereIndhold("Mezcal");
 
-
-        // Objekter af fade
         Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, true, glenfiddich);
         Fad sherry1 = Controller.opretFad(2, 4, 40, "Italien", true, false, macallan);
         Fad sherry2 = Controller.opretFad(3, 4, 150, "Italien", true, false, macallan);
@@ -90,32 +83,36 @@ public class App {
         mezcal.addTidligereIndhold(Mezcal);
 
 
-        // Objekter af malt
-
+        // Malt
         Malt laureate = Controller.opretMalt("Kvolbæk", "Laureate");
         Malt planet = Controller.opretMalt("Kvolbæk", "Planet");
         Malt evergreen = Controller.opretMalt("Stadsgård", "Evergreen");
         Malt kwsIrina = Controller.opretMalt("Stadsgård", "KWS Irina");
 
-        Medarbejder drotner = Controller.opretMedarbejder("Drotner", "DestilleringsDrot");
-
-
+        // Medarbejdere
+        Medarbejder alexander = Controller.opretMedarbejder("Alexander Gravgaard", "Produktionsmedarbejder");
+        Medarbejder robert = Controller.opretMedarbejder("Robert Lange Laursen", "Fejedreng");
+        Medarbejder victoria = Controller.opretMedarbejder("Victoria Svendson", "Direktør");
 
         //Tilføjelse af fad til hylder
         Controller.addFadTilHylde(hyldeA11, bourbon);
 
-        Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, drotner);
+        Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, alexander);
         Destillat destillat1 = new Destillat(1, 200, destillering1, 60);
         Deldestillat deldestillat1 = new Deldestillat(1, 20, 60, destillat1);
         List<Deldestillat> deldestillater = new ArrayList<>();
         deldestillater.add(deldestillat1);
-        //Lagring
-        Controller.opretLagring(LocalDate.of(2025, 12, 8), null, 50, deldestillater, bourbon);
 
+        // Lagringer
+        Controller.opretLagring(LocalDate.of(2025, 12, 8), 50, deldestillater, bourbon);
 
+        // Destilleringer
+        Destillering destillering3 = Controller.opretDestillering(3, 300, LocalDate.of(2025, 12, 18), LocalDate.of(2026, 1, 3), "Tørv", evergreen, victoria);
 
+        // Destillater
+        Destillat destillat3 = Controller.opretDestillat(4, 300, destillering3, 45);
+
+        // Deldestillater
+        Deldestillat deldestillat3 = Controller.opretDelDestillat(destillat3, 20);
     }
-
-
-
 }

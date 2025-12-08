@@ -33,5 +33,8 @@ public class Deldestillat implements Væske, Serializable {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Delmængde: " + mængde + " liter";
+    }
 }
