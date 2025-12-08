@@ -39,7 +39,12 @@ public class TabGui extends Application {
         destilleringTab.setClosable(false);
         destilleringTab.setContent(new DestilleringGui());
 
-        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, medarbejdertab);
+        // Lagring tab
+        Tab lagringTab = new Tab("Opret lagring");
+        lagringTab.setClosable(false);
+        lagringTab.setContent(new LagringGui());
+
+        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, lagerstyringTab, medarbejdertab);
 
         Scene scene = new Scene(tabPane, 800, 400);
         primaryStage.setScene(scene);
