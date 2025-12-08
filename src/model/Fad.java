@@ -49,6 +49,18 @@ public class Fad implements Serializable {
         return erBrugbart;
     }
 
+    public boolean isiBrug() {
+        return iBrug;
+    }
+
+    public Hylde getHylde() {
+        return hylde;
+    }
+
+    public Leverandør getLeverandør() {
+        return leverandør;
+    }
+
     public void addTidligereIndhold(TidligereIndhold tidligereIndhold) {
         tidligereIndholdIFad.add(tidligereIndhold);
     }
