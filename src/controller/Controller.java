@@ -92,6 +92,13 @@ public class Controller {
         return lager;
     }
 
+    public static Lagring opretLagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde,
+                                       List<Deldestillat> deldestillater, Fad fad) {
+        Lagring lagring = new Lagring(startDato, slutDato, aftappetMængde, deldestillater, fad);
+        storage.storeLagring(lagring);
+        return lagring;
+    }
+
     public static Leverandør opretLeverandør(String navn, String email, String telefonnummer,
                                              String adresse) {
         Leverandør leverandør = new Leverandør(navn, email, telefonnummer, adresse);
@@ -128,6 +135,10 @@ public class Controller {
         fad.addTidligereIndhold(tidligereIndhold);
     }
 
+    public static void addDeldestillatTilLagring(Lagring lagring, Deldestillat deldestillat) {
+        lagring.addDeldestillat(deldestillat);
+    }
+
     public static List<Destillering> getDestilleringer() {
         return storage.getDestilleringer();
     }
@@ -148,6 +159,10 @@ public class Controller {
         return storage.getLagre();
     }
 
+    public static List<Lagring> getLagringer() {
+        return storage.getLagringer();
+    }
+
     public static List<Leverandør> getLeverandører() {
         return storage.getLeverandører();
     }
@@ -166,6 +181,10 @@ public class Controller {
 
     public static List<Destillat> getDestillater() {
         return storage.getDestillater();
+    }
+
+    public static List<Deldestillat> getDeldestillater() {
+        return storage.getDelDestillater();
     }
 
     public static void setStorage(Storage storage) {

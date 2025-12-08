@@ -12,6 +12,8 @@ public interface Storage {
 
     List<Lager> getLagre();
 
+    List<Lagring> getLagringer();
+
     List<Leverandør> getLeverandører();
 
     List<Malt> getAlleMalt();
@@ -33,6 +35,8 @@ public interface Storage {
     void storeHylde(Hylde hylde);
 
     void storeLager(Lager lager);
+
+    void storeLagring(Lagring lagring);
 
     void storeLeverandør(Leverandør leverandør);
 

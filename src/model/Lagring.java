@@ -10,11 +10,15 @@ public class Lagring implements Serializable, Væske {
     private LocalDate slutDato;
     private double aftappetMængde;
     private final List<Væske> indhold = new ArrayList<>();
+    private List<Deldestillat> deldestillater = new ArrayList<>();
+    private Fad fad;
 
-    public Lagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde) {
+    public Lagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde, List<Deldestillat> deldestillater, Fad fad) {
         this.startDato = startDato;
         this.slutDato = slutDato;
         this.aftappetMængde = aftappetMængde;
+        this.deldestillater = deldestillater;
+        this.fad = fad;
     }
 
     public LocalDate getStartDato() {
@@ -31,6 +35,10 @@ public class Lagring implements Serializable, Væske {
 
     public double udregnAngelShare() {
         return getVolumen() - aftappetMængde;
+    }
+
+    public void addDeldestillat(Deldestillat deldestillat) {
+        deldestillater.add(deldestillat);
     }
 
     @Override

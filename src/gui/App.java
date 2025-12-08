@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class App {
     public static void main(String[] args) {
         String fileName = "src/storage.ser";
-//TEST TEST
         Storage storage = ListStorage.loadStorage(fileName);
 
         if (storage == null) {
