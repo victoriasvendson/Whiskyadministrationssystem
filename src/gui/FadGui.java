@@ -21,6 +21,7 @@ public class FadGui extends GridPane {
     private final ListView<Leverandør> leverandørListView = new ListView<>();
     private final Button btnOpretFad = new Button("Opret fad");
     private final Button btnOpretLeverandør = new Button("Opret leverandør");
+    private final Button btnFlytFadTilHylde = new Button("Flyt fad til ny hylde");
     private final TextArea txaInformationOmFad = new TextArea();
 
     public FadGui() {
@@ -33,7 +34,6 @@ public class FadGui extends GridPane {
         pane.setVgap(10);
 
         // Leverandør
-
         pane.add(btnOpretLeverandør, 1, 2);
 
         // Fade
@@ -43,18 +43,46 @@ public class FadGui extends GridPane {
         fadListView.setPrefWidth(400);
         pane.add(fadListView, 1, 1, 2, 1);
         pane.add(btnOpretFad, 2, 2);
+        pane.add(btnFlytFadTilHylde, 3, 2);
+
+        fadListView.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldVal, newVal) -> updateTxtArea()
+        );
 
         Label information = new Label("Information omkring fad:");
         pane.add(information, 3, 0);
         pane.add(txaInformationOmFad, 3, 1);
         txaInformationOmFad.setEditable(false);
-
-        StringBuilder sb = new StringBuilder();
-        txaInformationOmFad.setText("TEST");
+        txaInformationOmFad.setText("Tryk på et fad for at vise information");
 
         // Knapper
         btnOpretLeverandør.setOnAction(event -> opretLeverandør());
         btnOpretFad.setOnAction(event -> opretFad());
+        btnFlytFadTilHylde.setOnAction(event -> flytFad());
+    }
+
+    public void updateTxtArea() {
+        Fad selected = fadListView.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Fad id: ").append(selected.getFadId()).append("\n");
+            sb.append("Leverandør: ").append(selected.getLeverandør()).append("\n");
+            sb.append("Land: ").append(selected.getLand()).append("\n");
+            sb.append("Alder: ").append(selected.getAlder()).append(" År\n");
+            sb.append("Størrelse: ").append(selected.getStørrelse()).append(" Liter\n");
+            sb.append("Tidligere indhold: ").append(selected.getTidligereIndhold()).append("\n");
+
+            if (selected.isiBrug()) {
+                sb.append("Fadet er i brug på hylde : " + selected.getHylde());
+            }
+
+            txaInformationOmFad.setText(sb.toString());
+
+        }
+    }
+
+    private void flytFad() {
+        //TODO
     }
 
     private void opretFad() {

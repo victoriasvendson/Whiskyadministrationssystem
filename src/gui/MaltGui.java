@@ -1,12 +1,14 @@
 package gui;
 
 import controller.Controller;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -30,6 +32,7 @@ public class MaltGui extends GridPane {
         pane.add(maltLabel, 0, 0);
 
         maltListView.getItems().setAll(Controller.getAlleMalt());
+        maltListView.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume);
         pane.add(maltListView, 0, 1);
         pane.add(btnOpretMalt, 0, 2);
 
