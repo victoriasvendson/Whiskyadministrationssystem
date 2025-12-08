@@ -71,13 +71,13 @@ public class App {
 
 
         // Objekter af fade
-        Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, glenfiddich);
-        Fad sherry1 = Controller.opretFad(2, 4, 40, "Italien", true, macallan);
-        Fad sherry2 = Controller.opretFad(3, 4, 150, "Italien", true, macallan);
-        Fad sherry3 = Controller.opretFad(4, 4, 150, "Italien", false, faryLochan);
-        Fad sherry4 = Controller.opretFad(5, 4, 200, "Italien", false, faryLochan);
-        Fad portBarrel = Controller.opretFad(6, 14, 200, "Irland", true, glenfiddich);
-        Fad mezcal = Controller.opretFad(7, 8, 100, "Mexico", true, glenfiddich);
+        Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, false, glenfiddich);
+        Fad sherry1 = Controller.opretFad(2, 4, 40, "Italien", true, false, macallan);
+        Fad sherry2 = Controller.opretFad(3, 4, 150, "Italien", true, false, macallan);
+        Fad sherry3 = Controller.opretFad(4, 4, 150, "Italien", false, false, faryLochan);
+        Fad sherry4 = Controller.opretFad(5, 4, 200, "Italien", false, false, faryLochan);
+        Fad portBarrel = Controller.opretFad(6, 14, 200, "Irland", true, false, glenfiddich);
+        Fad mezcal = Controller.opretFad(7, 8, 100, "Mexico", true, false, glenfiddich);
         
         bourbon.addTidligereIndhold(Bourbon);
         sherry1.addTidligereIndhold(Sherry);
