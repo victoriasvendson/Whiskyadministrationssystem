@@ -21,6 +21,7 @@ public class FadGui extends GridPane {
     private final ListView<Leverandør> leverandørListView = new ListView<>();
     private final Button btnOpretFad = new Button("Opret fad");
     private final Button btnOpretLeverandør = new Button("Opret leverandør");
+    private final TextArea txaInformationOmFad = new TextArea();
 
     public FadGui() {
         initContent(this);
@@ -42,6 +43,14 @@ public class FadGui extends GridPane {
         fadListView.setPrefWidth(400);
         pane.add(fadListView, 1, 1, 2, 1);
         pane.add(btnOpretFad, 2, 2);
+
+        Label information = new Label("Information omkring fad:");
+        pane.add(information, 3, 0);
+        pane.add(txaInformationOmFad, 3, 1);
+        txaInformationOmFad.setEditable(false);
+
+        StringBuilder sb = new StringBuilder();
+        txaInformationOmFad.setText("TEST");
 
         // Knapper
         btnOpretLeverandør.setOnAction(event -> opretLeverandør());
@@ -124,7 +133,7 @@ public class FadGui extends GridPane {
 
                 if (brugbarTrueInput.isSelected()) {
                     Fad fad = Controller.opretFad(
-                            fadId, alder, størrelse, land, true,
+                            fadId, alder, størrelse, land, true, false,
                             popupListView.getSelectionModel().getSelectedItem()
                     );
                     if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {
@@ -138,7 +147,7 @@ public class FadGui extends GridPane {
 
                 if (brugbartFalseInput.isSelected()) {
                    Fad fad = Controller.opretFad(
-                            fadId, alder, størrelse, land, false,
+                            fadId, alder, størrelse, land, false, false,
                             popupListView.getSelectionModel().getSelectedItem()
                     );
                     if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {

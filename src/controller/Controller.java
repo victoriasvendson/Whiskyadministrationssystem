@@ -64,13 +64,13 @@ public class Controller {
 
 
     public static Fad opretFad(int fadId, double alder, int størrelse, String land, boolean erBrugbart,
-                               Leverandør leverandør) {
+                                boolean iBrug ,Leverandør leverandør) {
         for (Fad fad : storage.getFade()) {
             if (fad.getFadId() == fadId) {
                 throw new RuntimeException("FadId eksisterer allerede");
             }
         }
-        Fad fad = new Fad(fadId, alder, størrelse, land, erBrugbart, leverandør);
+        Fad fad = new Fad(fadId, alder, størrelse, land, erBrugbart, iBrug, leverandør);
         storage.storeFad(fad);
         return fad;
     }
