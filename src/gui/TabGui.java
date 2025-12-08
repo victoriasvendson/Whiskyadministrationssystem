@@ -44,7 +44,7 @@ public class TabGui extends Application {
         lagringTab.setClosable(false);
         lagringTab.setContent(new LagringGui());
 
-        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, lagerstyringTab, medarbejdertab);
+        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, lagringTab, medarbejdertab);
 
         Scene scene = new Scene(tabPane, 800, 400);
         primaryStage.setScene(scene);

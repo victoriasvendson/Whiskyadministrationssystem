@@ -11,6 +11,7 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Fad> fade = new ArrayList<>();
     private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
+    private final ArrayList<Lagring> lagringer = new ArrayList<>();
     private final ArrayList<Leverandør> leverandører = new ArrayList<>();
     private final ArrayList<Malt> alleMalt = new ArrayList<>();
     private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
@@ -37,6 +38,11 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public List<Lager> getLagre() {
         return new ArrayList<>(lagre);
+    }
+
+    @Override
+    public List<Lagring> getLagringer() {
+        return new ArrayList<>(lagringer);
     }
 
     @Override
@@ -88,6 +94,11 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public void storeLager(Lager lager) {
         lagre.add(lager);
+    }
+
+    @Override
+    public void storeLagring(Lagring lagring) {
+        lagringer.add(lagring);
     }
 
     @Override
