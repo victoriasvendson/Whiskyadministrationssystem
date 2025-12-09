@@ -94,9 +94,8 @@ public class Controller {
         return lager;
     }
 
-    public static Lagring opretLagring(LocalDate startDato, double aftappetMængde,
-                                       List<Deldestillat> deldestillater, Fad fad) {
-        Lagring lagring = new Lagring(startDato, aftappetMængde, deldestillater, fad);
+    public static Lagring opretLagring(LocalDate startDato, Fad fad) {
+        Lagring lagring = new Lagring(startDato, fad);
         storage.storeLagring(lagring);
         return lagring;
     }
@@ -137,7 +136,8 @@ public class Controller {
         fad.addTidligereIndhold(tidligereIndhold);
     }
 
-    public static void addDeldestillatTilLagring(Lagring lagring, Deldestillat deldestillat) {
+    public static void addDeldestillatTilLagring(Lagring lagring, Destillat destillat, double mængde) {
+        Deldestillat deldestillat = Controller.opretDelDestillat(destillat, mængde);
         lagring.addDeldestillat(deldestillat);
     }
 

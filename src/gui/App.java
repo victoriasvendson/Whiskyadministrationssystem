@@ -100,11 +100,9 @@ public class App {
         Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, alexander);
         Destillat destillat1 = new Destillat(1, 200, destillering1, 60);
         Deldestillat deldestillat1 = new Deldestillat(1, 20, 60, destillat1);
-        List<Deldestillat> deldestillater = new ArrayList<>();
-        deldestillater.add(deldestillat1);
 
         // Lagringer
-        Controller.opretLagring(LocalDate.of(2025, 12, 8), 50, deldestillater, bourbon);
+        Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbon);
 
         // Destilleringer
         Destillering destillering3 = Controller.opretDestillering(3, 300, LocalDate.of(2025, 12, 18), LocalDate.of(2026, 1, 3), "Tørv", evergreen, victoria);
