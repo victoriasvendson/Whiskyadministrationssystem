@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
+
 import java.time.LocalDate;
 
 public class LagringGui extends GridPane {
@@ -42,30 +43,32 @@ public class LagringGui extends GridPane {
         popup.setTitle("Oprettelse af lagring");
         popup.setMinWidth(300);
 
-        ListView<Deldestillat> deldestillatListView = new ListView<>();
-        deldestillatListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        deldestillatListView.getItems().setAll(Controller.getDeldestillater());
+        ListView<Destillat> destillatListView = new ListView<>();
+        destillatListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        destillatListView.getItems().setAll(Controller.getDestillater());
         ListView<Fad> fadListView = new ListView<>();
         fadListView.getItems().setAll(Controller.findLedigeFade());
 
         Label startDatoLabel = new Label("Indtast startdato:");
         TextField startDatoInput = new TextField();
 
-        Label aftappetMængdeLabel = new Label("Indtast aftappet mængde:");
-        TextField aftappetMængdeInput = new TextField();
+        Label aftappetMængdeLabel = new Label("Indtast mængde af destillat:");
+        TextField destillatMængdeInput = new TextField();
 
         Button btnOk = new Button("Opret");
-        btnOk.disableProperty().bind(deldestillatListView.getSelectionModel().selectedItemProperty().isNull());
+        btnOk.disableProperty().bind(destillatListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.disableProperty().bind(fadListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.setOnAction(e -> {
             LocalDate startDato = LocalDate.parse(startDatoInput.getText().trim());
-            double aftappetMængde = Double.parseDouble(aftappetMængdeInput.getText().trim());
+            double destillatMængde = Double.parseDouble(destillatMængdeInput.getText().trim());
 
-            if (aftappetMængde > 0) {
-                Controller.opretLagring(startDato, aftappetMængde,
-                        deldestillatListView.getSelectionModel().getSelectedItems(),
+            if (destillatMængde > 0) {
+                Lagring lagring = Controller.opretLagring(startDato,
                         fadListView.getSelectionModel().getSelectedItem());
-                        lagringListView.getItems().setAll(Controller.getLagringer());
+                Controller.addDeldestillatTilLagring(lagring,
+                        destillatListView.getSelectionModel().getSelectedItem(), destillatMængde);
+
+                lagringListView.getItems().setAll(Controller.getLagringer());
                 popup.close();
             }
         });
@@ -74,13 +77,13 @@ public class LagringGui extends GridPane {
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());
 
-        VBox maltBox = new VBox(5, new Label("Vælg deldestillat"), deldestillatListView);
+        VBox maltBox = new VBox(5, new Label("Vælg deldestillat"), destillatListView);
         VBox medarbejderBox = new VBox(5, new Label("Vælg fad"), fadListView);
         HBox listViews = new HBox(10, maltBox, medarbejderBox);
         HBox okAnnuler = new HBox(10, btnOk, btnCancel);
         VBox right = new VBox(10,
                 startDatoLabel, startDatoInput,
-                aftappetMængdeLabel, aftappetMængdeInput,
+                aftappetMængdeLabel, destillatMængdeInput,
                 okAnnuler
         );
 
