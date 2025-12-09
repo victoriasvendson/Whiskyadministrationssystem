@@ -60,13 +60,16 @@ public class Controller {
         }
     }
 
-    public static DelLagring opretDelLagring(Lagring lagring, double mængde) {
+    public static DelLagring opretDelLagring(Whisky whisky, Lagring lagring, double mængde) {
         DelLagring delLagring = new DelLagring(mængde, LocalDate.now());
         storage.storeDelLagring(delLagring);
         lagring.aftapMængde(mængde);
 
+        whisky.addDelLagring(delLagring);
+
         return delLagring;
     }
+
 
 
 
