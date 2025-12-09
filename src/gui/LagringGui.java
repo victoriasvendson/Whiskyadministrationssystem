@@ -58,11 +58,8 @@ public class LagringGui extends GridPane {
         Lagring selected = lagringListView.getSelectionModel().getSelectedItem();
         if (selected != null) {
             StringBuilder sb = new StringBuilder();
-            sb.append("Alle destillater:" + "\n");
             sb.append(selected.getIndhold());
-
             destillaterPaaLagringTxa.setText(sb.toString());
-
         }
     }
 

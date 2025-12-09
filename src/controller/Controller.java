@@ -149,10 +149,12 @@ public class Controller {
 
     public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
         fad.addTidligereIndhold(tidligereIndhold);
+
     }
 
     public static void addDeldestillatTilLagring(Lagring lagring, Destillat destillat, double mængde) {
         Deldestillat deldestillat = Controller.opretDelDestillat(destillat, mængde);
+        deldestillat.setDatoForLagring(LocalDate.now());
         lagring.addDeldestillat(deldestillat);
     }
 

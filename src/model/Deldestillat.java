@@ -1,6 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Deldestillat implements Væske, Serializable {
     private double mængde;
@@ -8,6 +11,7 @@ public class Deldestillat implements Væske, Serializable {
     private Destillat destillat;
     private int destillatId;
     private double alkoholprocent;
+    private LocalDate datoForLagring;
 
     public Deldestillat(
             int destillatId,
@@ -20,6 +24,10 @@ public class Deldestillat implements Væske, Serializable {
         this.destillat = destillat;
         this.alkoholprocent = alkoholprocent;
 
+    }
+
+    public void setDatoForLagring(LocalDate datoForLagring) {
+        this.datoForLagring = datoForLagring;
     }
 
     @Override
@@ -35,6 +43,7 @@ public class Deldestillat implements Væske, Serializable {
 
     @Override
     public String toString() {
-        return "Delmængde: " + mængde + " liter";
+        return "\nId: " + destillatId + ",  mængde: " + mængde + " liter, " +
+                "Dato for tilføjelse: " + datoForLagring;
     }
 }
