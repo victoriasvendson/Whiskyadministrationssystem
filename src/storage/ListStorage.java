@@ -12,6 +12,7 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
     private final ArrayList<Lagring> lagringer = new ArrayList<>();
+    private final ArrayList<DelLagring> delLagringer = new ArrayList<>();
     private final ArrayList<Leverandør> leverandører = new ArrayList<>();
     private final ArrayList<Malt> alleMalt = new ArrayList<>();
     private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
@@ -19,6 +20,7 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
     private final ArrayList<Destillat> destillater = new ArrayList<>();
     private final ArrayList<Deldestillat> deldestillater = new ArrayList<>();
+    private final ArrayList<Whisky> alleWhisky = new ArrayList<>();
 
     @Override
     public List<Destillering> getDestilleringer() {
@@ -44,6 +46,9 @@ public class ListStorage implements Storage, Serializable {
     public List<Lagring> getLagringer() {
         return new ArrayList<>(lagringer);
     }
+
+    @Override
+    public List<DelLagring> getDelLagringer() { return new ArrayList<>(delLagringer);}
 
     @Override
     public List<Leverandør> getLeverandører() {
@@ -77,6 +82,9 @@ public class ListStorage implements Storage, Serializable {
     public List<Deldestillat> getDelDestillater() { return new ArrayList<>(deldestillater); }
 
     @Override
+    public List<Whisky> getAlleWhisky() { return new ArrayList<>(alleWhisky); }
+
+    @Override
     public void storeDestillering(Destillering destillering) {
         destilleringer.add(destillering);
     }
@@ -100,6 +108,9 @@ public class ListStorage implements Storage, Serializable {
     public void storeLagring(Lagring lagring) {
         lagringer.add(lagring);
     }
+
+    @Override
+    public void storeDelLagring (DelLagring delLagring) { delLagringer.add(delLagring);}
 
     @Override
     public void storeLeverandør(Leverandør leverandør) {
@@ -130,6 +141,9 @@ public class ListStorage implements Storage, Serializable {
 
     @Override
     public void storeDelDestillat (Deldestillat deldestillat) { deldestillater.add(deldestillat);}
+
+    @Override
+    public void storeWhisky (Whisky whisky) { alleWhisky.add(whisky);}
 
 
 

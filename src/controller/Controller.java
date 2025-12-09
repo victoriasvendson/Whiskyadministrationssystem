@@ -60,6 +60,14 @@ public class Controller {
         }
     }
 
+    public static DelLagring opretDelLagring(Lagring lagring, double mængde) {
+        DelLagring delLagring = new DelLagring(mængde, LocalDate.now());
+        storage.storeDelLagring(delLagring);
+        lagring.aftapMængde(mængde);
+
+        return delLagring;
+    }
+
 
 
     public static Fad opretFad(int fadId, double alder, int størrelse, String land, boolean erBrugbart,
@@ -131,6 +139,12 @@ public class Controller {
         TidligereIndhold tidligereIndhold = new TidligereIndhold(væske);
         storage.storeTidligereIndhold(tidligereIndhold);
         return tidligereIndhold;
+    }
+
+    public static Whisky opretWhisky (String navn,double vandMængde, List<Væske> delLagringer) {
+        Whisky whisky = new Whisky(navn, vandMængde, delLagringer);
+        storage.storeWhisky(whisky);
+        return whisky;
     }
 
     public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
@@ -214,7 +228,10 @@ public class Controller {
         return storage.getDelDestillater();
     }
 
+    public static List<Whisky> getAlleWhisky() { return storage.getAlleWhisky();}
+
     public static void setStorage(Storage storage) {
         Controller.storage = storage;
     }
+
 }

@@ -14,6 +14,8 @@ public interface Storage {
 
     List<Lagring> getLagringer();
 
+    List<DelLagring> getDelLagringer();
+
     List<Leverandør> getLeverandører();
 
     List<Malt> getAlleMalt();
@@ -28,6 +30,8 @@ public interface Storage {
 
     List<Deldestillat> getDelDestillater();
 
+    List<Whisky> getAlleWhisky();
+
     void storeDestillering(Destillering destillering);
 
     void storeFad(Fad fad);
@@ -37,6 +41,8 @@ public interface Storage {
     void storeLager(Lager lager);
 
     void storeLagring(Lagring lagring);
+
+    void storeDelLagring(DelLagring delLagring);
 
     void storeLeverandør(Leverandør leverandør);
 
@@ -51,4 +57,6 @@ public interface Storage {
     void storeDestillat (Destillat destillat);
 
     void storeDelDestillat (Deldestillat deldestillat);
+
+    void storeWhisky (Whisky whisky);
 }

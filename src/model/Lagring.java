@@ -11,7 +11,7 @@ public class Lagring implements Serializable, Væske {
     private double aftappetMængde;
     private final List<Væske> indhold = new ArrayList<>();
     private Fad fad;
-    private boolean tom;
+    private boolean erTom = false;
 
     public Lagring(LocalDate startDato, Fad fad) {
         this.startDato = startDato;
@@ -24,6 +24,16 @@ public class Lagring implements Serializable, Væske {
 
     public LocalDate getSlutDato() {
         return slutDato;
+    }
+
+    public void setErTom(boolean erTom) {
+        this.erTom = erTom;
+
+        if(erTom) {
+            setSlutDato(LocalDate.now());
+            fad.setiBrug(false);
+        }
+
     }
 
     public double getAftappetMængde() {
@@ -44,6 +54,10 @@ public class Lagring implements Serializable, Væske {
 
     public void addDeldestillat(Væske væske) {
         indhold.add(væske);
+    }
+
+    public void aftapMængde (double mængde) {
+        aftappetMængde+= mængde;
     }
 
     @Override

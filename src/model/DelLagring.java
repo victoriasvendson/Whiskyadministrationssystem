@@ -2,17 +2,18 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 public class DelLagring implements Væske, Serializable {
     private double delMængde;
-    private double alkoholprocent;
     private Lagring lagring;
     private LocalDate aftappetDato;
 
 
-    public DelLagring(double delMængde) {
+    public DelLagring(double delMængde, LocalDate aftappetDato) {
         this.delMængde = delMængde;
+        this.aftappetDato = aftappetDato;
     }
 
     @Override
@@ -22,7 +23,10 @@ public class DelLagring implements Væske, Serializable {
 
     @Override
     public double getAlkoholProcent() {
-        return alkoholprocent;
+
+        Period diff = Period.between(lagring.getStartDato(), aftappetDato);
+        double mistetAlkoholProcent = diff.getMonths() * 0.1;
+        return lagring.getAlkoholProcent() - mistetAlkoholProcent;
     }
 
 

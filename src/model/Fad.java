@@ -61,6 +61,10 @@ public class Fad implements Serializable {
         this.hylde = hylde;
     }
 
+    public void setiBrug(boolean iBrug) {
+        this.iBrug = iBrug;
+    }
+
     public Leverandør getLeverandør() {
         return leverandør;
     }
