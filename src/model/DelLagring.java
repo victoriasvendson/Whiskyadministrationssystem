@@ -4,14 +4,16 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DelLagring extends Lagring implements Væske, Serializable {
+public class DelLagring implements Væske, Serializable {
     private double delMængde;
+    private double alkoholprocent;
+    private Lagring lagring;
+    private LocalDate aftappetDato;
 
-    public DelLagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde, List<Deldestillat> deldestillater, Fad fad, double delMængde) {
-        super(startDato, slutDato, aftappetMængde, deldestillater, fad);
+
+    public DelLagring(double delMængde) {
         this.delMængde = delMængde;
     }
-
 
     @Override
     public double getVolumen() {
@@ -20,12 +22,8 @@ public class DelLagring extends Lagring implements Væske, Serializable {
 
     @Override
     public double getAlkoholProcent() {
-        return super.getAlkoholProcent();
+        return alkoholprocent;
     }
-
-
-
-
 
 
 }

@@ -10,14 +10,11 @@ public class Lagring implements Serializable, Væske {
     private LocalDate slutDato;
     private double aftappetMængde;
     private final List<Væske> indhold = new ArrayList<>();
-    private List<Deldestillat> deldestillater = new ArrayList<>();
     private Fad fad;
+    private boolean tom;
 
-    public Lagring(LocalDate startDato, LocalDate slutDato, double aftappetMængde, List<Deldestillat> deldestillater, Fad fad) {
+    public Lagring(LocalDate startDato, Fad fad) {
         this.startDato = startDato;
-        this.slutDato = slutDato;
-        this.aftappetMængde = aftappetMængde;
-        this.deldestillater = deldestillater;
         this.fad = fad;
     }
 
@@ -37,8 +34,16 @@ public class Lagring implements Serializable, Væske {
         return getVolumen() - aftappetMængde;
     }
 
-    public void addDeldestillat(Deldestillat deldestillat) {
-        deldestillater.add(deldestillat);
+    public void setSlutDato(LocalDate slutDato) {
+        this.slutDato = slutDato;
+    }
+
+    public List<Væske> getIndhold() {
+        return indhold;
+    }
+
+    public void addDeldestillat(Væske væske) {
+        indhold.add(væske);
     }
 
     @Override
@@ -68,5 +73,10 @@ public class Lagring implements Serializable, Væske {
         if (totalVolumen == 0) return 0;
 
         return (totalAlkohol / totalVolumen) * 100.0;
+    }
+
+    @Override
+    public String toString() {
+        return "Startdato: " + startDato + "\nNuværende mængde: " + getVolumen() + " liter";
     }
 }
