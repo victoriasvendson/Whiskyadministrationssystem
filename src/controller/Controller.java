@@ -34,27 +34,19 @@ public class Controller {
                 storage.storeDestillat(destillat);
                 destillering.setSlutDato(LocalDate.now());
                 return destillat;
-
-
             } else {
                 throw new RuntimeException(" destillatID findes allerede");
             }
         }
         return null;
-
     }
 
     public static Deldestillat opretDelDestillat(Destillat destillat, double delMængde) {
-
-
         if (destillat.getVolumen() - delMængde >= 0) {
             Deldestillat deldestillat = new Deldestillat(destillat.getDestillatId(), delMængde, destillat.getAlkoholProcent(), destillat);
             storage.storeDelDestillat(deldestillat);
             destillat.setMængde(destillat.getVolumen() - delMængde);
-
             return deldestillat;
-
-
         } else {
             throw new RuntimeException("Der er ikke nok destillat");
         }
@@ -64,15 +56,10 @@ public class Controller {
         DelLagring delLagring = new DelLagring(mængde, LocalDate.now());
         storage.storeDelLagring(delLagring);
         lagring.aftapMængde(mængde);
-
         whisky.addDelLagring(delLagring);
         delLagring.setLagring(lagring);
-
         return delLagring;
     }
-
-
-
 
     public static Fad opretFad(int fadId, double alder, int størrelse, String land, boolean erBrugbart,
                                boolean iBrug, Leverandør leverandør) {
@@ -93,7 +80,6 @@ public class Controller {
         storage.storeHylde(hylde);
         return hylde;
     }
-
 
     public static void addFadTilHylde(Hylde hylde, Fad fad) {
         hylde.addFad(fad);
@@ -145,35 +131,35 @@ public class Controller {
         return tidligereIndhold;
     }
 
-    public static Whisky opretWhisky (String navn,double vandMængde) {
+    public static Whisky opretWhisky(String navn, double vandMængde) {
         Whisky whisky = new Whisky(navn, vandMængde);
         storage.storeWhisky(whisky);
         return whisky;
     }
 
-    public static DelLagring addDelLagringTilWhisky (Lagring lagring, Whisky whisky, double mængde) {
+    public static DelLagring addDelLagringTilWhisky(Lagring lagring, Whisky whisky, double mængde) {
         DelLagring delLagring = Controller.opretDelLagring(whisky, lagring, mængde);
-
         return delLagring;
     }
 
-    public static List<Lagring> lagringerOver3År () {
+    public static void addVandTilWhisky(Whisky whisky, double mængde) {
+        whisky.addVand(mængde);
+    }
+
+    public static List<Lagring> lagringerOver3År() {
         List<Lagring> lagringer = new ArrayList<>();
 
         for (int i = 0; i < getLagringer().size(); i++) {
             Lagring lagring = getLagringer().get(i);
-            if(lagring.getAlder() > 36) {
+            if (lagring.getAlder() > 36) {
                 lagringer.add(lagring);
             }
-
         }
         return lagringer;
     }
 
-
     public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
         fad.addTidligereIndhold(tidligereIndhold);
-
     }
 
     public static void addDeldestillatTilLagring(Lagring lagring, Destillat destillat, double mængde) {
@@ -254,10 +240,11 @@ public class Controller {
         return storage.getDelDestillater();
     }
 
-    public static List<Whisky> getAlleWhisky() { return storage.getAlleWhisky();}
+    public static List<Whisky> getAlleWhisky() {
+        return storage.getAlleWhisky();
+    }
 
     public static void setStorage(Storage storage) {
         Controller.storage = storage;
     }
-
 }

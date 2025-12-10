@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +29,8 @@ public class Lagring implements Serializable, Væske {
         return slutDato;
     }
 
-    public int getAlder () {
-        Period diff = Period.between(startDato, LocalDate.now());
-
-        return diff.getMonths();
+    public int getAlder() {
+        return (int) ChronoUnit.MONTHS.between(startDato, LocalDate.now());
     }
 
     public void setErTom(boolean erTom) {
@@ -80,7 +79,7 @@ public class Lagring implements Serializable, Væske {
             totalVolumen+=indhold.get(i).getVolumen();
 
         }
-        return totalVolumen;
+        return totalVolumen - aftappetMængde;
     }
 
     @Override
@@ -103,6 +102,6 @@ public class Lagring implements Serializable, Væske {
 
     @Override
     public String toString() {
-        return "Startdato: " + startDato + "\nNuværende mængde: " + getVolumen() + " liter";
+        return fad + "\nLagringstid: "+ getAlder() + " måneder\nNuværende mængde: " + getVolumen() + " liter";
     }
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+
 import java.util.List;
 
 public interface Storage {
@@ -54,9 +55,9 @@ public interface Storage {
 
     void storeTidligereIndhold(TidligereIndhold tidligereIndhold);
 
-    void storeDestillat (Destillat destillat);
+    void storeDestillat(Destillat destillat);
 
-    void storeDelDestillat (Deldestillat deldestillat);
+    void storeDelDestillat(Deldestillat deldestillat);
 
-    void storeWhisky (Whisky whisky);
+    void storeWhisky(Whisky whisky);
 }

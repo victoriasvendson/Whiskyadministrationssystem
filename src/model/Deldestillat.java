@@ -11,12 +11,7 @@ public class Deldestillat implements Væske, Serializable {
     private double alkoholprocent;
     private LocalDate datoForLagring;
 
-    public Deldestillat(
-            int destillatId,
-            double delMængde,
-            double alkoholprocent,
-            Destillat destillat
-    ) {
+    public Deldestillat(int destillatId, double delMængde, double alkoholprocent, Destillat destillat) {
         this.destillatId = destillatId;
         this.mængde = delMængde;
         this.destillat = destillat;
@@ -33,15 +28,12 @@ public class Deldestillat implements Væske, Serializable {
         return mængde;
     }
 
-
     public double getAlkoholProcent() {
         return alkoholprocent;
     }
 
-
     @Override
     public String toString() {
-        return "\nId: " + destillatId + ",  mængde: " + mængde + " liter, " +
-                "Dato for tilføjelse: " + datoForLagring;
+        return "\nId: " + destillatId + ",  mængde: " + mængde + " liter, " + "Dato for tilføjelse: " + datoForLagring;
     }
 }

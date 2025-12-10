@@ -35,33 +35,25 @@ public class LagerGui extends GridPane {
         Label lagerLabel = new Label("På hvilket lager befinder du dig?");
         pane.add(lagerLabel, 0, 0);
 
-
         //LAGER DEL
         lagerListView.getItems().setAll(Controller.getLagre());
         pane.add(lagerListView, 0, 1);
 
-        lagerListView.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldVal, newVal) -> updateReoler()
-        );
+        lagerListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateReoler());
 
         pane.add(btnOpretLager, 0, 2);
 
         btnOpretLager.setOnAction(event -> opretLager());
-
 
         //REOL DEL
         Label reolLabel = new Label("Reoler:");
         pane.add(reolLabel, 1, 0);
         pane.add(reolListView, 1, 1);
 
-        reolListView.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldVal, newVal) -> updateHylder()
-        );
+        reolListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateHylder());
 
         pane.add(btnOpretReol, 1, 2);
-        btnOpretReol.disableProperty().bind(
-                lagerListView.getSelectionModel().selectedItemProperty().isNull()
-        );
+        btnOpretReol.disableProperty().bind(lagerListView.getSelectionModel().selectedItemProperty().isNull());
         btnOpretReol.setOnAction(event -> opretReol());
 
         //HYLDE DEL
@@ -70,13 +62,9 @@ public class LagerGui extends GridPane {
         pane.add(hyldeListView, 2, 1);
 
         pane.add(btnOpretHylde, 2, 2);
-        btnOpretHylde.disableProperty().bind(
-                reolListView.getSelectionModel().selectedItemProperty().isNull()
-        );
-            btnOpretHylde.setOnAction(event -> opretHylde());
-
+        btnOpretHylde.disableProperty().bind(reolListView.getSelectionModel().selectedItemProperty().isNull());
+        btnOpretHylde.setOnAction(event -> opretHylde());
     }
-
 
     //METODER
     private void updateReoler() {
@@ -93,7 +81,6 @@ public class LagerGui extends GridPane {
             hyldeListView.getItems().setAll(selected.getHylder());
         }
     }
-
 
     //Oprettelse af nyt lager
     private void opretLager() {
@@ -123,11 +110,7 @@ public class LagerGui extends GridPane {
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());
 
-        VBox layout = new VBox(10,
-                nameLabel, nameInput,
-                addressLabel, addressInput,
-                btnOk, btnCancel
-        );
+        VBox layout = new VBox(10, nameLabel, nameInput, addressLabel, addressInput, btnOk, btnCancel);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));
@@ -148,7 +131,6 @@ public class LagerGui extends GridPane {
             String reol = reolInput.getText().trim();
             Lager lager = lagerListView.getSelectionModel().getSelectedItem();
 
-
             if (!reol.isEmpty()) {
                 Controller.opretReol(reol, lager);
                 updateReoler();
@@ -159,10 +141,7 @@ public class LagerGui extends GridPane {
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());
 
-        VBox layout = new VBox(10,
-                nameLabel, reolInput,
-                btnOk, btnCancel
-        );
+        VBox layout = new VBox(10, nameLabel, reolInput, btnOk, btnCancel);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));
@@ -194,10 +173,7 @@ public class LagerGui extends GridPane {
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());
 
-        VBox layout = new VBox(10,
-                nameLabel, hyldeInput,
-                btnOk, btnCancel
-        );
+        VBox layout = new VBox(10, nameLabel, hyldeInput, btnOk, btnCancel);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));

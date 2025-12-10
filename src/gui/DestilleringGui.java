@@ -87,9 +87,7 @@ public class DestilleringGui extends GridPane {
             String rygemateriel = rygematerielInput.getText().trim();
 
             if (id > 0 && mængde > 0) {
-                Controller.opretDestillering(id, mængde, startDato, null, rygemateriel, alleMalt
-                        .getSelectionModel().getSelectedItem(),
-                        alleMedarbejdere.getSelectionModel().getSelectedItem());
+                Controller.opretDestillering(id, mængde, startDato, null, rygemateriel, alleMalt.getSelectionModel().getSelectedItem(), alleMedarbejdere.getSelectionModel().getSelectedItem());
                 destilleringListView.getItems().setAll(Controller.getDestilleringer());
                 popup.close();
             }
@@ -102,13 +100,7 @@ public class DestilleringGui extends GridPane {
         VBox medarbejderBox = new VBox(5, new Label("Vælg medarbejder"), alleMedarbejdere);
         HBox listViews = new HBox(10, maltBox, medarbejderBox);
         HBox okAnnuler = new HBox(10, btnOk, btnCancel);
-        VBox right = new VBox(10,
-                IdLabel, IdInput,
-                mængdeLabel, mængdeInput,
-                startDatolbl, startDatoInput,
-                rygemateriellbl, rygematerielInput,
-                okAnnuler
-        );
+        VBox right = new VBox(10, IdLabel, IdInput, mængdeLabel, mængdeInput, startDatolbl, startDatoInput, rygemateriellbl, rygematerielInput, okAnnuler);
 
         HBox layout = new HBox(20, right, listViews);
         layout.setPadding(new Insets(10));
@@ -129,7 +121,6 @@ public class DestilleringGui extends GridPane {
         TextField txfAlkoholprocent = new TextField();
         Button btnFærdiggør = new Button("Færdiggør");
 
-
         btnFærdiggør.setOnAction(event -> {
             double mængde = Double.parseDouble(txfMængde.getText().trim());
             double alkoholprocent = Double.parseDouble(txfAlkoholprocent.getText().trim());
@@ -140,9 +131,7 @@ public class DestilleringGui extends GridPane {
             destilleringListView.getItems().setAll(Controller.getDestilleringer());
             popup.close();
         });
-        VBox layout = new VBox(10, mængdeLbl, txfMængde,
-                alkoholprocentLbl, txfAlkoholprocent,
-                btnFærdiggør);
+        VBox layout = new VBox(10, mængdeLbl, txfMængde, alkoholprocentLbl, txfAlkoholprocent, btnFærdiggør);
         layout.setPadding(new Insets(10));
         popup.setScene(new Scene(layout));
         popup.showAndWait();

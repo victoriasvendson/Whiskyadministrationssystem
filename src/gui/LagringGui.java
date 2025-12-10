@@ -35,9 +35,7 @@ public class LagringGui extends GridPane {
         lagringListView.getItems().setAll(Controller.getLagringer());
         lagringListView.setPrefSize(300, 600);
 
-        lagringListView.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldVal, newVal) -> updateTxtArea()
-        );
+        lagringListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateTxtArea());
 
         opretLagringButton.setOnAction(event -> opretLagring());
 
@@ -86,10 +84,9 @@ public class LagringGui extends GridPane {
             Destillat destillat = destillatListView.getSelectionModel().getSelectedItem();
             int destillatMængde = Integer.parseInt(destillatMængdeTxf.getText().trim());
 
-            Controller.addDeldestillatTilLagring(lagring,
-                    destillat, destillatMængde);
-        lagringListView.getItems().setAll(Controller.getLagringer());
-        popup.close();
+            Controller.addDeldestillatTilLagring(lagring, destillat, destillatMængde);
+            lagringListView.getItems().setAll(Controller.getLagringer());
+            popup.close();
         });
 
         Button btnCancel = new Button("Annullér");
@@ -142,10 +139,8 @@ public class LagringGui extends GridPane {
             }
 
             if (destillatMængde > 0) {
-                Lagring lagring = Controller.opretLagring(startDato,
-                        fadListView.getSelectionModel().getSelectedItem());
-                Controller.addDeldestillatTilLagring(lagring,
-                        destillatListView.getSelectionModel().getSelectedItem(), destillatMængde);
+                Lagring lagring = Controller.opretLagring(startDato, fadListView.getSelectionModel().getSelectedItem());
+                Controller.addDeldestillatTilLagring(lagring, destillatListView.getSelectionModel().getSelectedItem(), destillatMængde);
 
                 lagringListView.getItems().setAll(Controller.getLagringer());
                 popup.close();
@@ -160,11 +155,7 @@ public class LagringGui extends GridPane {
         VBox medarbejderBox = new VBox(5, new Label("Vælg fad"), fadListView);
         HBox listViews = new HBox(10, maltBox, medarbejderBox);
         HBox okAnnuler = new HBox(10, btnOk, btnCancel);
-        VBox right = new VBox(10,
-                startDatoLabel, startDatoInput,
-                aftappetMængdeLabel, destillatMængdeInput,
-                okAnnuler, errorLbl
-        );
+        VBox right = new VBox(10, startDatoLabel, startDatoInput, aftappetMængdeLabel, destillatMængdeInput, okAnnuler, errorLbl);
 
         //Tilføj deldestillat til lagring
         //Uden startdato,

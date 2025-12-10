@@ -41,9 +41,7 @@ public class FadGui extends GridPane {
         pane.add(fadListView, 1, 1, 2, 1);
         pane.add(btnOpretFad, 2, 2);
 
-        fadListView.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldVal, newVal) -> updateTxtArea()
-        );
+        fadListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateTxtArea());
 
         Label information = new Label("Information omkring fad:");
         pane.add(information, 3, 0);
@@ -69,14 +67,12 @@ public class FadGui extends GridPane {
 
             if (selected.isiBrug()) {
                 sb.append("Fadet er i brug på lokation: ").append(selected.getHylde());
-            } else if (selected.getHylde() == null){
+            } else if (selected.getHylde() == null) {
                 sb.append("Fadet er ikke på nogen hylde");
             } else if (selected.getHylde() != null) {
                 sb.append("Fadet er på lokation: ").append(selected.getHylde());
             }
-
             txaInformationOmFad.setText(sb.toString());
-
         }
     }
 
@@ -125,7 +121,6 @@ public class FadGui extends GridPane {
 
         grid.add(brugbartLabel, 0, 5);
 
-
         grid.add(hyldeLabel, 2, 4);
         grid.add(tilføjTidligereIndhold, 0, 6);
 
@@ -133,10 +128,9 @@ public class FadGui extends GridPane {
         alleLedigeHylder.getItems().setAll(Controller.findLedigeHylder());
         tidligereIndholdListView.setPrefSize(150, 150);
 
-
         HBox tidligereOgHylderlvw = new HBox(10, tidligereIndholdListView, alleLedigeHylder);
         HBox tidligereOgHylderLbl = new HBox(10, tilføjTidligereIndhold, hyldeLabel);
-        VBox tidligereOgHylderSamlet = new VBox (10, tidligereOgHylderLbl, tidligereOgHylderlvw);
+        VBox tidligereOgHylderSamlet = new VBox(10, tidligereOgHylderLbl, tidligereOgHylderlvw);
         tidligereIndholdListView.setPrefHeight(150);
         tidligereIndholdListView.getItems().setAll(Controller.getTidligereIndhold());
         HBox box = new HBox(10);
@@ -145,7 +139,6 @@ public class FadGui extends GridPane {
         VBox altOvenfraSamlet = new VBox(10, grid, tidligereOgHylderSamlet);
 
         tidligereIndholdListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
 
         brugbarTrueInput.setOnAction(e -> {
             brugbartFalseInput.setDisable(brugbarTrueInput.isSelected());
@@ -169,13 +162,9 @@ public class FadGui extends GridPane {
             if (fadId > 0 && alder >= 0 && størrelse > 0) {
 
                 if (brugbarTrueInput.isSelected()) {
-                    fad = Controller.opretFad(
-                            fadId, alder, størrelse, land, true, false,
-                            popupListView.getSelectionModel().getSelectedItem()
-                    );
+                    fad = Controller.opretFad(fadId, alder, størrelse, land, true, false, popupListView.getSelectionModel().getSelectedItem());
                     if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {
-                        List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.
-                                getSelectionModel().getSelectedItems()));
+                        List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.getSelectionModel().getSelectedItems()));
                         for (TidligereIndhold tidligereIndhold : tidligereIndholdList) {
                             Controller.addTidligereIndholdTilFad(fad, tidligereIndhold);
                         }
@@ -183,13 +172,9 @@ public class FadGui extends GridPane {
                 }
 
                 if (brugbartFalseInput.isSelected()) {
-                   fad = Controller.opretFad(
-                            fadId, alder, størrelse, land, false, false,
-                            popupListView.getSelectionModel().getSelectedItem()
-                    );
+                    fad = Controller.opretFad(fadId, alder, størrelse, land, false, false, popupListView.getSelectionModel().getSelectedItem());
                     if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {
-                        List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.
-                                getSelectionModel().getSelectedItems()));
+                        List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.getSelectionModel().getSelectedItems()));
                         for (TidligereIndhold tidligereIndhold : tidligereIndholdList) {
                             Controller.addTidligereIndholdTilFad(fad, tidligereIndhold);
                         }
@@ -230,14 +215,12 @@ public class FadGui extends GridPane {
         Label adresseLabel = new Label("Indtast adresse:");
         TextField adresseInput = new TextField();
 
-
         Button btnOk = new Button("Opret");
         btnOk.setOnAction(e -> {
             String navn = navnInput.getText().trim();
             String email = emailInput.getText().trim();
             String tlfNr = tlfNrInput.getText().trim();
             String adresse = adresseInput.getText().trim();
-
 
             if (!navn.isEmpty() || !email.isEmpty() || !tlfNr.isEmpty() || !adresse.isEmpty()) {
                 Controller.opretLeverandør(navn, email, tlfNr, adresse);
@@ -249,13 +232,7 @@ public class FadGui extends GridPane {
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());
 
-        VBox layout = new VBox(10,
-                navnLabel, navnInput,
-                emailLabel, emailInput,
-                tlfNrLabel, tlfNrInput,
-                adresseLabel, adresseInput,
-                btnOk, btnCancel
-        );
+        VBox layout = new VBox(10, navnLabel, navnInput, emailLabel, emailInput, tlfNrLabel, tlfNrInput, adresseLabel, adresseInput, btnOk, btnCancel);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));

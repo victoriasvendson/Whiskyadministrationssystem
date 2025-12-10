@@ -5,9 +5,8 @@ import controller.Storage;
 import javafx.application.Application;
 import model.*;
 import storage.ListStorage;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -47,12 +46,9 @@ public class App {
         Hylde hyldeA23 = Controller.opretHylde("3", reolA2);
 
         // Leverandører, tidligere indhold og fade
-        Leverandør glenfiddich = Controller.opretLeverandør("Glenfiddich", "glenfiddich@gmail.com",
-                "23435654", "Castle Road, Dufttown, Moray, AB55 4DH, United Kingdom");
-        Leverandør macallan = Controller.opretLeverandør("Macallan", "macallan@gmail.com",
-                "12865744", "The Macallan Distillery, Easter Elchies, Craigllachie, AB38 9RX, Scotland");
-        Leverandør faryLochan = Controller.opretLeverandør("Fary Lochan", "farylochan@hotmail.com",
-                "27290295", "Ågade 41, 7323 Give, Denmark");
+        Leverandør glenfiddich = Controller.opretLeverandør("Glenfiddich", "glenfiddich@gmail.com", "23435654", "Castle Road, Dufttown, Moray, AB55 4DH, United Kingdom");
+        Leverandør macallan = Controller.opretLeverandør("Macallan", "macallan@gmail.com", "12865744", "The Macallan Distillery, Easter Elchies, Craigllachie, AB38 9RX, Scotland");
+        Leverandør faryLochan = Controller.opretLeverandør("Fary Lochan", "farylochan@hotmail.com", "27290295", "Ågade 41, 7323 Give, Denmark");
 
         TidligereIndhold Whisky = Controller.opretTidligereIndhold("Whisky");
         TidligereIndhold Sherry = Controller.opretTidligereIndhold("Sherry");
@@ -73,7 +69,7 @@ public class App {
         Fad mezcal = Controller.opretFad(7, 8, 100, "Mexico", true, false, glenfiddich);
 
         Controller.addFadTilHylde(hyldeA11, bourbon);
-        
+
         bourbon.addTidligereIndhold(Bourbon);
         sherry1.addTidligereIndhold(Sherry);
         sherry2.addTidligereIndhold(Sherry);
@@ -81,7 +77,6 @@ public class App {
         sherry4.addTidligereIndhold(Sherry);
         portBarrel.addTidligereIndhold(Portvin);
         mezcal.addTidligereIndhold(Mezcal);
-
 
         // Malt
         Malt laureate = Controller.opretMalt("Kvolbæk", "Laureate");
