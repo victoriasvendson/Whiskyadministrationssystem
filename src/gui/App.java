@@ -60,23 +60,28 @@ public class App {
         TidligereIndhold Cognac = Controller.opretTidligereIndhold("Cognac");
         TidligereIndhold Mezcal = Controller.opretTidligereIndhold("Mezcal");
 
-        Fad bourbon = Controller.opretFad(1, 13, 200, "United States", true, true, glenfiddich);
-        Fad sherry1 = Controller.opretFad(2, 4, 40, "Italien", true, false, macallan);
-        Fad sherry2 = Controller.opretFad(3, 4, 150, "Italien", true, false, macallan);
-        Fad sherry3 = Controller.opretFad(4, 4, 150, "Italien", false, false, faryLochan);
-        Fad sherry4 = Controller.opretFad(5, 4, 200, "Italien", false, false, faryLochan);
-        Fad portBarrel = Controller.opretFad(6, 14, 200, "Irland", true, false, glenfiddich);
-        Fad mezcal = Controller.opretFad(7, 8, 100, "Mexico", true, false, glenfiddich);
+        Fad bourbonFad1 = Controller.opretFad(1, 13, 200, "United States", true, true, glenfiddich);
+        Fad sherryFad1 = Controller.opretFad(2, 4, 40, "Italien", true, false, macallan);
+        Fad sherryFad2 = Controller.opretFad(3, 4, 150, "Italien", true, false, macallan);
+        Fad sherryFad3 = Controller.opretFad(4, 4, 150, "Italien", false, false, faryLochan);
+        Fad sherryFad4 = Controller.opretFad(5, 4, 200, "Italien", false, false, faryLochan);
+        Fad portFad1 = Controller.opretFad(6, 14, 200, "Irland", true, false, glenfiddich);
+        Fad mezcalFad1 = Controller.opretFad(7, 8, 100, "Mexico", true, false, glenfiddich);
 
-        Controller.addFadTilHylde(hyldeA11, bourbon);
 
-        bourbon.addTidligereIndhold(Bourbon);
-        sherry1.addTidligereIndhold(Sherry);
-        sherry2.addTidligereIndhold(Sherry);
-        sherry3.addTidligereIndhold(Sherry);
-        sherry4.addTidligereIndhold(Sherry);
-        portBarrel.addTidligereIndhold(Portvin);
-        mezcal.addTidligereIndhold(Mezcal);
+
+
+        Controller.addTidligereIndholdTilFad(bourbonFad1, Bourbon);
+        Controller.addTidligereIndholdTilFad(sherryFad1, Sherry);
+        Controller.addTidligereIndholdTilFad(sherryFad2,  Sherry);
+        Controller.addTidligereIndholdTilFad(sherryFad3,  Sherry);
+        Controller.addTidligereIndholdTilFad(sherryFad4,  Sherry);
+        Controller.addTidligereIndholdTilFad(portFad1, Portvin);
+        Controller.addTidligereIndholdTilFad(mezcalFad1, Mezcal);
+
+
+
+
 
         // Malt
         Malt laureate = Controller.opretMalt("Kvolbæk", "Laureate");
@@ -90,28 +95,42 @@ public class App {
         Medarbejder victoria = Controller.opretMedarbejder("Victoria Svendson", "Direktør");
 
         //Tilføjelse af fad til hylder
-        Controller.addFadTilHylde(hyldeA11, bourbon);
+        Controller.addFadTilHylde(hyldeA11, bourbonFad1);
+        Controller.addFadTilHylde(hyldeA12, sherryFad1);
+        Controller.addFadTilHylde(hyldeA12, sherryFad2);
+        Controller.addFadTilHylde(hyldeA12, sherryFad3);
+        Controller.addFadTilHylde(hyldeA12, sherryFad3);
+        Controller.addFadTilHylde(hyldeA12, sherryFad3);
+        Controller.addFadTilHylde(hyldeA21, portFad1);
+        Controller.addFadTilHylde(hyldeA12, mezcalFad1);
 
-        Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, alexander);
-        Destillat destillat1 = new Destillat(1, 200, destillering1, 60);
-        Deldestillat deldestillat1 = new Deldestillat(1, 20, 60, destillat1);
 
-        // Lagringer
-        Lagring lagring = Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbon);
-        Controller.opretLagring(LocalDate.of(2020, 12, 8), bourbon);
+
+
 
         // Destilleringer
+        Destillering destillering1 = Controller.opretDestillering(1, 200, LocalDate.of(2025, 12, 3), null, null, laureate, alexander);
         Destillering destillering3 = Controller.opretDestillering(3, 300, LocalDate.of(2025, 12, 18), LocalDate.of(2026, 1, 3), "Tørv", evergreen, victoria);
 
         // Destillater
+        Destillat destillat1 = Controller.opretDestillat(1, 200, destillering1, 60);
         Destillat destillat3 = Controller.opretDestillat(4, 300, destillering3, 45);
 
-        // Deldestillater
-        Deldestillat deldestillat3 = Controller.opretDelDestillat(destillat3, 20);
 
-        Whisky whisky = Controller.opretWhisky("Alex V2", 0);
-        DelLagring delLagring = Controller.opretDelLagring(whisky, lagring, 50);
+        // Lagringer
+        Lagring lagring1 = Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbonFad1);
+        Lagring lagring2 = Controller.opretLagring(LocalDate.of(2020, 12, 12), sherryFad1);
 
-        whisky.addDelLagring(delLagring);
+        //addDesillat til lagring
+        Controller.addDeldestillatTilLagring(lagring1, destillat1, 50);
+        // Whisky
+        Whisky whisky1 = Controller.opretWhisky("Alex V2", 0);
+
+        // DelLagringer
+        DelLagring delLagring1 = Controller.opretDelLagring(whisky1, lagring1, 50);
+
+        //Add vand til whisky1
+        Controller.addVandTilWhisky(whisky1, 20);
+
     }
 }
