@@ -151,6 +151,12 @@ public class Controller {
         return whisky;
     }
 
+    public static DelLagring addDelLagringTilWhisky (Lagring lagring, Whisky whisky, double mængde) {
+        DelLagring delLagring = Controller.opretDelLagring(whisky, lagring, mængde);
+
+        return delLagring;
+    }
+
 
     public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
         fad.addTidligereIndhold(tidligereIndhold);
