@@ -29,6 +29,8 @@ public class Whisky implements Væske, Serializable {
         return vandMængde;
     }
 
+    public void addVand(double mængde) { vandMængde+= mængde;}
+
     public void addDelLagring (Væske væske) {
         delLagringer.add(væske);
     }
