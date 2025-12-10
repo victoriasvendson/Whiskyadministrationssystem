@@ -105,16 +105,6 @@ public class Lagring implements Serializable, Væske {
         return (totalAlkohol / totalVolumen) * 100.0;
     }
 
-    public List<Deldestillat> getDeldestillater() {
-        List<Deldestillat> delDestillater = new ArrayList<>();
-        for (Væske v : indhold) {
-            if (v instanceof Deldestillat dd) {
-                delDestillater.add(dd);
-            }
-        }
-        return delDestillater;
-    }
-
     @Override
     public String toString() {
         return fad + "\nLagringstid: "+ getAlder() + " måneder\nNuværende mængde: " + getVolumen() + " liter";
