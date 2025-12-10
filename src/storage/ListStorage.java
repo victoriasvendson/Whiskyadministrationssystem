@@ -22,9 +22,6 @@ public class ListStorage implements Storage, Serializable {
     private final ArrayList<DelLagring> delLagringer = new ArrayList<>();
     private final ArrayList<Whisky> alleWhisky = new ArrayList<>();
 
-
-
-
     @Override
     public List<Lager> getLagre() {
         return new ArrayList<>(lagre);
@@ -150,7 +147,7 @@ public class ListStorage implements Storage, Serializable {
     public void storeWhisky (Whisky whisky) { alleWhisky.add(whisky);}
 
 
-
+                            //----------SERIALIZABLE----------\\
     public static ListStorage loadStorage(String fileName) {
         try (FileInputStream fileIn = new FileInputStream(fileName);
              ObjectInputStream objIn = new ObjectInputStream(fileIn)

@@ -34,7 +34,7 @@ public class DestilleringGui extends GridPane {
         pane.setHgap(10);
         pane.setVgap(5);
 
-        Label lblOversigtDestilleringer = new Label("Oversigt over igangværende destilleringer:");
+        Label lblOversigtDestilleringer = new Label("Oversigt over destilleringer:");
         pane.add(lblOversigtDestilleringer, 0, 0, 1, 1);
         destilleringListView.getItems().setAll(Controller.getDestilleringer());
         pane.add(destilleringListView, 0, 1);

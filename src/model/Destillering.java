@@ -11,6 +11,7 @@ public class Destillering implements Serializable {
     private String rygemateriale;
     private Malt malt;
     private Medarbejder medarbejder;
+    private boolean erFærdig = false;
 
 
     public Destillering(int destilleringsId, double mængde, LocalDate startDato,
@@ -32,8 +33,19 @@ public class Destillering implements Serializable {
         slutDato = date;
     }
 
+    public void setErFærdig(boolean erFærdig) {
+        this.erFærdig = erFærdig;
+    }
+
     @Override
     public String toString() {
-        return "ID: " + destilleringsId + " Start dato: " + startDato + " malt: " + malt;
+        String s;
+        if (erFærdig) {
+             s = "Aftappet";
+        } else {
+            s = "Destillerer";
+        }
+        return "ID: " + destilleringsId + " Start dato: " + startDato + "\nmalt: " + malt + "\nStatus: " + s
+                + "\nMængde: " + mængde + " L";
     }
 }

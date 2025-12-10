@@ -33,6 +33,7 @@ public class Controller {
                 Destillat destillat = new Destillat(destillatId, mængde, destillering, alkoholProcent);
                 storage.storeDestillat(destillat);
                 destillering.setSlutDato(LocalDate.now());
+                destillering.setErFærdig(true);
                 return destillat;
             } else {
                 throw new RuntimeException(" destillatID findes allerede");

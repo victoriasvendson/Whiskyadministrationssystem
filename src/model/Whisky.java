@@ -13,8 +13,6 @@ public class Whisky implements Væske, Serializable {
     public Whisky(String navn,double vandMængde) {
         this.navn = navn;
         this.vandMængde = vandMængde;
-
-
     }
 
     public String getNavn() {
@@ -37,7 +35,6 @@ public class Whisky implements Væske, Serializable {
 
     @Override
     public double getVolumen() {
-
         double totalVolumen = 0;
         for (int i = 0; i < delLagringer.size(); i++) {
             totalVolumen+=delLagringer.get(i).getVolumen();
@@ -57,7 +54,6 @@ public class Whisky implements Væske, Serializable {
 
             totalAlkohol += (alkoholProcent / 100.0) * vol;
             totalVolumen += vol;
-
         }
 
         if (totalVolumen == 0) return 0;

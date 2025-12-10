@@ -16,7 +16,6 @@ public class Reol implements Serializable {
         return rækkeNummer;
     }
 
-
     public ArrayList<Hylde> getHylder() {
         return hylder;
     }

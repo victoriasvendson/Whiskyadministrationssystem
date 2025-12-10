@@ -77,7 +77,7 @@ public class Fad implements Serializable {
     public String toString() {
         String stand;
         if (erBrugbart) {
-            stand = "God stand";
+            stand = "Brugbar";
         } else {
             stand = "Ikke brugbar";
         }

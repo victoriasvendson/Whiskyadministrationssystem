@@ -81,7 +81,7 @@ public class Lagring implements Serializable, Væske {
             double reduceretVolumen = startVolumen * Math.pow(1 - månedligTab, getAlder());
             totalVolumen += reduceretVolumen;
         }
-        return totalVolumen;
+        return totalVolumen - aftappetMængde;
     }
 
     @Override
