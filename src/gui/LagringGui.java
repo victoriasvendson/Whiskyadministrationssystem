@@ -126,12 +126,23 @@ public class LagringGui extends GridPane {
         Label aftappetMængdeLabel = new Label("Indtast mængde af destillat:");
         TextField destillatMængdeInput = new TextField();
 
+        Label errorLbl = new Label("Der er ikke nok destillat");
+
+        errorLbl.setStyle("-fx-text-fill: red;");
+        errorLbl.setVisible(false);
+
         Button btnOk = new Button("Opret");
         btnOk.disableProperty().bind(destillatListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.disableProperty().bind(fadListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.setOnAction(e -> {
             LocalDate startDato = LocalDate.parse(startDatoInput.getText().trim());
             double destillatMængde = Double.parseDouble(destillatMængdeInput.getText().trim());
+            double destillatStørrelse = destillatListView.getSelectionModel().getSelectedItem().getVolumen();
+            if (destillatMængde > destillatStørrelse) {
+                errorLbl.setVisible(true);
+                throw new RuntimeException("Der er ikke nok destillat");
+
+            }
 
             if (destillatMængde > 0) {
                 Lagring lagring = Controller.opretLagring(startDato,
@@ -155,9 +166,8 @@ public class LagringGui extends GridPane {
         VBox right = new VBox(10,
                 startDatoLabel, startDatoInput,
                 aftappetMængdeLabel, destillatMængdeInput,
-                okAnnuler
+                okAnnuler, errorLbl
         );
-
 
         //Tilføj deldestillat til lagring
         //Uden startdato,

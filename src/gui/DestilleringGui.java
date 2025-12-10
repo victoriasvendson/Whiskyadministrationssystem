@@ -79,6 +79,7 @@ public class DestilleringGui extends GridPane {
         Button btnOk = new Button("Opret");
         btnOk.disableProperty().bind(alleMalt.getSelectionModel().selectedItemProperty().isNull());
         btnOk.disableProperty().bind(alleMedarbejdere.getSelectionModel().selectedItemProperty().isNull());
+
         btnOk.setOnAction(e -> {
             int id = Integer.parseInt(IdInput.getText().trim());
             double mængde = Double.parseDouble(mængdeInput.getText().trim());
