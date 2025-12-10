@@ -73,13 +73,15 @@ public class Lagring implements Serializable, Væske {
 
     @Override
     public double getVolumen() {
+        double totalVolumen = 0;
+        double månedligTab = 0.0025;
 
-       double totalVolumen = 0;
-        for (int i = 0; i < indhold.size(); i++) {
-            totalVolumen+=indhold.get(i).getVolumen();
-
+        for (Væske væske : indhold) {
+            double startVolumen = væske.getVolumen();
+            double reduceretVolumen = startVolumen * Math.pow(1 - månedligTab, getAlder());
+            totalVolumen += reduceretVolumen;
         }
-        return totalVolumen - aftappetMængde;
+        return totalVolumen;
     }
 
     @Override
