@@ -7,29 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
-    private final ArrayList<Destillering> destilleringer = new ArrayList<>();
-    private final ArrayList<Fad> fade = new ArrayList<>();
-    private final ArrayList<Hylde> hylder = new ArrayList<>();
     private final ArrayList<Lager> lagre = new ArrayList<>();
-    private final ArrayList<Lagring> lagringer = new ArrayList<>();
-    private final ArrayList<DelLagring> delLagringer = new ArrayList<>();
-    private final ArrayList<Leverandør> leverandører = new ArrayList<>();
-    private final ArrayList<Malt> alleMalt = new ArrayList<>();
-    private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
     private final ArrayList<Reol> reoler = new ArrayList<>();
+    private final ArrayList<Hylde> hylder = new ArrayList<>();
+    private final ArrayList<Fad> fade = new ArrayList<>();
+    private final ArrayList<Leverandør> leverandører = new ArrayList<>();
     private final ArrayList<TidligereIndhold> tidligereIndholds = new ArrayList<>();
+    private final ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
+    private final ArrayList<Malt> alleMalt = new ArrayList<>();
+    private final ArrayList<Destillering> destilleringer = new ArrayList<>();
     private final ArrayList<Destillat> destillater = new ArrayList<>();
     private final ArrayList<Deldestillat> deldestillater = new ArrayList<>();
+    private final ArrayList<Lagring> lagringer = new ArrayList<>();
+    private final ArrayList<DelLagring> delLagringer = new ArrayList<>();
     private final ArrayList<Whisky> alleWhisky = new ArrayList<>();
 
+
+
+
     @Override
-    public List<Destillering> getDestilleringer() {
-        return new ArrayList<>(destilleringer);
+    public List<Lager> getLagre() {
+        return new ArrayList<>(lagre);
     }
 
     @Override
-    public List<Fad> getFade() {
-        return new ArrayList<>(fade);
+    public List<Reol> getReoler() {
+        return new ArrayList<>(reoler);
     }
 
     @Override
@@ -38,9 +41,40 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public List<Lager> getLagre() {
-        return new ArrayList<>(lagre);
+    public List<Fad> getFade() {
+        return new ArrayList<>(fade);
     }
+
+    @Override
+    public List<Leverandør> getLeverandører() {
+        return new ArrayList<>(leverandører);
+    }
+
+    @Override
+    public List<TidligereIndhold> getTidligereIndhold() {
+        return new ArrayList<>(tidligereIndholds);
+    }
+
+    @Override
+    public List<Medarbejder> getMedarbejdere() {
+        return new ArrayList<>(medarbejdere);
+    }
+
+    @Override
+    public List<Malt> getAlleMalt() {
+        return new ArrayList<>(alleMalt);
+    }
+
+    @Override
+    public List<Destillering> getDestilleringer() {
+        return new ArrayList<>(destilleringer);
+    }
+
+    @Override
+    public  List<Destillat> getDestillater() { return new ArrayList<>(destillater); }
+
+    @Override
+    public List<Deldestillat> getDelDestillater() { return new ArrayList<>(deldestillater); }
 
     @Override
     public List<Lagring> getLagringer() {
@@ -51,80 +85,13 @@ public class ListStorage implements Storage, Serializable {
     public List<DelLagring> getDelLagringer() { return new ArrayList<>(delLagringer);}
 
     @Override
-    public List<Leverandør> getLeverandører() {
-        return new ArrayList<>(leverandører);
-    }
-
-    @Override
-    public List<Malt> getAlleMalt() {
-        return new ArrayList<>(alleMalt);
-    }
-
-    @Override
-    public List<Medarbejder> getMedarbejdere() {
-        return new ArrayList<>(medarbejdere);
-    }
-
-    @Override
-    public List<Reol> getReoler() {
-        return new ArrayList<>(reoler);
-    }
-
-    @Override
-    public List<TidligereIndhold> getTidligereIndhold() {
-        return new ArrayList<>(tidligereIndholds);
-    }
-
-    @Override
-    public  List<Destillat> getDestillater() { return new ArrayList<>(destillater); }
-
-    @Override
-    public List<Deldestillat> getDelDestillater() { return new ArrayList<>(deldestillater); }
-
-    @Override
     public List<Whisky> getAlleWhisky() { return new ArrayList<>(alleWhisky); }
 
-    @Override
-    public void storeDestillering(Destillering destillering) {
-        destilleringer.add(destillering);
-    }
-
-    @Override
-    public void storeFad(Fad fad) {
-        fade.add(fad);
-    }
-
-    @Override
-    public void storeHylde(Hylde hylde) {
-        hylder.add(hylde);
-    }
+    //---------------------------------------------------------------------//
 
     @Override
     public void storeLager(Lager lager) {
         lagre.add(lager);
-    }
-
-    @Override
-    public void storeLagring(Lagring lagring) {
-        lagringer.add(lagring);
-    }
-
-    @Override
-    public void storeDelLagring (DelLagring delLagring) { delLagringer.add(delLagring);}
-
-    @Override
-    public void storeLeverandør(Leverandør leverandør) {
-        leverandører.add(leverandør);
-    }
-
-    @Override
-    public void storeMalt(Malt malt) {
-        alleMalt.add(malt);
-    }
-
-    @Override
-    public void storeMedarbejder(Medarbejder medarbejder) {
-        medarbejdere.add(medarbejder);
     }
 
     @Override
@@ -133,14 +100,51 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public void storeTidligereIndhold(TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
-
-    @Override
-    public void storeDestillat (Destillat destillat) { destillater.add(destillat);
+    public void storeHylde(Hylde hylde) {
+        hylder.add(hylde);
     }
 
     @Override
+    public void storeFad(Fad fad) {
+        fade.add(fad);
+    }
+
+    @Override
+    public void storeLeverandør(Leverandør leverandør) {
+        leverandører.add(leverandør);
+    }
+
+    @Override
+    public void storeTidligereIndhold(TidligereIndhold tidligereIndhold) { tidligereIndholds.add(tidligereIndhold);}
+
+    @Override
+    public void storeMedarbejder(Medarbejder medarbejder) {
+        medarbejdere.add(medarbejder);
+    }
+
+    @Override
+    public void storeMalt(Malt malt) {
+        alleMalt.add(malt);
+    }
+
+    @Override
+    public void storeDestillering(Destillering destillering) {
+        destilleringer.add(destillering);
+    }
+
+    @Override
+    public void storeDestillat (Destillat destillat) { destillater.add(destillat);}
+
+    @Override
     public void storeDelDestillat (Deldestillat deldestillat) { deldestillater.add(deldestillat);}
+
+    @Override
+    public void storeLagring(Lagring lagring) {
+        lagringer.add(lagring);
+    }
+
+    @Override
+    public void storeDelLagring (DelLagring delLagring) { delLagringer.add(delLagring);}
 
     @Override
     public void storeWhisky (Whisky whisky) { alleWhisky.add(whisky);}
