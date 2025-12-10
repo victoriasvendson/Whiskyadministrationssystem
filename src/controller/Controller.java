@@ -66,6 +66,7 @@ public class Controller {
         lagring.aftapMængde(mængde);
 
         whisky.addDelLagring(delLagring);
+        delLagring.setLagring(lagring);
 
         return delLagring;
     }
@@ -144,11 +145,12 @@ public class Controller {
         return tidligereIndhold;
     }
 
-    public static Whisky opretWhisky (String navn,double vandMængde, List<Væske> delLagringer) {
-        Whisky whisky = new Whisky(navn, vandMængde, delLagringer);
+    public static Whisky opretWhisky (String navn,double vandMængde) {
+        Whisky whisky = new Whisky(navn, vandMængde);
         storage.storeWhisky(whisky);
         return whisky;
     }
+
 
     public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
         fad.addTidligereIndhold(tidligereIndhold);

@@ -10,10 +10,10 @@ public class Whisky implements Væske, Serializable {
     private double vandMængde;
     private List<Væske> delLagringer = new ArrayList<>();
 
-    public Whisky(String navn,double vandMængde, List<Væske> delLagringer) {
+    public Whisky(String navn,double vandMængde) {
         this.navn = navn;
         this.vandMængde = vandMængde;
-        this.delLagringer = delLagringer;
+
 
     }
 
