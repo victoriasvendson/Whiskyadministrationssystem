@@ -8,6 +8,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import model.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class HistorikGui extends GridPane {
     private final ListView<Whisky> whiskyListView = new ListView<>();
@@ -50,12 +53,8 @@ public class HistorikGui extends GridPane {
         sb.append("Vandmængde: ").append(whisky.getVandMængde()).append(" L\n");
         sb.append("Totalt volumen (inkl. vand): ").append(whisky.getTotalMængde()).append(" L\n");
         sb.append("Nuværende alkoholprocent: ").append(String.format("%.2f", whisky.getAlkoholProcent())).append(" %\n\n");
-        DelLagring temp;
-        for (Væske væske : whisky.getDelLagringer()) {
-            temp = (DelLagring) væske;
-            sb.append(temp.getLagring()).append("\n");
-        }
-
+        sb.append("Alle lagringer i whiskyen\n");
+        sb.append(whisky.getDelLagringer()).append("\n");
         whiskyHistorikTxa.setText(sb.toString());
     }
 }
