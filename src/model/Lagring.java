@@ -40,7 +40,10 @@ public class Lagring implements Serializable, Væske {
             setSlutDato(LocalDate.now());
             fad.setiBrug(false);
         }
+    }
 
+    public Fad getFad() {
+        return fad;
     }
 
     public double getAftappetMængde() {
@@ -100,6 +103,16 @@ public class Lagring implements Serializable, Væske {
         if (totalVolumen == 0) return 0;
 
         return (totalAlkohol / totalVolumen) * 100.0;
+    }
+
+    public List<Deldestillat> getDeldestillater() {
+        List<Deldestillat> delDestillater = new ArrayList<>();
+        for (Væske v : indhold) {
+            if (v instanceof Deldestillat dd) {
+                delDestillater.add(dd);
+            }
+        }
+        return delDestillater;
     }
 
     @Override

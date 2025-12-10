@@ -97,7 +97,7 @@ public class App {
         Deldestillat deldestillat1 = new Deldestillat(1, 20, 60, destillat1);
 
         // Lagringer
-        Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbon);
+        Lagring lagring = Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbon);
         Controller.opretLagring(LocalDate.of(2020, 12, 8), bourbon);
 
         // Destilleringer
@@ -108,5 +108,10 @@ public class App {
 
         // Deldestillater
         Deldestillat deldestillat3 = Controller.opretDelDestillat(destillat3, 20);
+
+        Whisky whisky = Controller.opretWhisky("Alex V2", 0);
+        DelLagring delLagring = Controller.opretDelLagring(whisky, lagring, 50);
+
+        whisky.addDelLagring(delLagring);
     }
 }

@@ -83,7 +83,6 @@ public class WhiskyGui extends GridPane {
                 errorLbl.setVisible(true);
             }
         });
-        lagringListView.getItems().setAll(Controller.lagringerOver3År());
 
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());

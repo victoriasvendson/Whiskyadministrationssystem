@@ -27,7 +27,16 @@ public class DelLagring implements Væske, Serializable {
         return lagring.getAlkoholProcent() - mistetAlkoholProcent;
     }
 
+    public Lagring getLagring() {
+        return lagring;
+    }
+
     public void setLagring(Lagring l1) {
         lagring = l1;
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }

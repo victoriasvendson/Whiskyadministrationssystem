@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 public class Deldestillat implements Væske, Serializable {
     private double mængde;
-    private Lagring lagring;
     private Destillat destillat;
     private int destillatId;
     private double alkoholprocent;
@@ -26,6 +25,14 @@ public class Deldestillat implements Væske, Serializable {
     @Override
     public double getVolumen() {
         return mængde;
+    }
+
+    public Destillat getDestillat() {
+        return destillat;
+    }
+
+    public LocalDate getDatoForLagring() {
+        return datoForLagring;
     }
 
     public double getAlkoholProcent() {

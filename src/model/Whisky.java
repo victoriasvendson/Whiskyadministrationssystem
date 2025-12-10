@@ -33,6 +33,10 @@ public class Whisky implements Væske, Serializable {
         delLagringer.add(væske);
     }
 
+    public List<Væske> getDelLagringer() {
+        return delLagringer;
+    }
+
     @Override
     public double getVolumen() {
         double totalVolumen = 0;

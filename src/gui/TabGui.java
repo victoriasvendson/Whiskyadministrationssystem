@@ -49,7 +49,12 @@ public class TabGui extends Application {
         whiskyTab.setClosable(false);
         whiskyTab.setContent(new WhiskyGui());
 
-        tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, lagringTab, whiskyTab, medarbejdertab);
+        Tab historikTab = new Tab("Whiskyhistorik");
+        historikTab.setClosable(false);
+        historikTab.setContent(new HistorikGui());
+
+        tabPane.getTabs().addAll(lagerstyringTab,maltTab, fadTab, destilleringTab,
+                lagringTab, whiskyTab, historikTab, medarbejdertab);
 
         Scene scene = new Scene(tabPane, 800, 400);
         primaryStage.setScene(scene);

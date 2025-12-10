@@ -32,6 +32,10 @@ public class Destillat implements Væske, Serializable {
         return destillatId;
     }
 
+    public Destillering getDestillering() {
+        return destillering;
+    }
+
     @Override
     public String toString() {
         return "ID: " + destillatId + " Mængde: " + mængde + " Alkohol procent: " + alkoholProcent;

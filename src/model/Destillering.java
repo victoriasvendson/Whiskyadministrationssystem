@@ -37,6 +37,14 @@ public class Destillering implements Serializable {
         this.erFærdig = erFærdig;
     }
 
+    public Malt getMalt() {
+        return malt;
+    }
+
+    public Medarbejder getMedarbejder() {
+        return medarbejder;
+    }
+
     @Override
     public String toString() {
         String s;

@@ -189,6 +189,8 @@ public class Controller {
         return ledigeFade;
     }
 
+
+
     public static void afslutLagring(Lagring lagring) {
         lagring.setSlutDato(LocalDate.now());
     }
