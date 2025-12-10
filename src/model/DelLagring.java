@@ -34,10 +34,6 @@ public class DelLagring implements Væske, Serializable {
         return lagring.findMalt();
     }
 
-    public Lagring getLagring() {
-        return lagring;
-    }
-
     public void setLagring(Lagring l1) {
         lagring = l1;
     }

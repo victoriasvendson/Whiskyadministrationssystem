@@ -1,6 +1,5 @@
 package model;
 
-import javax.imageio.metadata.IIOMetadataFormatImpl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

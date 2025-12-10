@@ -1,9 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +23,6 @@ public class Lagring implements Serializable, Væske {
         return startDato;
     }
 
-    public LocalDate getSlutDato() {
-        return slutDato;
-    }
-
     public int getAlder() {
         return (int) ChronoUnit.MONTHS.between(startDato, LocalDate.now());
     }
@@ -44,10 +38,6 @@ public class Lagring implements Serializable, Væske {
 
     public Fad getFad() {
         return fad;
-    }
-
-    public double getAftappetMængde() {
-        return aftappetMængde;
     }
 
     public double udregnAngelShare() {
