@@ -33,6 +33,9 @@ public class WhiskyGui extends GridPane {
 
         whiskyListView.getItems().setAll(Controller.getAlleWhisky());
 
+
+        lagringListView.getItems().setAll(Controller.lagringerOver3År());
+
         HBox buttonsHbox = new HBox(10, btnTilføjDellagring, btnTilføjVand, btnOpretWhisky);
         VBox lagringVbox = new VBox(10, lagringerLbl, lagringListView);
         VBox whiskyVbox = new VBox(10, whiskyLbl, whiskyListView, buttonsHbox);

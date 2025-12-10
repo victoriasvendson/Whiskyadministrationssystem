@@ -157,11 +157,11 @@ public class Controller {
         return delLagring;
     }
 
-    public static ArrayList<Lagring> lagringerOver3År () {
-        ArrayList<Lagring> lagringer = new ArrayList<>();
+    public static List<Lagring> lagringerOver3År () {
+        List<Lagring> lagringer = new ArrayList<>();
 
         for (int i = 0; i < getLagringer().size(); i++) {
-            Lagring lagring =getLagringer().get(i);
+            Lagring lagring = getLagringer().get(i);
             if(lagring.getAlder() > 36) {
                 lagringer.add(lagring);
             }

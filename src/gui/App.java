@@ -103,6 +103,7 @@ public class App {
 
         // Lagringer
         Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbon);
+        Controller.opretLagring(LocalDate.of(2020, 12, 8), bourbon);
 
         // Destilleringer
         Destillering destillering3 = Controller.opretDestillering(3, 300, LocalDate.of(2025, 12, 18), LocalDate.of(2026, 1, 3), "Tørv", evergreen, victoria);
