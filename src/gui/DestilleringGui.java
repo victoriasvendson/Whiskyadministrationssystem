@@ -135,6 +135,7 @@ public class DestilleringGui extends GridPane {
             double alkoholprocent = Double.parseDouble(txfAlkoholprocent.getText().trim());
             Destillering destillering = destilleringListView.getSelectionModel().getSelectedItem();
             Controller.opretDestillat(destillering.getDestilleringsId(), mængde, destillering, alkoholprocent);
+            destillering.setSlutDato(LocalDate.now());
             destillatListView.getItems().setAll(Controller.getDestillater());
             destilleringListView.getItems().setAll(Controller.getDestilleringer());
             popup.close();

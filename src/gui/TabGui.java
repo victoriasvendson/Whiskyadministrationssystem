@@ -46,8 +46,8 @@ public class TabGui extends Application {
 
         // Lagring tab
         Tab whiskyTab = new Tab("Opret whisky");
-        lagringTab.setClosable(false);
-        lagringTab.setContent(new WhiskyGui());
+        whiskyTab.setClosable(false);
+        whiskyTab.setContent(new WhiskyGui());
 
         tabPane.getTabs().addAll(lagerstyringTab, fadTab, maltTab, destilleringTab, lagringTab, whiskyTab, medarbejdertab);
 
