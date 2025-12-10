@@ -157,7 +157,7 @@ public class Controller {
 
     public static void addDeldestillatTilLagring(Lagring lagring, Destillat destillat, double mængde) {
         Deldestillat deldestillat = Controller.opretDelDestillat(destillat, mængde);
-        deldestillat.setDatoForLagring(LocalDate.now());
+        deldestillat.setDatoForTilføjelse(LocalDate.now());
         lagring.addDeldestillat(deldestillat);
     }
 

@@ -25,7 +25,7 @@ public class DelLagring implements Væske, Serializable {
     public double getAlkoholProcent() {
 
         Period diff = Period.between(lagring.getStartDato(), aftappetDato);
-        double mistetAlkoholProcent = diff.getMonths() * 0.1;
+        double mistetAlkoholProcent = diff.getMonths() * 0.033;
         return lagring.getAlkoholProcent() - mistetAlkoholProcent;
     }
 

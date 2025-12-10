@@ -2,8 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Deldestillat implements Væske, Serializable {
     private double mængde;
@@ -26,8 +24,8 @@ public class Deldestillat implements Væske, Serializable {
 
     }
 
-    public void setDatoForLagring(LocalDate datoForLagring) {
-        this.datoForLagring = datoForLagring;
+    public void setDatoForTilføjelse(LocalDate datoForTilføjelse) {
+        this.datoForLagring = datoForTilføjelse;
     }
 
     @Override

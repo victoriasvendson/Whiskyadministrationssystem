@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,11 @@ public class Lagring implements Serializable, Væske {
     }
 
     public double udregnAngelShare() {
-        return getVolumen() - aftappetMængde;
+        if (erTom) {
+            return getVolumen() - aftappetMængde;
+        } else {
+            throw new RuntimeException("Lagring er ikke tom");
+        }
     }
 
     public void setSlutDato(LocalDate slutDato) {
