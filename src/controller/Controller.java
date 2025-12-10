@@ -157,6 +157,19 @@ public class Controller {
         return delLagring;
     }
 
+    public static ArrayList<Lagring> lagringerOver3År () {
+        ArrayList<Lagring> lagringer = new ArrayList<>();
+
+        for (int i = 0; i < getLagringer().size(); i++) {
+            Lagring lagring =getLagringer().get(i);
+            if(lagring.getAlder() > 36) {
+                lagringer.add(lagring);
+            }
+
+        }
+        return lagringer;
+    }
+
 
     public static void addTidligereIndholdTilFad(Fad fad, TidligereIndhold tidligereIndhold) {
         fad.addTidligereIndhold(tidligereIndhold);

@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,12 @@ public class Lagring implements Serializable, Væske {
 
     public LocalDate getSlutDato() {
         return slutDato;
+    }
+
+    public int getAlder () {
+        Period diff = Period.between(startDato, LocalDate.now());
+
+        return diff.getMonths();
     }
 
     public void setErTom(boolean erTom) {
