@@ -47,7 +47,7 @@ public class Whisky implements Væske, Serializable {
     @Override
     public double getAlkoholProcent() {
         double totalAlkohol = 0;
-        double totalVolumen = 0;
+        double totalVolumen = vandMængde;
 
         for (int i = 0; i < delLagringer.size(); i++) {
             double alkoholProcent = delLagringer.get(i).getAlkoholProcent();
@@ -55,6 +55,7 @@ public class Whisky implements Væske, Serializable {
 
             totalAlkohol += (alkoholProcent / 100.0) * vol;
             totalVolumen += vol;
+
         }
 
         if (totalVolumen == 0) return 0;
