@@ -41,10 +41,6 @@ public class Destillering implements Serializable {
         return malt;
     }
 
-    public Medarbejder getMedarbejder() {
-        return medarbejder;
-    }
-
     @Override
     public String toString() {
         String s;

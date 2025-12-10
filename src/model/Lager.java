@@ -13,14 +13,6 @@ public class Lager implements Serializable {
         this.størrelse = størrelse;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public int getStørrelse() {
-        return størrelse;
-    }
-
     public ArrayList<Reol> getReoler() {
         return reoler;
     }

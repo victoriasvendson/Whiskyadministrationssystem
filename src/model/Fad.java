@@ -45,10 +45,6 @@ public class Fad implements Serializable {
         return land;
     }
 
-    public boolean erBrugbart() {
-        return erBrugbart;
-    }
-
     public boolean isiBrug() {
         return iBrug;
     }

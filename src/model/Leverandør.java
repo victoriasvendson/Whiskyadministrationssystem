@@ -19,18 +19,6 @@ public class Leverandør implements Serializable {
         return navn;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getTelefonnummer() {
-        return telefonnummer;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
     @Override
     public String toString() {
         return navn + ", " + email;

@@ -32,10 +32,6 @@ public class Destillat implements Væske, Serializable {
         return destillatId;
     }
 
-    public Destillering getDestillering() {
-        return destillering;
-    }
-
     @Override
     public Malt findMalt() {
         if (destillering == null) {

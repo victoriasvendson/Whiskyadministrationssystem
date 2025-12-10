@@ -10,9 +10,9 @@ public class Deldestillat implements Væske, Serializable {
     private double alkoholprocent;
     private LocalDate datoForLagring;
 
-    public Deldestillat(int destillatId, double delMængde, double alkoholprocent, Destillat destillat) {
+    public Deldestillat(int destillatId, double mængde, double alkoholprocent, Destillat destillat) {
         this.destillatId = destillatId;
-        this.mængde = delMængde;
+        this.mængde = mængde;
         this.destillat = destillat;
         this.alkoholprocent = alkoholprocent;
 

@@ -12,10 +12,6 @@ public class Reol implements Serializable {
         this.rækkeNummer = rækkeNummer;
     }
 
-    public String getRækkeNummer() {
-        return rækkeNummer;
-    }
-
     public ArrayList<Hylde> getHylder() {
         return hylder;
     }

@@ -14,16 +14,8 @@ public class Hylde implements Serializable {
         this.reol = reol;
     }
 
-    public String getHyldeNummer() {
-        return hyldeNummer;
-    }
-
     public void addFad(Fad fad) {
         fade.add(fad);
-    }
-
-    public void removeFad(Fad fad) {
-        fade.remove(fad);
     }
 
     public void setErLedig(boolean erLedig) {
@@ -32,14 +24,6 @@ public class Hylde implements Serializable {
 
     public boolean isErLedig() {
         return erLedig;
-    }
-
-    public Reol getReol() {
-        return reol;
-    }
-
-    public ArrayList<Fad> getFade() {
-        return fade;
     }
 
     @Override

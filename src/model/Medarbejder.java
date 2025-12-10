@@ -11,14 +11,6 @@ public class Medarbejder implements Serializable {
         this.stillingsbetegnelse = stillingsbetegnelse;
     }
 
-    public String getNavn() {
-        return navn;
-    }
-
-    public String getStillingsbetegnelse() {
-        return stillingsbetegnelse;
-    }
-
     @Override
     public String toString() {
         return "Navn: " + navn + "\nStillingsbetegnelse: " + stillingsbetegnelse;
