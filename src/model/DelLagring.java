@@ -27,6 +27,13 @@ public class DelLagring implements Væske, Serializable {
         return lagring.getAlkoholProcent() - mistetAlkoholProcent;
     }
 
+    public Malt findMalt() {
+        if (lagring == null) {
+            return null;
+        }
+        return lagring.findMalt();
+    }
+
     public Lagring getLagring() {
         return lagring;
     }
@@ -37,6 +44,8 @@ public class DelLagring implements Væske, Serializable {
 
     @Override
     public String toString() {
-        return "";
+        return "Mængde: " + delMængde + " L\nLageret på: " + lagring.getFad().getAlder() +
+                " år gammelt fad fra " + lagring.getFad().getLand() + "\nProduceret af: " +
+                lagring.getFad().getLeverandør().getNavn() + "\n";
     }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class HistorikGui extends GridPane {
     private final ListView<Whisky> whiskyListView = new ListView<>();
     private final TextArea whiskyHistorikTxa = new TextArea();
+
     public HistorikGui() {
         initContent(this);
     }
@@ -27,8 +28,8 @@ public class HistorikGui extends GridPane {
         //1
         Label whiskysLbl = new Label("Alle whiskys");
         pane.add(whiskysLbl, 0, 0);
-        pane.add(whiskyListView, 0 ,1);
-        whiskyListView.setPrefSize(500,400);
+        pane.add(whiskyListView, 0, 1);
+        whiskyListView.setPrefSize(500, 400);
 
         //2
         Label historieLbl = new Label("Whiskyens historie");
@@ -45,16 +46,28 @@ public class HistorikGui extends GridPane {
 
     public void updateTxtArea() {
         Whisky whisky = whiskyListView.getSelectionModel().getSelectedItem();
+
         StringBuilder sb = new StringBuilder();
 
-        sb.append("=== WHISKY ===\n\n");
+        sb.append("Whiskyens historie:\n\n");
 
         sb.append("Navn: ").append(whisky.getNavn()).append("\n");
         sb.append("Vandmængde: ").append(whisky.getVandMængde()).append(" L\n");
         sb.append("Totalt volumen (inkl. vand): ").append(whisky.getTotalMængde()).append(" L\n");
         sb.append("Nuværende alkoholprocent: ").append(String.format("%.2f", whisky.getAlkoholProcent())).append(" %\n\n");
-        sb.append("Alle lagringer i whiskyen\n");
-        sb.append(whisky.getDelLagringer()).append("\n");
+
+        sb.append("Alle lagringer i whiskyen:\n");
+        sb.append(whisky.getDelLagringer()).append("\n\n");
+
+        Malt malt = whisky.findMalt();
+        if (malt != null) {
+            sb.append("Malt brugt i whiskyen\n");
+            sb.append("Kornsort: ").append(malt.getKornsort()).append("\n");
+            sb.append("Mark: ").append(malt.getMark()).append("\n\n");
+        } else {
+            sb.append("Ingen malt fundet i whiskyen.\n\n");
+        }
+
         whiskyHistorikTxa.setText(sb.toString());
     }
 }

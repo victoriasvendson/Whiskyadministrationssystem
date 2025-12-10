@@ -88,6 +88,17 @@ public class Lagring implements Serializable, Væske {
     }
 
     @Override
+    public Malt findMalt() {
+        for (Væske v : indhold) {
+            Malt malt = v.findMalt();
+            if (malt != null) {
+                return malt;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public double getAlkoholProcent() {
         double totalAlkohol = 0;
         double totalVolumen = 0;

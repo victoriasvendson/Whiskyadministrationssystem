@@ -112,7 +112,7 @@ public class LagringGui extends GridPane {
         destillatListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         destillatListView.getItems().setAll(Controller.getDestillater());
         ListView<Fad> fadListView = new ListView<>();
-        fadListView.getItems().setAll(Controller.findLedigeFade());
+        fadListView.getItems().setAll(Controller.getFade());
 
         Label startDatoLabel = new Label("Indtast startdato:");
         TextField startDatoInput = new TextField();
