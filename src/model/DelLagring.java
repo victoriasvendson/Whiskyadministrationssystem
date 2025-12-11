@@ -42,6 +42,8 @@ public class DelLagring implements Væske, Serializable {
     public String toString() {
         return "Mængde: " + delMængde + " L\nLageret på: " + lagring.getFad().getAlder() +
                 " år gammelt fad fra " + lagring.getFad().getLand() + "\nProduceret af: " +
-                lagring.getFad().getLeverandør().getNavn() + "\n";
+                lagring.getFad().getLeverandør().getNavn() + "\n" + "Tidligere indhold på fad" +
+                lagring.getFad().getTidligereIndhold() + " \nLagret i: " + lagring.getAlder() + " måneder\n "
+                + "Destillater i denne lagring: " + lagring.getDestillater();
     }
 }

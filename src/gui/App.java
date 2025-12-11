@@ -118,11 +118,12 @@ public class App {
 
 
         // Lagringer
-        Lagring lagring1 = Controller.opretLagring(LocalDate.of(2025, 12, 8), bourbonFad1);
-        Lagring lagring2 = Controller.opretLagring(LocalDate.of(2020, 12, 12), sherryFad1);
+        Lagring lagring1 = Controller.opretLagring(LocalDate.of(2020, 12, 8), bourbonFad1);
+        Lagring lagring2 = Controller.opretLagring(LocalDate.of(2025, 12, 12), sherryFad1);
 
         //addDesillat til lagring
         Controller.addDeldestillatTilLagring(lagring1, destillat1, 50);
+
         // Whisky
         Whisky whisky1 = Controller.opretWhisky("Alex V2", 0);
 

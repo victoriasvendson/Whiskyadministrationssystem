@@ -27,6 +27,10 @@ public class Lagring implements Serializable, Væske {
         return (int) ChronoUnit.MONTHS.between(startDato, LocalDate.now());
     }
 
+    public List<Væske> getDestillater () {
+        return indhold;
+    }
+
     public void setErTom(boolean erTom) {
         this.erTom = erTom;
 
@@ -108,6 +112,6 @@ public class Lagring implements Serializable, Væske {
 
     @Override
     public String toString() {
-        return fad + "\nLagringstid: "+ getAlder() + " måneder\nNuværende mængde: " + getVolumen() + " liter";
+        return fad + "\nLagringstid: "+ getAlder() + " måneder\nNuværende mængde: " + getVolumen() + " liter ";
     }
 }
