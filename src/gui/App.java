@@ -6,6 +6,7 @@ import javafx.application.Application;
 import model.*;
 import storage.ListStorage;
 
+import javax.sound.sampled.Control;
 import java.time.LocalDate;
 
 public class App {
@@ -123,6 +124,7 @@ public class App {
 
         //addDesillat til lagring
         Controller.addDeldestillatTilLagring(lagring1, destillat1, 50);
+        Controller.addDeldestillatTilLagring(lagring1, destillat3, 100);
 
         // Whisky
         Whisky whisky1 = Controller.opretWhisky("Alex V2", 0);

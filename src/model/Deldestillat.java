@@ -41,7 +41,7 @@ public class Deldestillat implements Væske, Serializable {
 
     @Override
     public String toString() {
-        return "\nId: " + destillatId + ",  mængde: " + mængde + " liter, " + "Dato for tilføjelse: " + datoForLagring + "\n " +
+        return "\nId: " + destillatId + ",  mængde: " + mængde + " liter, " + "Dato for tilføjelse: " + datoForLagring + "\n" +
                 "malt: " + destillat.getDestillering().getMalt();
     }
 }
