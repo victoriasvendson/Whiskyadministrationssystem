@@ -129,8 +129,6 @@ public class App {
         // Whisky
         Whisky whisky1 = Controller.opretWhisky("Alex V2", 0);
 
-        // DelLagringer
-        DelLagring delLagring1 = Controller.opretDelLagring(whisky1, lagring1, 50);
 
         //Add vand til whisky1
         Controller.addVandTilWhisky(whisky1, 20);

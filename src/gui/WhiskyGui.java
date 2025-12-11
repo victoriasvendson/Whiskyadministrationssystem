@@ -156,6 +156,7 @@ public class WhiskyGui extends GridPane {
             if (!navn.isEmpty()) {
                 Controller.opretWhisky(navn, 0);
                 whiskyListView.getItems().setAll(Controller.getAlleWhisky());
+                HistorikGui.refreshWhiskyList();
                 popup.close();
             } else {
                 errorLbl.setVisible(true);

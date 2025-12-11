@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class HistorikGui extends GridPane {
-    private final ListView<Whisky> whiskyListView = new ListView<>();
+    private static final ListView<Whisky> whiskyListView = new ListView<>();
     private final TextArea whiskyHistorikTxa = new TextArea();
 
     public HistorikGui() {
@@ -60,5 +60,9 @@ public class HistorikGui extends GridPane {
         sb.append(whisky.getDelLagringer()).append("\n\n");
 
         whiskyHistorikTxa.setText(sb.toString());
+    }
+
+    public static void refreshWhiskyList() {
+        whiskyListView.getItems().setAll(Controller.getAlleWhisky());
     }
 }

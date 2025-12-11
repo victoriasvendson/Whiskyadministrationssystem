@@ -85,6 +85,10 @@ public class Lagring implements Serializable, Væske {
         return startVolumen * Math.pow(faktor, måneder);
     }
 
+    public double getVolumenMinusAftappetMængde() {
+        return getVolumen() - aftappetMængde;
+    }
+
     @Override
     public double getAlkoholProcent() {
         double totalAlkohol = 0;
@@ -105,6 +109,7 @@ public class Lagring implements Serializable, Væske {
 
     @Override
     public String toString() {
-        return fad + "\nLagringstid: "+ getAlder() + " måneder\nNuværende mængde: " + getVolumen() + " liter ";
+        return fad + "\nLagringstid: "+ getAlder() + " måneder\nNuværende mængde: " +
+                String.format("%.2f", getVolumenMinusAftappetMængde()) + " liter ";
     }
 }

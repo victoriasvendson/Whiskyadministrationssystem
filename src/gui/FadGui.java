@@ -103,6 +103,11 @@ public class FadGui extends GridPane {
         Button btnOk = new Button("Opret");
         Button btnCancel = new Button("Annullér");
 
+        Label errorLbl = new Label("Alle felter skal være udfyldt");
+
+        errorLbl.setStyle("-fx-text-fill: red;");
+        errorLbl.setVisible(false);
+
         GridPane grid = new GridPane();
         grid.setVgap(10);
         grid.setHgap(10);
@@ -159,15 +164,14 @@ public class FadGui extends GridPane {
             int størrelse = Integer.parseInt(størrelseInput.getText().trim());
             String land = landInput.getText().trim();
 
-            if (fadId > 0 && alder >= 0 && størrelse > 0) {
-
+            if (fadId > 0 && alder >= 0 && størrelse > 0 && !land.isEmpty()) {
                 if (brugbarTrueInput.isSelected()) {
                     fad = Controller.opretFad(fadId, alder, størrelse, land, true, false, popupListView.getSelectionModel().getSelectedItem());
                     if (tidligereIndholdListView.getSelectionModel().getSelectedItems() != null) {
                         List<TidligereIndhold> tidligereIndholdList = new ArrayList<>(List.copyOf(tidligereIndholdListView.getSelectionModel().getSelectedItems()));
                         for (TidligereIndhold tidligereIndhold : tidligereIndholdList) {
                             Controller.addTidligereIndholdTilFad(fad, tidligereIndhold);
-                        }
+                        };
                     }
                 }
 
@@ -187,13 +191,16 @@ public class FadGui extends GridPane {
 
                 fadListView.getItems().setAll(Controller.getFade());
                 popup.close();
+            } else {
+                errorLbl.setVisible(true);
             }
         });
 
         btnCancel.setOnAction(e -> popup.close());
 
         popupListView.setPrefWidth(300);
-        HBox layout = new HBox(20, popupListView, altOvenfraSamlet);
+        HBox temp = new HBox(20, popupListView, altOvenfraSamlet);
+        VBox layout = new VBox(10, temp, errorLbl);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));
@@ -215,13 +222,20 @@ public class FadGui extends GridPane {
         Label adresseLabel = new Label("Indtast adresse:");
         TextField adresseInput = new TextField();
 
+        Label errorLbl = new Label("Alle felter skal være udfyldt");
+
+        errorLbl.setStyle("-fx-text-fill: red;");
+        errorLbl.setVisible(false);
+
         Button btnOk = new Button("Opret");
         btnOk.setOnAction(e -> {
             String navn = navnInput.getText().trim();
             String email = emailInput.getText().trim();
             String tlfNr = tlfNrInput.getText().trim();
             String adresse = adresseInput.getText().trim();
-
+            if (navn. isEmpty() || email.isEmpty() || tlfNr.isEmpty() || adresse.isEmpty()) {
+                errorLbl.setVisible(true);
+            }
             if (!navn.isEmpty() && !email.isEmpty() && !tlfNr.isEmpty() && !adresse.isEmpty()) {
                 Controller.opretLeverandør(navn, email, tlfNr, adresse);
                 leverandørListView.getItems().setAll(Controller.getLeverandører());
@@ -232,7 +246,8 @@ public class FadGui extends GridPane {
         Button btnCancel = new Button("Annullér");
         btnCancel.setOnAction(e -> popup.close());
 
-        VBox layout = new VBox(10, navnLabel, navnInput, emailLabel, emailInput, tlfNrLabel, tlfNrInput, adresseLabel, adresseInput, btnOk, btnCancel);
+        VBox altUdenError = new VBox(10, navnLabel, navnInput, emailLabel, emailInput, tlfNrLabel, tlfNrInput, adresseLabel, adresseInput, btnOk, btnCancel);
+        HBox layout = new HBox(altUdenError, errorLbl);
         layout.setPadding(new Insets(10));
 
         popup.setScene(new Scene(layout));

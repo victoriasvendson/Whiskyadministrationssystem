@@ -3,10 +3,7 @@ package gui;
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -71,25 +68,33 @@ public class DestilleringGui extends GridPane {
         TextField mængdeInput = new TextField();
 
         Label startDatolbl = new Label("Indtast startdato:");
-        TextField startDatoInput = new TextField();
+        DatePicker startDatoInput = new DatePicker();
 
         Label rygemateriellbl = new Label("Indtast evt. rygemateriale");
         TextField rygematerielInput = new TextField();
+
+        Label errorLbl = new Label("Id, mængde, eller startdato er ikke valgt");
+
+        errorLbl.setStyle("-fx-text-fill: red;");
+        errorLbl.setVisible(false);
 
         Button btnOk = new Button("Opret");
         btnOk.disableProperty().bind(alleMalt.getSelectionModel().selectedItemProperty().isNull());
         btnOk.disableProperty().bind(alleMedarbejdere.getSelectionModel().selectedItemProperty().isNull());
 
         btnOk.setOnAction(e -> {
+            if (!IdInput.getText().isEmpty() && !mængdeInput.getText().isEmpty()
+                    && startDatoInput.getValue() != null) {
             int id = Integer.parseInt(IdInput.getText().trim());
             double mængde = Double.parseDouble(mængdeInput.getText().trim());
-            LocalDate startDato = LocalDate.parse(startDatoInput.getText().trim());
+            LocalDate startDato = startDatoInput.getValue();
             String rygemateriel = rygematerielInput.getText().trim();
 
-            if (id > 0 && mængde > 0) {
                 Controller.opretDestillering(id, mængde, startDato, null, rygemateriel, alleMalt.getSelectionModel().getSelectedItem(), alleMedarbejdere.getSelectionModel().getSelectedItem());
                 destilleringListView.getItems().setAll(Controller.getDestilleringer());
                 popup.close();
+            } else {
+                errorLbl.setVisible(true);
             }
         });
 
@@ -100,7 +105,7 @@ public class DestilleringGui extends GridPane {
         VBox medarbejderBox = new VBox(5, new Label("Vælg medarbejder"), alleMedarbejdere);
         HBox listViews = new HBox(10, maltBox, medarbejderBox);
         HBox okAnnuler = new HBox(10, btnOk, btnCancel);
-        VBox right = new VBox(10, IdLabel, IdInput, mængdeLabel, mængdeInput, startDatolbl, startDatoInput, rygemateriellbl, rygematerielInput, okAnnuler);
+        VBox right = new VBox(10, IdLabel, IdInput, mængdeLabel, mængdeInput, startDatolbl, startDatoInput, rygemateriellbl, rygematerielInput, errorLbl, okAnnuler);
 
         HBox layout = new HBox(20, right, listViews);
         layout.setPadding(new Insets(10));
@@ -121,17 +126,42 @@ public class DestilleringGui extends GridPane {
         TextField txfAlkoholprocent = new TextField();
         Button btnFærdiggør = new Button("Færdiggør");
 
+        Label errorLbl = new Label("Mængde og alkoholprocent skal være større end 0");
+
+        errorLbl.setStyle("-fx-text-fill: red;");
+        errorLbl.setVisible(false);
+
         btnFærdiggør.setOnAction(event -> {
-            double mængde = Double.parseDouble(txfMængde.getText().trim());
-            double alkoholprocent = Double.parseDouble(txfAlkoholprocent.getText().trim());
-            Destillering destillering = destilleringListView.getSelectionModel().getSelectedItem();
-            Controller.opretDestillat(destillering.getDestilleringsId(), mængde, destillering, alkoholprocent);
-            destillering.setSlutDato(LocalDate.now());
-            destillatListView.getItems().setAll(Controller.getDestillater());
-            destilleringListView.getItems().setAll(Controller.getDestilleringer());
-            popup.close();
+            String mængdeText = txfMængde.getText().trim();
+            String alkoholText = txfAlkoholprocent.getText().trim();
+
+            if (!mængdeText.isEmpty() && !alkoholText.isEmpty()) {
+                try {
+                    double mængde = Double.parseDouble(mængdeText);
+                    double alkoholprocent = Double.parseDouble(alkoholText);
+
+                    if (mængde > 0 && alkoholprocent > 0) {
+                        Destillering destillering = destilleringListView.getSelectionModel().getSelectedItem();
+                        Controller.opretDestillat(destillering.getDestilleringsId(), mængde, destillering, alkoholprocent);
+                        destillering.setSlutDato(LocalDate.now());
+
+                        destillatListView.getItems().setAll(Controller.getDestillater());
+                        destilleringListView.getItems().setAll(Controller.getDestilleringer());
+                        popup.close();
+                    } else {
+                        errorLbl.setText("Mængde og alkoholprocent skal være større end 0");
+                        errorLbl.setVisible(true);
+                    }
+                } catch (NumberFormatException ex) {
+                    errorLbl.setText("Indtast gyldige tal for mængde og alkoholprocent");
+                    errorLbl.setVisible(true);
+                }
+            } else {
+                errorLbl.setText("Alle felter skal udfyldes");
+                errorLbl.setVisible(true);
+            }
         });
-        VBox layout = new VBox(10, mængdeLbl, txfMængde, alkoholprocentLbl, txfAlkoholprocent, btnFærdiggør);
+        VBox layout = new VBox(10, mængdeLbl, txfMængde, alkoholprocentLbl, txfAlkoholprocent, errorLbl, btnFærdiggør);
         layout.setPadding(new Insets(10));
         popup.setScene(new Scene(layout));
         popup.showAndWait();

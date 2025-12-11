@@ -66,7 +66,7 @@ public class Whisky implements Væske, Serializable {
 
     @Override
     public String toString() {
-        return navn + ", "  + "Lagringsmængde: " + getVolumen() + ", Vandmængde: "
-                + vandMængde + ", Alkoholprocent: " +  getAlkoholProcent() + " %, " ;
+        return navn + ", "  + "Lagringsmængde: " + String.format("%.2f", getVolumen()) + ", Vandmængde: "
+                + vandMængde + ", Alkoholprocent: " +  String.format("%.2f", getAlkoholProcent()) + " %, " ;
     }
 }

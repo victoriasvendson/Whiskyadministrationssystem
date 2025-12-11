@@ -115,7 +115,7 @@ public class LagringGui extends GridPane {
         fadListView.getItems().setAll(Controller.getFade());
 
         Label startDatoLabel = new Label("Indtast startdato:");
-        TextField startDatoInput = new TextField();
+        DatePicker startDatoInput = new DatePicker();
 
         Label aftappetMængdeLabel = new Label("Indtast mængde af destillat:");
         TextField destillatMængdeInput = new TextField();
@@ -129,13 +129,11 @@ public class LagringGui extends GridPane {
         btnOk.disableProperty().bind(destillatListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.disableProperty().bind(fadListView.getSelectionModel().selectedItemProperty().isNull());
         btnOk.setOnAction(e -> {
-            LocalDate startDato = LocalDate.parse(startDatoInput.getText().trim());
+            LocalDate startDato = startDatoInput.getValue();
             double destillatMængde = Double.parseDouble(destillatMængdeInput.getText().trim());
             double destillatStørrelse = destillatListView.getSelectionModel().getSelectedItem().getVolumen();
             if (destillatMængde > destillatStørrelse) {
                 errorLbl.setVisible(true);
-                throw new RuntimeException("Der er ikke nok destillat");
-
             }
 
             if (destillatMængde > 0) {
@@ -156,9 +154,6 @@ public class LagringGui extends GridPane {
         HBox listViews = new HBox(10, maltBox, medarbejderBox);
         HBox okAnnuler = new HBox(10, btnOk, btnCancel);
         VBox right = new VBox(10, startDatoLabel, startDatoInput, aftappetMængdeLabel, destillatMængdeInput, okAnnuler, errorLbl);
-
-        //Tilføj deldestillat til lagring
-        //Uden startdato,
 
         HBox layout = new HBox(20, right, listViews);
         layout.setPadding(new Insets(10));
