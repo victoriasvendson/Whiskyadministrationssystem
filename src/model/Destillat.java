@@ -30,6 +30,10 @@ public class Destillat implements Væske, Serializable {
         return destillering;
     }
 
+    public double getMængde() {
+        return mængde;
+    }
+
     public void setMængde (double delMængde) {
         mængde = delMængde;
     }
