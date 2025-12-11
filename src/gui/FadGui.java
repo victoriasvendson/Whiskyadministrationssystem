@@ -222,7 +222,7 @@ public class FadGui extends GridPane {
             String tlfNr = tlfNrInput.getText().trim();
             String adresse = adresseInput.getText().trim();
 
-            if (!navn.isEmpty() || !email.isEmpty() || !tlfNr.isEmpty() || !adresse.isEmpty()) {
+            if (!navn.isEmpty() && !email.isEmpty() && !tlfNr.isEmpty() && !adresse.isEmpty()) {
                 Controller.opretLeverandør(navn, email, tlfNr, adresse);
                 leverandørListView.getItems().setAll(Controller.getLeverandører());
                 popup.close();
