@@ -43,14 +43,6 @@ public class Destillat implements Væske, Serializable {
     }
 
     @Override
-    public Malt findMalt() {
-        if (destillering == null) {
-            return null;
-        }
-        return destillering.getMalt();
-    }
-
-    @Override
     public String toString() {
         return "ID: " + destillatId + " Mængde: " + mængde + " Alkohol procent: " + alkoholProcent;
     }

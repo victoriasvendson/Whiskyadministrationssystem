@@ -37,15 +37,6 @@ public class Whisky implements Væske, Serializable {
     }
 
     @Override
-    public Malt findMalt() {
-        for (Væske v : delLagringer) {
-            Malt m = v.findMalt();
-            if (m != null) return m;
-        }
-        return null;
-    }
-
-    @Override
     public double getVolumen() {
         double totalVolumen = 0;
         for (int i = 0; i < delLagringer.size(); i++) {

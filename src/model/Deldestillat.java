@@ -27,14 +27,6 @@ public class Deldestillat implements Væske, Serializable {
         return mængde;
     }
 
-    public Malt findMalt() {
-        if (destillat == null) {
-            return null;
-        }
-
-        return destillat.findMalt();
-    }
-
     public double getAlkoholProcent() {
         return alkoholprocent;
     }
