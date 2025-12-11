@@ -1,8 +1,9 @@
 package model;
 
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LagringTest {
     private Lagring lagring;
@@ -41,15 +42,34 @@ class LagringTest {
         lagring.setSlutDato(LocalDate.of(2026, 1, 12));
     }
 
-    @Test
-    void udregnAngelShare() {
+    @org.junit.jupiter.api.Test
+    void udregnAngelShareTomListe() {
+        lagring.setErTom(true);
+        assertEquals(0 ,lagring.udregnAngelShare());
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
+    void udregnAngelShare1Væske() {
+        lagring.addDeldestillat(new TestVæske(10, 40));
+        lagring.aftapMængde(2);
+        lagring.setErTom(true);
+        assertEquals(8 ,lagring.udregnAngelShare());
+    }
+
+    @org.junit.jupiter.api.Test
+    void udregnAngelShare2Væsker() {
+        lagring.addDeldestillat(new TestVæske(20, 40));
+        lagring.aftapMængde(10);
+        lagring.setErTom(true);
+        assertEquals(15 ,lagring.udregnAngelShare());
+    }
+
+    @org.junit.jupiter.api.Test
     void getVolumen() {
+
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void getAlkoholProcent() {
     }
 }
