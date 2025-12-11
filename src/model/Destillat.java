@@ -20,8 +20,14 @@ public class Destillat implements Væske, Serializable {
         return mængde;
     }
 
+
+@Override
     public double getAlkoholProcent() {
         return alkoholProcent;
+    }
+
+    public Destillering getDestillering() {
+        return destillering;
     }
 
     public void setMængde (double delMængde) {
