@@ -29,6 +29,10 @@ public class Destillering implements Serializable {
         return destilleringsId;
     }
 
+    public void setDestilleringsId(int destilleringsId) {
+        this.destilleringsId = destilleringsId;
+    }
+
     public void setSlutDato (LocalDate date) {
         slutDato = date;
     }
@@ -39,6 +43,14 @@ public class Destillering implements Serializable {
 
     public Malt getMalt() {
         return malt;
+    }
+
+    public LocalDate getSlutDato() {
+        return slutDato;
+    }
+
+    public boolean isErFærdig() {
+        return erFærdig;
     }
 
     @Override
