@@ -165,8 +165,14 @@ public class Controller {
 
     public static void addDeldestillatTilLagring(Lagring lagring, Destillat destillat, double mængde) {
         Deldestillat deldestillat = Controller.opretDelDestillat(destillat, mængde);
-        deldestillat.setDatoForTilføjelse(LocalDate.now());
-        lagring.addDeldestillat(deldestillat);
+        if (LocalDate.now().isBefore(lagring.getStartDato())) {
+            deldestillat.setDatoForTilføjelse(LocalDate.now());
+        }
+        else {
+            deldestillat.setDatoForTilføjelse(lagring.getStartDato());
+
+            lagring.addDeldestillat(deldestillat);
+        }
     }
 
     public static ArrayList<Hylde> findLedigeHylder() {

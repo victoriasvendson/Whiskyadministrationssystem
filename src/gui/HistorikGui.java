@@ -59,6 +59,7 @@ public class HistorikGui extends GridPane {
         sb.append("Alle lagringer i whiskyen:\n");
         sb.append(whisky.getDelLagringer()).append("\n\n");
 
+
         Malt malt = whisky.findMalt();
         if (malt != null) {
             sb.append("Malt brugt i whiskyen\n");
